@@ -68,6 +68,9 @@
 * The Design and Implementation of XiaoIce, an Empathetic Social Chatbot. [`地址`](https://arxiv.org/pdf/1812.08989.pdf)
 * A Knowledge-Grounded Neural Conversation Model. [`地址`](https://arxiv.org/pdf/1702.01932.pdf)
 * Neural Generative Question Answering. [`地址`](https://arxiv.org/pdf/1512.01337v1.pdf)
+* Sequential Matching Network A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots．[`地址`](https://arxiv.org/abs/1612.01627)
+* Modeling Multi-turn Conversation with Deep Utterance Aggregation．[`地址`](https://arxiv.org/pdf/1806.09102.pdf)
+* Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network．[`地址`](https://www.aclweb.org/anthology/P18-1103)
 
 #### 机器翻译
 
@@ -82,11 +85,6 @@
 #### 事件提取
 
 * Event Extraction via Dynamic Multi-Pooling Convolutional Neural. [`地址`](https://pdfs.semanticscholar.org/ca70/480f908ec60438e91a914c1075b9954e7834.pdf)
-
-#### 深度检索式多轮问答
-* Sequential Matching Network A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots．[`地址`](https://arxiv.org/abs/1612.01627)
-* Modeling Multi-turn Conversation with Deep Utterance Aggregation．[`地址`](https://arxiv.org/pdf/1806.09102.pdf)
-* Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network．[`地址`](https://www.aclweb.org/anthology/P18-1103)
 
 ### 必读博文
 
