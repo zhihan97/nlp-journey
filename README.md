@@ -63,6 +63,11 @@
 
 * Learning to Rank Short Text Pairs with Convolutional Deep Neural Networks. [`地址`](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.723.6492&rep=rep1&type=pdf)
 * Learning Text Similarity with Siamese Recurrent Networks. [`地址`](https://www.aclweb.org/anthology/W16-1617)
+
+#### 短文本匹配
+
+* A Deep Architecture for Matching Short Texts. [`地址`](http://papers.nips.cc/paper/5019-a-deep-architecture-for-matching-short-texts.pdf)
+
 #### 自动问答
 
 * A Question-Focused Multi-Factor Attention Network for Question Answering. [`地址`](https://arxiv.org/pdf/1801.08290.pdf)
