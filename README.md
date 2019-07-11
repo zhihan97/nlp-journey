@@ -23,9 +23,10 @@
 
 ### 必读论文
 
-#### 算法模型
+#### 算法模型与优化
 
-* Long Short-term Memory. [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
+* LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
+* Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 
 #### 语言模型
 
