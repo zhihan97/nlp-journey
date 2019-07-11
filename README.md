@@ -143,6 +143,7 @@
 
 ### 相关博客
 
+* [刘建平Pinard](https://www.cnblogs.com/pinard/)
 * [莫坠青云志](https://tobiaslee.top/)
 * [彗双智能-Keras源码分析](http://wangbn.blogspot.com/)
 * [机器之心](https://www.jiqizhixin.com/)
