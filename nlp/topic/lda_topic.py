@@ -1,7 +1,4 @@
 from gensim.models import LdaModel
-from gensim.test.utils import common_texts
-from gensim.corpora.dictionary import Dictionary
-import path
 
 
 class LdaTopicModel:
