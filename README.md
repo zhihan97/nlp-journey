@@ -145,6 +145,8 @@
 
 ### 相关博客
 
+* [52nlp](http://www.52nlp.cn/)
+* [科学空间/信息时代](https://kexue.fm/category/Big-Data)
 * [刘建平Pinard](https://www.cnblogs.com/pinard/)
 * [莫坠青云志](https://tobiaslee.top/)
 * [彗双智能-Keras源码分析](http://wangbn.blogspot.com/)
