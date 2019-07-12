@@ -5,6 +5,7 @@ from keras_bert import load_trained_model_from_checkpoint
 
 
 class BertTextClassifier:
+    # TODO
 
     def build_model(self):
         bert_model = load_trained_model_from_checkpoint(config_path, checkpoint_path)
