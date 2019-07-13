@@ -19,7 +19,7 @@ class LdaTopicModel(object):
             self.model = self.load_model()
         else:
             self.file_path = file_path
-            self.dictionary, self.tf_idf,self.model = self.train()
+            self.dictionary, self.tf_idf, self.model = self.train()
 
     def train(self):
         corpus = self.preprocess()
@@ -30,7 +30,7 @@ class LdaTopicModel(object):
         corpus_tf_idf = tf_idf[doc2bow]
 
         model = LdaModel(corpus_tf_idf, num_topics=2)
-        return dictionary,tf_idf, model
+        return dictionary, tf_idf, model
 
     def save_model(self):
         self.model.save(self.model_path)
@@ -50,7 +50,7 @@ class LdaTopicModel(object):
 
     def save_config(self):
         with open(self.config_path, 'wb') as file:
-            pickle.dump((self.dictionary,self.tf_idf), file)
+            pickle.dump((self.dictionary, self.tf_idf), file)
 
     def load_config(self):
         with open(self.config_path, 'rb') as file:

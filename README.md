@@ -46,6 +46,7 @@
 * GloVe: Global Vectors for Word Representation. [`官网`](https://nlp.stanford.edu/projects/glove/)
 * ELMo (Deep contextualized word representations). [`地址`](https://arxiv.org/pdf/1802.05365.pdf)
 * BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. [`地址`](https://arxiv.org/pdf/1810.04805.pdf)
+* Pre-Training with Whole Word Masking for Chinese BERT. [`地址`](https://arxiv.org/pdf/1906.08101.pdf)
 * XLNet: Generalized Autoregressive Pretraining for Language Understanding[`地址`](https://arxiv.org/pdf/1906.08237.pdf)
 
 #### 文本分类
