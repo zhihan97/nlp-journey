@@ -45,7 +45,7 @@ class BertTextClassifier:
         model = self.build_model()
         model.fit(
             [x1_train, x2_train], y_train,
-            batch_size=32,
+            batch_size=8,
             epochs=5,
             validation_data=([x1_test, x2_test], y_test),
             verbose=1
@@ -96,8 +96,8 @@ class BertTextClassifier:
             x1.append(x1_)
             x2.append(x2_)
 
-        x1 = pad_sequences(x1, maxlen=max([len(x) for x in x1]))
-        x2 = pad_sequences(x2, maxlen=max([len(x) for x in x2]))
+        x1 = pad_sequences(x1, maxlen=100)
+        x2 = pad_sequences(x2, maxlen=100)
 
-        x1_train, x1_test,x2_train,x2_test, y_train, y_test = train_test_split(x1, x2, y_data)
+        x1_train, x1_test, x2_train, x2_test, y_train, y_test = train_test_split(x1, x2, y_data)
         return x1_train, x2_train, y_train, x1_test, x2_test, y_test
