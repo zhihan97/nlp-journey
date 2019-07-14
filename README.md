@@ -125,6 +125,7 @@
 - [x] bilstm+attention
 - [x] rcnn
 - [x] han
+- [x] bert
 
 * [NER](nlp/ner/)
 
