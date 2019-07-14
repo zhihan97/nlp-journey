@@ -94,6 +94,10 @@
 
 * Event Extraction via Dynamic Multi-Pooling Convolutional Neural. [`地址`](https://pdfs.semanticscholar.org/ca70/480f908ec60438e91a914c1075b9954e7834.pdf)
 
+#### 推荐系统
+
+* Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
+
 ### 必读博文
 
 * The Illustrated Transformer.[`博文`](https://jalammar.github.io/illustrated-transformer/)
