@@ -1,8 +1,10 @@
 from keras import Input, Model
 from keras.layers import Lambda, Dense
 from keras.optimizers import Adam
+from keras.preprocessing.sequence import pad_sequences
 from keras_bert import load_trained_model_from_checkpoint, Tokenizer
 import codecs
+from sklearn.model_selection import train_test_split
 
 
 class ZhTokenizer(Tokenizer):
@@ -25,15 +27,30 @@ class BertTextClassifier:
 
     def __init__(self, config_path,
                  checkpoint_path,
-                 dict_path):
+                 dict_path,
+                 train=False,
+                 data_path=None):
         self.config_path = config_path
         self.checkpoint_path = checkpoint_path
         self.dict_path = dict_path
 
-    def train(self):
-        model = self.build_model()
+        if not train:
+            pass
+        else:
+            self.data_path = data_path
+            self.model = self.train()
 
-        pass
+    def train(self):
+        x1_train, x2_train, y_train, x1_test, x2_test, y_test = self.preprocess()
+        model = self.build_model()
+        model.fit(
+            [x1_train, x2_train], y_train,
+            batch_size=32,
+            epochs=5,
+            validation_data=([x1_test, x2_test], y_test),
+            verbose=1
+        )
+        return model
 
     def build_model(self):
         bert_model = load_trained_model_from_checkpoint(self.config_path, self.checkpoint_path)
@@ -63,4 +80,24 @@ class BertTextClassifier:
                 token = line.strip()
                 token_dict[token] = len(token_dict)
         tokenizer = ZhTokenizer(token_dict)
-        tokenizer.tokenize(u'今天天气不错')
+
+        x_data, y_data = [], []
+        with open(self.data_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+        for line in lines:
+            line_ = line.split('##')
+            x_data.append(line_[0])
+            y_data.append(int(line_[1].strip()))
+
+        x1, x2 = [], []
+
+        for text in x_data:
+            x1_, x2_ = tokenizer.encode(first=text)
+            x1.append(x1_)
+            x2.append(x2_)
+
+        x1 = pad_sequences(x1, maxlen=max([len(x) for x in x1]))
+        x2 = pad_sequences(x2, maxlen=max([len(x) for x in x2]))
+
+        x1_train, x1_test,x2_train,x2_test, y_train, y_test = train_test_split(x1, x2, y_data)
+        return x1_train, x2_train, y_train, x1_test, x2_test, y_test
