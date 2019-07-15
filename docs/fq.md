@@ -112,3 +112,5 @@ DropConnect通过随机丢弃权重而不是激活来扩展Dropout;
 循环Dropout使用网络的隐藏状态作为计算门值和小区更新以及使用dropout的子网络的输入来正则化子网络;
 
 Zoneout不是将某些单位的激活设置为0，而是随机替换某些单位的激活与他们从前一个时间步的激活。
+
+> 来自 [Dropout在LSTM / GRU递归神经网络中的应用详解](http://www.aboutyun.com/thread-25279-1-1.html)
