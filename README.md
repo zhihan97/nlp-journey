@@ -28,6 +28,12 @@
 * LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
 * Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 * Residual Network(Deep Residual Learning for Image Recognition). [`地址`](https://arxiv.org/pdf/1512.03385.pdf)
+* Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
+
+#### 综述论文
+
+* Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
+* Neural Text Generation: Past, Present and Beyond. [`地址`](https://arxiv.org/pdf/1803.07133.pdf)
 
 #### 语言模型
 
