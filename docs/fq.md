@@ -133,3 +133,6 @@ Zoneout不是将某些单位的激活设置为0，而是随机替换某些单位
 3. Categorization：看词在每个分类中的概率
 4. 聚类算法（可视化）： kmeans 聚类，查看聚类分布效果 。若向量维度偏高，则对向量进行降维，并可视化。
 
+## 13. 画一下lstm的原理图
+
+![lstm](../images/lstm/lstm_full.png)
