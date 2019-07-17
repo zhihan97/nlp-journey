@@ -17,4 +17,4 @@
 
 "部分匹配值"就是"前缀"和"后缀"的最长的共有元素的长度。
 
-> 详细内容可以看大神阮一峰的博客：[字符串匹配的KMP算法](http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)。
+> 详细内容可以看大神阮一峰的博客：[字符串匹配的KMP算法](http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)，介绍的非常通俗易懂，大神的很多博客都是这样的，推荐挨着阅读。
