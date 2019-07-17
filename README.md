@@ -4,6 +4,7 @@
 
 ### 基础
 
+* [数据结构与算法](docs/alg.md)
 * [基础知识](docs/basic.md)
 * [常见问题](docs/fq.md)
 * [实践笔记](docs/notes.md)
