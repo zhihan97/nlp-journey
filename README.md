@@ -4,6 +4,7 @@
 
 ### 基础
 
+* [工具包教程博客](docs/tools.md)
 * [数据结构与算法](docs/alg.md)
 * [基础知识](docs/basic.md)
 * [常见问题](docs/fq.md)
