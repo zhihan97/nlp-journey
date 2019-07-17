@@ -4,10 +4,10 @@ import jieba
 # 预处理数据，分词并去除停用词，然后写回文件
 def seg_to_file(file, out_file, user_dict=None, stop_dict=None):
     sentences = process_data(file, user_dict,stop_dict)
-    sentences = [' '.join([l for l in line if l not in stop_words]) for line in lines]
+    sentences = [' '.join([l for l in line]) for line in sentences]
 
     with open(out_file, 'w', encoding='utf-8') as o:
-        o.writelines(lines)
+        o.writelines(sentences)
 
 
 def process_data(train_file, user_dict=None, stop_dict=None):
