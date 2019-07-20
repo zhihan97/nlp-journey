@@ -1,6 +1,6 @@
 ## nlp journey
 
-> Your Journey to NLP Starts Here !
+> Your Journey to NLP Starts Here ! I sincerely welcome you to pull requests!
 
 ### 基础
 
