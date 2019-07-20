@@ -55,7 +55,6 @@
 * Efficient Estimation of Word Representations in Vector Space. [`地址`](https://arxiv.org/pdf/1301.3781.pdf)
 * Distributed Representations of Sentences and Documents. [`地址`](https://arxiv.org/pdf/1405.4053.pdf)
 * Enriching Word Vectors with Subword Information(FastText). [`地址`](https://arxiv.org/pdf/1607.04606.pdf). [`解读`](https://www.sohu.com/a/114464910_465975)
-* Bag of Tricks for Efficient Text Classification (FastText). [`地址`](https://arxiv.org/pdf/1607.01759.pdf)
 * GloVe: Global Vectors for Word Representation. [`官网`](https://nlp.stanford.edu/projects/glove/)
 * ELMo (Deep contextualized word representations). [`地址`](https://arxiv.org/pdf/1802.05365.pdf)
 * BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. [`地址`](https://arxiv.org/pdf/1810.04805.pdf)
@@ -64,6 +63,7 @@
 
 #### 文本分类
 
+* Bag of Tricks for Efficient Text Classification (FastText). [`地址`](https://arxiv.org/pdf/1607.01759.pdf)
 * A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1510.03820.pdf)
 * Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1408.5882.pdf)
 * Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification. [`地址`](http://www.aclweb.org/anthology/P16-2034)
