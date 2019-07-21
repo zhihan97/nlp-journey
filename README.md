@@ -112,6 +112,7 @@
 * Distant Supervision for Relation Extraction via Piecewise Convolutional Neural Networks. [`地址`](https://www.aclweb.org/anthology/D15-1203)
 * Neural Relation Extraction with Multi-lingual Attention. [`地址`](https://www.aclweb.org/anthology/P17-1004)
 * FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. [`地址`](https://aclweb.org/anthology/D18-1514)
+* End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures. [`地址`](https://www.aclweb.org/anthology/P16-1105)
 
 #### 推荐系统
 
