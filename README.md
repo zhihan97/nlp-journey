@@ -107,6 +107,11 @@
 
 * Event Extraction via Dynamic Multi-Pooling Convolutional Neural. [`地址`](https://pdfs.semanticscholar.org/ca70/480f908ec60438e91a914c1075b9954e7834.pdf)
 
+#### 关系抽取
+
+* Distant Supervision for Relation Extraction via Piecewise Convolutional Neural Networks. [`地址`](https://www.aclweb.org/anthology/D15-1203)
+* Neural Relation Extraction with Multi-lingual Attention. [`地址`](https://www.aclweb.org/anthology/P17-1004)
+
 #### 推荐系统
 
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
