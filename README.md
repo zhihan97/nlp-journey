@@ -33,6 +33,8 @@
 #### 算法模型与优化
 
 * LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
+* Sequence to Sequence Learning with Neural Networks. [`地址`](https://arxiv.org/pdf/1409.3215.pdf)
+* Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation. [`地址`](https://arxiv.org/pdf/1406.1078.pdf)
 * Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 * Residual Network(Deep Residual Learning for Image Recognition). [`地址`](https://arxiv.org/pdf/1512.03385.pdf)
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
