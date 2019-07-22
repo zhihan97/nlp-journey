@@ -93,6 +93,7 @@
 * Sequential Matching Network A New Architecture for Multi-turn Response Selection in Retrieval-Based Chatbots．[`地址`](https://arxiv.org/abs/1612.01627)
 * Modeling Multi-turn Conversation with Deep Utterance Aggregation．[`地址`](https://arxiv.org/pdf/1806.09102.pdf)
 * Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network．[`地址`](https://www.aclweb.org/anthology/P18-1103)
+* Deep Reinforcement Learning For Modeling Chit-Chat Dialog With Discrete Attributes. [`地址`](https://arxiv.org/pdf/1907.02848.pdf)
 
 #### 机器翻译
 
