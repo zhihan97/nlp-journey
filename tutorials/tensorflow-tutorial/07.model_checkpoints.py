@@ -90,11 +90,21 @@ with tf.variable_scope('cost'):
 with tf.variable_scope('train'):
     optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
 
+# 新建一个summary来对网络过程进行日志输出
+with tf.variable_scope('logging'):
+    tf.summary.scalar('current_cost', cost)
+    summary = tf.summary.merge_all()
+
+saver = tf.train.Saver()
+
 # 初始化一个session:tensorflow 1.x 所必须的
 with tf.Session() as session:
-
     # 运行全局参数初始化：
     session.run(tf.global_variables_initializer())
+
+    # 新建日志写入器，将训练过程写入日志：训练和测试日志分别存储
+    training_writer = tf.summary.FileWriter("./logs/training", session.graph)
+    testing_writer = tf.summary.FileWriter("./logs/testing", session.graph)
 
     # 不断运行优化器来训练网络：每一个epoch代表把数据跑完一遍
     for epoch in range(training_epochs):
@@ -104,8 +114,14 @@ with tf.Session() as session:
 
         # 每5个epoch，打印训练情况
         if epoch % 5 == 0:
-            training_cost = session.run(cost, feed_dict={X: X_scaled_training, Y: Y_scaled_training})
-            testing_cost = session.run(cost, feed_dict={X: X_scaled_testing, Y: Y_scaled_testing})
+            training_cost, training_summary = session.run([cost, summary],
+                                                          feed_dict={X: X_scaled_training, Y: Y_scaled_training})
+            testing_cost, testing_summary = session.run([cost, summary],
+                                                        feed_dict={X: X_scaled_testing, Y: Y_scaled_testing})
+
+            # 将训练过程写入日志文件（可以后续用TensorBoard可视化）
+            training_writer.add_summary(training_summary, epoch)
+            testing_writer.add_summary(testing_summary, epoch)
 
             print(epoch, training_cost, testing_cost)
 
@@ -118,3 +134,19 @@ with tf.Session() as session:
 
     print("Final Training cost: {}".format(final_training_cost))
     print("Final Testing cost: {}".format(final_testing_cost))
+
+    # 训练好模型之后，开始用模型做预测
+    Y_predicted_scaled = session.run(prediction, feed_dict={X: X_scaled_testing})
+
+    # 反向归一化：将数据还原
+    Y_predicted = Y_scaler.inverse_transform(Y_predicted_scaled)
+
+    real_earnings = test_data_df['销售总额'].values[0]
+    predicted_earnings = Y_predicted[0][0]
+
+    print("The actual earnings of Game #1 were ${}".format(real_earnings))
+    print("Our neural network predicted earnings of ${}".format(predicted_earnings))
+
+    # 保存训练好的模型
+    save_path = saver.save(session, "logs/trained_model.ckpt")
+    print("Model saved: {}".format(save_path))
