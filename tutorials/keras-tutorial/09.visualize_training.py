@@ -11,8 +11,8 @@ RUN_NAME = "run 3 with 500 nodes" # 可以修改
 
 training_data_df = pd.read_csv("./dataset/sales_data_training_scaled.csv")
 
-X = training_data_df.drop('total_earnings', axis=1).values
-Y = training_data_df[['total_earnings']].values
+X = training_data_df.drop('销售总额', axis=1).values
+Y = training_data_df[['销售总额']].values
 
 # 定义模型
 model = Sequential()
@@ -31,8 +31,8 @@ logger = keras.callbacks.TensorBoard(
 
 test_data_df = pd.read_csv("./dataset/sales_data_testing_scaled.csv")
 
-X_test = test_data_df.drop('total_earnings', axis=1).values
-Y_test = test_data_df[['total_earnings']].values
+X_test = test_data_df.drop('销售总额', axis=1).values
+Y_test = test_data_df[['销售总额']].values
 
 # 训练模型
 model.fit(
