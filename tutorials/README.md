@@ -14,5 +14,5 @@
 
 **深度学习**
 
-* [keras tutorials：lynda.com](keras-tutorial/)
-* [tensorflow tutorials:lynda.com](tensorflow-tutorial/)
+* [keras tutorials: lynda.com](keras-tutorial/)
+* [tensorflow tutorials: lynda.com](tensorflow-tutorial/)
