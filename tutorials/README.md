@@ -1,5 +1,12 @@
 # 工具教程
 
+## 代码
+
+**深度学习：参考自lynda.com**
+
+* [keras tutorials](keras-tutorial/)
+* [tensorflow tutorials](tensorflow-tutorial/)
+
 ## 博客
 
 **numpy**
@@ -10,9 +17,4 @@
 
 * [`使用sklearn做单机特征工程`](https://www.cnblogs.com/jasonfreak/p/5448385.html)
 
-## 代码
 
-**深度学习**
-
-* [keras tutorials: lynda.com](keras-tutorial/)
-* [tensorflow tutorials: lynda.com](tensorflow-tutorial/)
