@@ -2,7 +2,7 @@ from keras import Input, Model
 from keras.layers import Embedding, Bidirectional, CuDNNLSTM, Concatenate, Conv1D, GlobalAveragePooling1D, \
     GlobalMaxPooling1D, Dense
 
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 
 
 class TextRCNNClassifier(TextClassifier):

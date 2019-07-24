@@ -1,7 +1,7 @@
 from keras import Model
 
 from nlp.layers.attention import Attention
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 from keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
 
 

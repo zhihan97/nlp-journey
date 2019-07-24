@@ -1,7 +1,7 @@
 from keras import Model
 from keras.layers import Dropout, Dense, Embedding, BatchNormalization, CuDNNLSTM, Input, Bidirectional
 
-from .basic_classifier import TextClassifier
+from .base_classifier import TextClassifier
 
 
 class TextRnnClassifier(TextClassifier):
