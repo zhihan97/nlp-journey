@@ -4,7 +4,7 @@
 
 ## 下边是具体的tutorial内容
 
-* [01.预处理数据：归一化数据](01.preprocess_data.py)
+* [01.预处理：归一化数据](01.preprocess_data.py)
 * [02.创建模型](02.create_model.py)
 * [03.训练模型](03.train_model.py)
 * [04.根据训练好的模型预测](04.predict.py)
