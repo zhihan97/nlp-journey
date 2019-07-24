@@ -10,7 +10,7 @@
 * [04.根据训练好的模型预测](04.predict.py)
 * [05.保存训练好的模型](05.save_trained_model.py)
 * [06.加载训练好的模型](06.load_saved_model.py)
-* [07.使用keras自带的训练好的模型](07.image_recognition final.py)
+* [07.使用keras自带的训练好的模型](07.image_recognition.py)
 * [08.训练过程日志](08.model_logging.py)
 * [09.可视化训练过程](09.visualize_training.py)
 
