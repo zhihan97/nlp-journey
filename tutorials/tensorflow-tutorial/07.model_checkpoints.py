@@ -113,7 +113,7 @@ with tf.Session() as session:
         session.run(optimizer, feed_dict={X: X_scaled_training, Y: Y_scaled_training})
 
         # 每5个epoch，打印训练情况
-        if epoch % 5 == 0:
+        if epoch % display_step == 0:
             training_cost, training_summary = session.run([cost, summary],
                                                           feed_dict={X: X_scaled_training, Y: Y_scaled_training})
             testing_cost, testing_summary = session.run([cost, summary],

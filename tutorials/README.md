@@ -6,6 +6,7 @@
 
 * [keras tutorials](keras-tutorial/)
 * [tensorflow tutorials](tensorflow-tutorial/)
+* [pytorch tutorials](pytorch-tutorial/)
 
 ## 博客
 

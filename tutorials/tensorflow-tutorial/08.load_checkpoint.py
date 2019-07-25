@@ -102,7 +102,7 @@ with tf.Session() as session:
     # 加载checkpoints，不用运行全局参数初始化
     # session.run(tf.global_variables_initializer())
 
-    # Instead, load them from disk:
+    # 从硬盘加载训练好的模型
     saver.restore(session, "logs/trained_model.ckpt")
 
     print("Trained model loaded from disk.")
