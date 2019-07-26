@@ -65,6 +65,7 @@ class NeuralNet(nn.Module):
         out = self.relu(out)
         out = self.fc3(out)
         out = self.relu(out)
+        out = self.fc4(out)
         return out
 
 
