@@ -118,6 +118,7 @@
 
 #### 推荐系统
 
+* Deep Neural Networks for YouTube Recommendations. [`地址`](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf)
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
 
 ### 必读博文
