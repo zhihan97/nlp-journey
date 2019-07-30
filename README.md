@@ -1,34 +1,34 @@
-## nlp journey
+# nlp journey
 
 > Your Journey to NLP Starts Here ! I sincerely welcome you to pull requests!
 
-### 基础
+## 基础
 
 * [基础知识](docs/basic.md)
 * [常见问题](docs/fq.md)
 * [实践笔记](docs/notes.md)
 * [工具教程](tutorials/)
 
-### 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
+## 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
 
-#### 算法入门
+### 算法入门
 
 * 算法的乐趣. [`原书地址`](http://www.ituring.com.cn/book/1605) 
 
-#### 深度学习
+### 深度学习
 
 * Deep Learning.深度学习必读. [`原书地址`](https://www.deeplearningbook.org/)
 * Neural Networks and Deep Learning. 入门必读. [`原书地址`](http://neuralnetworksanddeeplearning.com/)
 * 复旦大学《神经网络与深度学习》邱锡鹏教授. [`原书地址`](https://nndl.github.io/)
 
-#### 自然语言处理
+### 自然语言处理
 
 * 斯坦福大学《语音与语言处理》第三版：NLP必读. [`原书地址`](http://web.stanford.edu/~jurafsky/slp3/ed3book.pdf)
 * CS224d: Deep Learning for Natural Language Processing. [`课件地址`](http://cs224d.stanford.edu/)
 
-### 必读论文
+## 必读论文
 
-#### 算法模型与优化
+### 算法模型与优化
 
 * LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
 * Sequence to Sequence Learning with Neural Networks. [`地址`](https://arxiv.org/pdf/1409.3215.pdf)
@@ -37,22 +37,22 @@
 * Residual Network(Deep Residual Learning for Image Recognition). [`地址`](https://arxiv.org/pdf/1512.03385.pdf)
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
 
-#### 综述论文
+### 综述论文
 
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
 * Neural Text Generation: Past, Present and Beyond. [`地址`](https://arxiv.org/pdf/1803.07133.pdf)
 
-#### 语言模型
+### 语言模型
 
 * word2vec Parameter Learning Explained. [`地址`](https://arxiv.org/pdf/1411.2738.pdf)
 * A Neural Probabilistic Language Model. [`地址`](https://www.researchgate.net/publication/221618573_A_Neural_Probabilistic_Language_Model)
 * Language Models are Unsupervised Multitask Learners. [`地址`](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
 
-#### 文本增强
+### 文本增强
 
 * EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks.[`地址`](https://arxiv.org/pdf/1901.11196.pdf)
 
-#### 文本预训练
+### 文本预训练
 
 * Efficient Estimation of Word Representations in Vector Space. [`地址`](https://arxiv.org/pdf/1301.3781.pdf)
 * Distributed Representations of Sentences and Documents. [`地址`](https://arxiv.org/pdf/1405.4053.pdf)
@@ -63,29 +63,29 @@
 * Pre-Training with Whole Word Masking for Chinese BERT. [`地址`](https://arxiv.org/pdf/1906.08101.pdf)
 * XLNet: Generalized Autoregressive Pretraining for Language Understanding[`地址`](https://arxiv.org/pdf/1906.08237.pdf)
 
-#### 文本分类
+### 文本分类
 
 * Bag of Tricks for Efficient Text Classification (FastText). [`地址`](https://arxiv.org/pdf/1607.01759.pdf)
 * A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1510.03820.pdf)
 * Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1408.5882.pdf)
 * Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification. [`地址`](http://www.aclweb.org/anthology/P16-2034)
 
-#### 文本生成
+### 文本生成
 
 * A Deep Ensemble Model with Slot Alignment for Sequence-to-Sequence Natural Language Generation. [`地址`](https://arxiv.org/pdf/1805.06553.pdf)
 * SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient. [`地址`](https://arxiv.org/pdf/1609.05473.pdf)
 * Generative Adversarial Text to Image Synthesis. [`地址`](https://arxiv.org/pdf/1605.05396.pdf)
 
-#### 文本相似性
+### 文本相似性
 
 * Learning to Rank Short Text Pairs with Convolutional Deep Neural Networks. [`地址`](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.723.6492&rep=rep1&type=pdf)
 * Learning Text Similarity with Siamese Recurrent Networks. [`地址`](https://www.aclweb.org/anthology/W16-1617)
 
-#### 短文本匹配
+### 短文本匹配
 
 * A Deep Architecture for Matching Short Texts. [`地址`](http://papers.nips.cc/paper/5019-a-deep-architecture-for-matching-short-texts.pdf)
 
-#### 自动问答
+### 自动问答
 
 * A Question-Focused Multi-Factor Attention Network for Question Answering. [`地址`](https://arxiv.org/pdf/1801.08290.pdf)
 * The Design and Implementation of XiaoIce, an Empathetic Social Chatbot. [`地址`](https://arxiv.org/pdf/1812.08989.pdf)
@@ -96,33 +96,33 @@
 * Multi-Turn Response Selection for Chatbots with Deep Attention Matching Network．[`地址`](https://www.aclweb.org/anthology/P18-1103)
 * Deep Reinforcement Learning For Modeling Chit-Chat Dialog With Discrete Attributes. [`地址`](https://arxiv.org/pdf/1907.02848.pdf)
 
-#### 机器翻译
+### 机器翻译
 
 * Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation. [`地址`](https://arxiv.org/pdf/1406.1078v3.pdf)
 * Transformer (Attention Is All You Need). [`地址`](https://arxiv.org/pdf/1706.03762.pdf)
 * Transformer-XL:Attentive Language Models Beyond a Fixed-Length Context. [`地址`](https://arxiv.org/pdf/1901.02860.pdf)
 
-#### 自动摘要
+### 自动摘要
 
 * Get To The Point: Summarization with Pointer-Generator Networks. [`地址`](https://arxiv.org/pdf/1704.04368.pdf)
 
-#### 事件提取
+### 事件提取
 
 * Event Extraction via Dynamic Multi-Pooling Convolutional Neural. [`地址`](https://pdfs.semanticscholar.org/ca70/480f908ec60438e91a914c1075b9954e7834.pdf)
 
-#### 关系抽取
+### 关系抽取
 
 * Distant Supervision for Relation Extraction via Piecewise Convolutional Neural Networks. [`地址`](https://www.aclweb.org/anthology/D15-1203)
 * Neural Relation Extraction with Multi-lingual Attention. [`地址`](https://www.aclweb.org/anthology/P17-1004)
 * FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. [`地址`](https://aclweb.org/anthology/D18-1514)
 * End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures. [`地址`](https://www.aclweb.org/anthology/P16-1105)
 
-#### 推荐系统
+### 推荐系统
 
 * Deep Neural Networks for YouTube Recommendations. [`地址`](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf)
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
 
-### 必读博文
+## 必读博文
 
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
 * The Illustrated Transformer.[`博文`](https://jalammar.github.io/illustrated-transformer/)
@@ -133,7 +133,7 @@
 * 难以置信！LSTM和GRU的解析从未如此清晰（动图+视频）。[`地址`](https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247488287&idx=2&sn=aa7b045337940886d5a7767f95ab0128&chksm=ebb42bcbdcc3a2ddcfb73fb77bead9655d6608b1a951a8b429fb2c38d56ca92289e97e6decd1&mpshare=1&scene=24&srcid=0930GzGGm3m7uZfJyblgWV3k&key=5b1b221b044835abb8ce952ed69e6acdfe5f30700caa3c560c8fe663354916c6753858e4dbbf1b4d1c2eded3876c67c0983d3d51324c321458405b0cacec9103640c28a7a5c068729172703bf23c0348&ascene=14&uin=Mjk3NzQ2NDczMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=uQSzwn38HjOIK%2BZwFf5AXCp%2Fk0QiE7budc%2Bl5t1yBFtOXA%2BPvSaFwqUWEwEmyZEd)
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
 
-### 已实现算法
+## 实现代码
 
 * [构建词向量](nlp/embedding/)
 
@@ -162,7 +162,7 @@
 
 - [x] siamese
 
-### 相关github项目
+## 相关github项目
 
 * keras-gpt-2. [`地址`](https://github.com/CyberZHG/keras-gpt-2)
 * textClassifier. [`地址`](https://github.com/jiangxinyang227/textClassifier)
@@ -172,7 +172,7 @@
 * ELMo-keras. [`地址`](https://github.com/iliaschalkidis/ELMo-keras)
 * SeqGAN. [`地址`](https://github.com/tyo-yo/SeqGAN)
 
-### 相关博客
+## 相关博客
 
 * [52nlp](http://www.52nlp.cn/)
 * [科学空间/信息时代](https://kexue.fm/category/Big-Data)
@@ -180,7 +180,7 @@
 * [机器之心](https://www.jiqizhixin.com/)
 * [零基础入门深度学习](https://www.zybuluo.com/hanbingtao/note/433855)
 
-### 相关会议
+## 相关会议
 
 * Association of Computational Linguistics(计算语言学协会). [ACL](https://www.aclweb.org/portal/)
 * Empirical Methods in Natural Language Processing. [EMNLP]()
