@@ -195,10 +195,10 @@ class SiameseSimilarity:
 
     # 加载word2vec词向量
     def __load_word2vec(self, word_index):
+        log.info('加载训练好的词向量')
         word2vec = KeyedVectors.load_word2vec_format(
             self.embedding_file, binary=True)
-        embeddings = 1 * \
-                     np.random.randn(len(word_index) + 1, self.embedding_dim)
+        embeddings = 1 * np.random.randn(len(word_index) + 1, self.embedding_dim)
         embeddings[0] = 0
 
         for word, index in word_index.items():
