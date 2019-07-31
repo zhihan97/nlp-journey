@@ -93,7 +93,7 @@ class EDA:
 
         return new_words
 
-    def fit_transfrom(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
+    def fit_transform(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
         seg_list = jieba.cut(sentence)
         seg_list = " ".join(seg_list)
         words = list(seg_list.split())
