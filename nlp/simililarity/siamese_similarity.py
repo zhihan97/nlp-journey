@@ -4,29 +4,22 @@ import os
 import pickle
 import time
 
-import keras.backend as K
 import numpy as np
 import pandas as pd
 from gensim.models import KeyedVectors
 from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
 from keras.engine.saving import load_model
-from keras.layers import Input, Embedding, LSTM, Lambda, Bidirectional
+from keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, Dropout
 from keras.models import Model
-from keras.optimizers import Adadelta
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
-from nlp.utils.plot_model_history import plot
-from nlp.utils.clean_text import clean_to_list
-from nlp.utils.set_stopwords import set_en_stopwords
 
 from nlp.utils.basic_log import Log
+from nlp.utils.clean_text import clean_to_list
+from nlp.utils.plot_model_history import plot
+from nlp.utils.set_stopwords import set_en_stopwords
 
 log = Log(logging.INFO)
-
-
-# 曼哈顿距离
-def exponent_neg_manhattan_distance(left, right):
-    return K.exp(-K.sum(K.abs(left - right), axis=1, keepdims=True))
 
 
 class SiameseSimilarity:
@@ -34,9 +27,8 @@ class SiameseSimilarity:
                  config_path,
                  data_path=None,
                  embedding_file=None,
-                 n_hidden=100,
-                 gradient_clipping_norm=1.25,
-                 batch_size=128,
+                 n_hidden=128,
+                 batch_size=64,
                  epochs=10,
                  train=False,
                  embedding_dim=300):
@@ -47,16 +39,16 @@ class SiameseSimilarity:
         :param data_path: 存放了train.csv和test.csv的目录
         :param embedding_file: 训练好的词向量文件
         :param n_hidden: lstm隐藏层维度
-        :param gradient_clipping_norm: adadelta参数
         :param batch_size: 每批数目大小
         :param epochs: 
         :param train: 是否训练模式，如果是训练模式，则必须提供data_path
         """
+
         self.model_path = model_path
         self.config_path = config_path
         self.embedding_dim = embedding_dim
         self.n_hidden = n_hidden
-        self.gradient_clipping_norm = gradient_clipping_norm
+        self.max_length = 500
 
         # 加载停用词
         self.stops = set_en_stopwords()
@@ -89,19 +81,36 @@ class SiameseSimilarity:
         encoded_left = embedding_layer(left_input)
         encoded_right = embedding_layer(right_input)
         # 相同的lstm网络
-        shared_lstm = Bidirectional(LSTM(self.n_hidden // 2))
-        left_output = shared_lstm(encoded_left)
-        right_output = shared_lstm(encoded_right)
-        # 计算距离
-        malstm_distance = Lambda(function=lambda x: exponent_neg_manhattan_distance(x[0], x[1]),
-                                 output_shape=lambda x: (x[0][0], 1))([left_output, right_output])
+        shared_lstm1 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
+        shared_lstm2 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
+        shared_lstm3 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
+        shared_lstm4 = Bidirectional(LSTM(self.n_hidden // 2))
+
+        left_output = shared_lstm1(encoded_left)
+        left_output = shared_lstm2(left_output)
+        left_output = shared_lstm3(left_output)
+        left_output = shared_lstm4(left_output)
+
+        right_output = shared_lstm1(encoded_right)
+        right_output = shared_lstm2(right_output)
+        right_output = shared_lstm3(right_output)
+        right_output = shared_lstm4(right_output)
+
+        # 合并后计算
+        merged = concatenate([left_output, right_output])
+        merged = BatchNormalization()(merged)
+        merged = Dropout(0.5)(merged)
+        merged = Dense(32, activation='relu')(merged)
+        merged = BatchNormalization()(merged)
+        merged = Dropout(0.5)(merged)
+        output = Dense(1, activation='sigmoid')(merged)
         # 构造模型
-        model = Model([left_input, right_input], [malstm_distance])
+        model = Model([left_input, right_input], [output])
         # Adadelta优化器
-        optimizer = Adadelta(clipnorm=self.gradient_clipping_norm)
-        model.compile(loss='mean_squared_error',
-                      optimizer=optimizer, 
+        model.compile(loss='binary_crossentropy',
+                      optimizer='adam',
                       metrics=['accuracy'])
+        model.summary()
         return model
 
     def train(self, weights_only=True, call_back=False):
@@ -189,7 +198,7 @@ class SiameseSimilarity:
         word2vec = KeyedVectors.load_word2vec_format(
             self.embedding_file, binary=True)
         embeddings = 1 * \
-            np.random.randn(len(word_index) + 1, self.embedding_dim)
+                     np.random.randn(len(word_index) + 1, self.embedding_dim)
         embeddings[0] = 0
 
         for word, index in word_index.items():
