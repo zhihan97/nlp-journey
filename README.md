@@ -36,6 +36,7 @@
 * Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 * Residual Network(Deep Residual Learning for Image Recognition). [`地址`](https://arxiv.org/pdf/1512.03385.pdf)
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
+* How transferable are features in deep neural networks. [`地址`](https://arxiv.org/pdf/1411.1792.pdf)
 
 ### 综述论文
 
