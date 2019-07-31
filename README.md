@@ -122,6 +122,13 @@
 * Deep Neural Networks for YouTube Recommendations. [`地址`](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf)
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
 
+### 搜索
+
+* DSSM: Learning Deep Structured Semantic Models for Web Search using Clickthrough Data. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cikm2013_DSSM_fullversion.pdf)
+* CLSM: A Latent Semantic Model with Convolutional-Pooling Structure for Information Retrieval. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cikm2014_cdssm_final.pdf)
+* DSSM-LSTM:Semantic Modelling with Long-Short-Term Memory for Information Retrieval. [`地址`](https://arxiv.org/pdf/1412.6629.pdf)
+* MV-DSSM:A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
+
 ## 必读博文
 
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
