@@ -100,6 +100,7 @@
 ### 机器翻译
 
 * Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation. [`地址`](https://arxiv.org/pdf/1406.1078v3.pdf)
+* Neural Machine Translation by Jointly Learning to Align and Translate. [`地址`](https://arxiv.org/pdf/1409.0473.pdf)
 * Transformer (Attention Is All You Need). [`地址`](https://arxiv.org/pdf/1706.03762.pdf)
 * Transformer-XL:Attentive Language Models Beyond a Fixed-Length Context. [`地址`](https://arxiv.org/pdf/1901.02860.pdf)
 
