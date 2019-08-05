@@ -134,7 +134,7 @@
 ## 必读博文
 
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
-* The Illustrated Transformer.[`博文`](https://jalammar.github.io/illustrated-transformer/)
+* The Illustrated Transformer.[`地址`](https://jalammar.github.io/illustrated-transformer/)
 * Attention-based-model. [`地址`](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
 * Modern Deep Learning Techniques Applied to Natural Language Processing. [`地址`](https://nlpoverview.com/)
 * Bert解读. [`地址`](https://zhuanlan.zhihu.com/p/49271699)
