@@ -30,8 +30,8 @@ class SiameseSimilarity:
                  n_hidden=128,
                  batch_size=64,
                  epochs=10,
-                 train=False,
-                 embedding_dim=300):
+                 embedding_dim=300,
+                 train=False):
         """
         初始化
         :param model_path: 要保存的或者已经保存的模型路径
@@ -62,10 +62,7 @@ class SiameseSimilarity:
             self.batch_size = batch_size
             self.epochs = epochs
             self.embedding_file = embedding_file
-            self.train_data = os.path.join(self.data_path, 'train.csv')
-            self.test_data = os.path.join(self.data_path, 'test.csv')
-            self.x_train, self.y_train, self.x_val, self.y_val, self.word_index, self.max_length = self.__load_data(
-                self.train_data, self.test_data)
+            self.x_train, self.y_train, self.x_val, self.y_val, self.word_index, self.max_length = self.__load_data()
             self.embeddings = self.__load_word2vec(self.word_index)
             self.model = self.train(call_back=True)
 
@@ -214,7 +211,7 @@ class SiameseSimilarity:
             config.close()
         return embeddings, vocabulary, max_seq_length
 
-    def __load_data(self, train_csv, test_csv, test_size=0.2):
+    def __load_data(self, test_size=0.2):
         log.info('数据预处理...')
         # word:index和index:word
         word_index = dict()
@@ -222,14 +219,15 @@ class SiameseSimilarity:
         questions_cols = ['question1', 'question2']
 
         log.info('加载数据集...')
-        train_df = pd.read_csv(train_csv)
-        test_df = pd.read_csv(test_csv)
+        train_data = os.path.join(self.data_path, 'train.csv')
+        test_data = os.path.join(self.data_path, 'test.csv')
+
+        train_df = pd.read_csv(train_data)
+        test_df = pd.read_csv(test_data)
 
         # 找到最大的句子长度
-        sentences = [df[col].str.split(' ') for df in [
-            train_df, test_df] for col in questions_cols]
-        max_seq_length = max(
-            [len(s) for ss in sentences for s in ss if isinstance(s, list)])
+        sentences = [df[col].str.split(' ') for df in [train_df, test_df] for col in questions_cols]
+        max_length = max([len(s) for ss in sentences for s in ss if isinstance(s, list)])
         # 预处理(统计并将字符串转换为索引)
         for dataset in [train_df, test_df]:
             for index, row in dataset.iterrows():
@@ -248,8 +246,7 @@ class SiameseSimilarity:
 
         x = train_df[questions_cols]
         y = train_df['is_duplicate']
-        x_train, x_val, y_train, y_val = train_test_split(
-            x, y, test_size=test_size)
+        x_train, x_val, y_train, y_val = train_test_split(x, y, test_size=test_size)
 
         x_train = {'left': x_train.question1, 'right': x_train.question2}
         x_val = {'left': x_val.question1, 'right': x_val.question2}
@@ -258,9 +255,9 @@ class SiameseSimilarity:
         y_val = y_val.values
 
         for dataset, side in itertools.product([x_train, x_val], ['left', 'right']):
-            dataset[side] = pad_sequences(dataset[side], maxlen=max_seq_length)
+            dataset[side] = pad_sequences(dataset[side], maxlen=max_length)
 
         # 校验问题对各自数目是否正确
         assert x_train['left'].shape == x_train['right'].shape
         assert len(x_train['left']) == len(y_train)
-        return x_train, y_train, x_val, y_val, word_index, max_seq_length
+        return x_train, y_train, x_val, y_val, word_index, max_length
