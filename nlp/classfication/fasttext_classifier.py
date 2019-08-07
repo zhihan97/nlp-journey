@@ -11,6 +11,7 @@ log = Log(logging.INFO)
 
 class FastTextClassifier:
     """
+    需要安装包：pip install fasttext
     利用fasttext来对文本进行分类
     """
 
