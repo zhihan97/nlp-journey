@@ -15,19 +15,16 @@ class Perceptron:
 
     def predict(self, input_x):
         return self.activator(sum([x * w for (x, w) in zip(input_x, self.weights)]) + self.bias)
-        pass
 
     def train(self, input_xs, labels, iteration, rate):
         for i in range(iteration):
             self._one_iteration(input_xs, labels, rate)
-        pass
 
     def _one_iteration(self, input_xs, labels, rate):
         samples = zip(input_xs, labels)
         for (input_x, label) in samples:
             output = self.predict(input_x)
             self._update_weights(input_x, output, label, rate)
-        pass
 
     def _update_weights(self, input_x, output, label, rate):
         delta = label - output
