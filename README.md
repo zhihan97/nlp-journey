@@ -38,6 +38,7 @@
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
 * How transferable are features in deep neural networks. [`地址`](https://arxiv.org/pdf/1411.1792.pdf)
 * A Critical Review of Recurrent Neural Networks for Sequence Learning. [`地址`](https://arxiv.org/pdf/1506.00019.pdf)
+
 ### 综述论文
 
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
@@ -107,6 +108,7 @@
 ### 自动摘要
 
 * Get To The Point: Summarization with Pointer-Generator Networks. [`地址`](https://arxiv.org/pdf/1704.04368.pdf)
+* Deep Recurrent Generative Decoder for Abstractive Text Summarization. [`地址`](https://aclweb.org/anthology/D17-1222)
 
 ### 事件提取
 
