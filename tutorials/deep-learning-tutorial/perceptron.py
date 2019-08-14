@@ -20,18 +20,15 @@ class Perceptron:
         for i in range(iteration):
             self._one_iteration(input_xs, labels, rate)
 
-    def _one_iteration(self, input_xs, labels, rate):
-        samples = zip(input_xs, labels)
-        for (input_x, label) in samples:
+    def _one_iteration(self, input_xs, labels, learning_rate):
+        for (input_x, label) in zip(input_xs, labels):
             output = self.predict(input_x)
-            self._update_weights(input_x, output, label, rate)
+            self._update_weights(input_x, output, label, learning_rate)
 
-    def _update_weights(self, input_x, output, label, rate):
+    def _update_weights(self, input_x, output, label, learning_rate):
         delta = label - output
-        pack = zip(input_x, self.weights)
-
-        self.weights = [w + rate * delta * x for (x, w) in pack]
-        self.bias += rate * delta
+        self.weights = [w + learning_rate * delta * x for (x, w) in zip(input_x, self.weights)]
+        self.bias += learning_rate * delta
 
 
 def f(x):
