@@ -42,7 +42,11 @@
 
 > 详细内容可以看大神阮一峰的博客：[字符串匹配的KMP算法](http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)，介绍的非常通俗易懂。
 
+## 6、激活函数
 
+![激活函数](../images/activation/activation_function.png)
+
+> 图来自[pytorch-nlp-zh](https://nlp-pt.apachecn.org/docs/3.html)
 
 
 # 参考内容
