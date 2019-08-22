@@ -38,6 +38,7 @@
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
 * How transferable are features in deep neural networks. [`地址`](https://arxiv.org/pdf/1411.1792.pdf)
 * A Critical Review of Recurrent Neural Networks for Sequence Learning. [`地址`](https://arxiv.org/pdf/1506.00019.pdf)
+* Ordered Neurons: Integrating Tree Structures into Recurrent Neural Networks. [`地址`](https://arxiv.org/pdf/1810.09536.pdf)
 
 ### 综述论文
 
