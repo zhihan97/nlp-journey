@@ -103,7 +103,7 @@ class SiameseSimilarity:
         output = Dense(1, activation='sigmoid')(merged)
         # 构造模型
         model = Model([left_input, right_input], [output])
-        # Adadelta优化器
+        # Adam 优化器
         model.compile(loss='binary_crossentropy',
                       optimizer='adam',
                       metrics=['accuracy'])
