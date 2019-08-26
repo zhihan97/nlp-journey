@@ -147,7 +147,6 @@
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
 * 浅谈用Python计算文本BLEU分数. [`地址`](https://cloud.tencent.com/developer/article/1042161)
 * 深度学习中优化方法. [`地址`](https://blog.csdn.net/u012328159/article/details/80311892)
-* 后BERT时代：15个预训练模型对比分析与关键点探索（附链接）. [`地址`](https://www.jiqizhixin.com/articles/2019-08-26-16)
 
 ## 实现代码
 
