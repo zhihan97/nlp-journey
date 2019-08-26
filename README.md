@@ -50,6 +50,7 @@
 * word2vec Parameter Learning Explained. [`地址`](https://arxiv.org/pdf/1411.2738.pdf)
 * A Neural Probabilistic Language Model. [`地址`](https://www.researchgate.net/publication/221618573_A_Neural_Probabilistic_Language_Model)
 * Language Models are Unsupervised Multitask Learners. [`地址`](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
+* An Empirical Study of Smoothing Techniques for Language Modeling. [`地址`](https://dash.harvard.edu/bitstream/handle/1/25104739/tr-10-98.pdf?sequence=1)
 
 ### 文本增强
 
