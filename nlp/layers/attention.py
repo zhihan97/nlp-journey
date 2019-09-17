@@ -11,21 +11,25 @@ def dot_product(x, kernel):
 
 
 class Attention(Layer):
-    def __init__(self, W_regularizer=None, u_regularizer=None, b_regularizer=None,
-                 W_constraint=None, u_constraint=None, b_constraint=None,
-                 bias=True, **kwargs):
+    def __init__(self, w_regularizer=None,
+                 u_regularizer=None,
+                 b_regularizer=None,
+                 w_constraint=None,
+                 u_constraint=None,
+                 b_constraint=None,
+                 bias=True,
+                 **kwargs):
         """
         自定义的用keras写的attention层
         """
-
         self.supports_masking = True
         self.init = initializers.get('glorot_uniform')
 
-        self.W_regularizer = regularizers.get(W_regularizer)
+        self.w_regularizer = regularizers.get(w_regularizer)
         self.u_regularizer = regularizers.get(u_regularizer)
         self.b_regularizer = regularizers.get(b_regularizer)
 
-        self.W_constraint = constraints.get(W_constraint)
+        self.w_constraint = constraints.get(w_constraint)
         self.u_constraint = constraints.get(u_constraint)
         self.b_constraint = constraints.get(b_constraint)
 
@@ -35,11 +39,11 @@ class Attention(Layer):
     def build(self, input_shape):
         assert len(input_shape) == 3
 
-        self.W = self.add_weight((input_shape[-1], input_shape[-1],),
+        self.w = self.add_weight((input_shape[-1], input_shape[-1],),
                                  initializer=self.init,
                                  name='{}_W'.format(self.name),
-                                 regularizer=self.W_regularizer,
-                                 constraint=self.W_constraint)
+                                 regularizer=self.w_regularizer,
+                                 constraint=self.w_constraint)
         if self.bias:
             self.b = self.add_weight((input_shape[-1],),
                                      initializer='zero',
@@ -59,15 +63,14 @@ class Attention(Layer):
         return None
 
     def call(self, x, mask=None):
-        uit = dot_product(x, self.W)
-
+        uit = dot_product(x, self.w)
         if self.bias:
             uit += self.b
-
         uit = K.tanh(uit)
-        ait = dot_product(uit, self.u)
 
+        ait = dot_product(uit, self.u)
         a = K.exp(ait)
+
         if mask is not None:
             a *= K.cast(mask, K.floatx())
         a /= K.cast(K.sum(a, axis=1, keepdims=True) + K.epsilon(), K.floatx())
