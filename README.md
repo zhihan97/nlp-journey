@@ -148,6 +148,7 @@
 * 浅谈用Python计算文本BLEU分数. [`地址`](https://cloud.tencent.com/developer/article/1042161)
 * 深度学习中优化方法. [`地址`](https://blog.csdn.net/u012328159/article/details/80311892)
 * 加速python运行-numba. [`地址`](https://www.jianshu.com/p/69d9d7e37bc5)
+* 从语言模型到Seq2Seq：Transformer如戏，全靠Mask. [`地址`](https://spaces.ac.cn/archives/6933)
 
 ## 实现代码
 
