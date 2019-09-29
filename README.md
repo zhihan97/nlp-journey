@@ -159,8 +159,6 @@
 ## 相关github项目
 
 * transformers. [`地址`](https://github.com/huggingface/transformers)
-* keras-gpt-2. [`地址`](https://github.com/CyberZHG/keras-gpt-2)
-* textClassifier. [`地址`](https://github.com/jiangxinyang227/textClassifier)
 * keras-bert. [`地址`](https://github.com/CyberZHG/keras-bert)
 * ELMo-keras. [`地址`](https://github.com/iliaschalkidis/ELMo-keras)
 
