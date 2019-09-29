@@ -158,7 +158,7 @@
 
 ## 相关github项目
 
-| transformers | 地址                                                   | 项目       | 地址                                             |
+| 项目 | 地址                                                   | 项目       | 地址                                             |
 | ------------ | ------------------------------------------------------ | ---------- | ------------------------------------------------ |
 | keras-bert   | [`地址`](https://github.com/CyberZHG/keras-bert)       | keras-bert | [`地址`](https://github.com/CyberZHG/keras-bert) |
 | ELMo-keras   | [`地址`](https://github.com/iliaschalkidis/ELMo-keras) |            |                                                  |
