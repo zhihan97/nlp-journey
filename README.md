@@ -155,35 +155,6 @@
 * 浅谈用Python计算文本BLEU分数. [`地址`](https://cloud.tencent.com/developer/article/1042161)
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
 
-## 实现代码
-
-* [构建词向量](nlp/embedding/)
-
-- [x] fasttext(skipgram+cbow)
-- [x] gensim(word2vec)
-
-* [数据增强](nlp/augmentation/)
-
-- [x] eda
-
-* [分类算法](nlp/classification/)
-
-- [x] svm
-- [x] fasttext
-- [x] textcnn
-- [x] bilstm+attention
-- [x] rcnn
-- [x] han
-- [x] bert
-
-* [NER](nlp/ner/)
-
-- [x] bilstm+crf
-
-* [文本相似度](nlp/similarity/)
-
-- [x] siamese
-
 ## 相关github项目
 
 * transformers. [`地址`](https://github.com/huggingface/transformers)
