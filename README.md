@@ -8,6 +8,7 @@
 * [工具教程](tutorials/)
 * [实践笔记](docs/notes.md)
 * [常见问题](docs/fq.md)
+* [实现代码](nlp/)
 
 ## 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
 
