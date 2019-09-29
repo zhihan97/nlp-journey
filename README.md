@@ -14,6 +14,7 @@
 ### 算法入门
 
 * 算法的乐趣. [`原书地址`](http://www.ituring.com.cn/book/1605) 
+* 概率图入门. [`原书地址`](https://stat.ethz.ch/~maathuis/papers/Handbook.pdf)
 
 ### 深度学习
 
