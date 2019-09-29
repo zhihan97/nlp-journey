@@ -161,11 +161,8 @@
 * transformers. [`地址`](https://github.com/huggingface/transformers)
 * keras-gpt-2. [`地址`](https://github.com/CyberZHG/keras-gpt-2)
 * textClassifier. [`地址`](https://github.com/jiangxinyang227/textClassifier)
-* attention-is-all-you-need-keras. [`地址`](https://github.com/Lsdefine/attention-is-all-you-need-keras)
-* BERT_with_keras. [`地址`](https://github.com/miroozyx/BERT_with_keras)
 * keras-bert. [`地址`](https://github.com/CyberZHG/keras-bert)
 * ELMo-keras. [`地址`](https://github.com/iliaschalkidis/ELMo-keras)
-* SeqGAN. [`地址`](https://github.com/tyo-yo/SeqGAN)
 
 ## 相关博客
 
