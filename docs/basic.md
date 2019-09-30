@@ -63,6 +63,18 @@ CNN的卷积核是能保留特征之间的相对位置的，滑动窗口从左�
 
 虽然使用huffman树代替传统的神经网络，可以提高模型训练的效率，但是如果训练样本中的中心词w是一个很生僻的词，那么就需要沿着huffman树往下走很多，因为越是高频的词，越是靠近根节点。
 
+## 10、模型蒸馏是如何训练的？
+
+  Teacher：  对softmax（T=20）的输出与原始label求loss。
+  
+  Student： （1）对softmax（T=20）的输出与Teacher的softmax（T=20）的输出求loss1。
+  
+　　　　　　　（2）对softmax（T=1）的输出与原始label求loss2。
+
+　　　　　　　（3）loss = loss1+loss2
+
+
+
 # 参考内容
 
 
