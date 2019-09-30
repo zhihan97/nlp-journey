@@ -41,6 +41,7 @@
 * How transferable are features in deep neural networks. [`地址`](https://arxiv.org/pdf/1411.1792.pdf)
 * A Critical Review of Recurrent Neural Networks for Sequence Learning. [`地址`](https://arxiv.org/pdf/1506.00019.pdf)
 * Ordered Neurons: Integrating Tree Structures into Recurrent Neural Networks. [`地址`](https://arxiv.org/pdf/1810.09536.pdf)
+* Distilling the Knowledge in a Neural Network. [`地址`](https://arxiv.org/pdf/1503.02531.pdf)
 
 ### 综述论文
 
