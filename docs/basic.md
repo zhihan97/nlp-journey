@@ -65,13 +65,15 @@ CNN的卷积核是能保留特征之间的相对位置的，滑动窗口从左�
 
 ## 10、模型蒸馏是如何训练的？
 
-  Teacher：  对softmax（T=20）的输出与原始label求loss。
+**Teacher**
   
-  Student： （1）对softmax（T=20）的输出与Teacher的softmax（T=20）的输出求loss1。
+  对softmax（T=20）的输出与原始label求loss。
   
-　　　　　　　（2）对softmax（T=1）的输出与原始label求loss2。
+**Student**
 
-　　　　　　　（3）loss = loss1+loss2
+1. 对softmax（T=20）的输出与Teacher的softmax（T=20）的输出求loss1。
+2. 对softmax（T=1）的输出与原始label求loss2。
+3. loss = loss1+loss2
 
 
 
