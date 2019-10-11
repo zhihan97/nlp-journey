@@ -45,6 +45,7 @@
 
 ### 综述论文
 
+* An overview of gradient descent optimization algorithms. [`地址`](https://arxiv.org/pdf/1609.04747.pdf)
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
 * Neural Text Generation: Past, Present and Beyond. [`地址`](https://arxiv.org/pdf/1803.07133.pdf)
 
