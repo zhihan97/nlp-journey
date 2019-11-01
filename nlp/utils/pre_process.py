@@ -25,6 +25,6 @@ def process_data(train_file, user_dict=None, stop_dict=None):
     with open(train_file, 'r', encoding='utf-8') as file:
         sentences = file.readlines()
         sentences = [jieba.lcut(sentence.strip()) for sentence in sentences]
-        sentences = [[s for s in sentence if s not in stop_words] for sentence in sentences]
+        sentences = [[s for s in sentence if s not in stop_words and s.strip() != ''] for sentence in sentences]
 
     return sentences
