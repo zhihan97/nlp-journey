@@ -1,6 +1,6 @@
 # coding: utf-8
-import jieba
 from gensim.models import word2vec, KeyedVectors
+
 from nlp.utils.pre_process import process_data
 
 
