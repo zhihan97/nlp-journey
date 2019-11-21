@@ -2,7 +2,8 @@
 
 > Your Journey to NLP Starts Here ! 
 > I sincerely welcome you to pull requests! 
-> A new separate version of codes based on tensorflow 2.0 is [here](https://github.com/msgi/nlp-journey-codes).
+
+## 全面拥抱tensorflow2 系列，代码全部修改为tensorflow2.0版本。
 
 ## 基础
 
