@@ -51,6 +51,7 @@ model = MLP()
 data_loader = MnistLoader()
 optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
 
+# 迭代次数
 num_batches = int(data_loader.num_train_data // batch_size * num_epochs)
 
 for num_batch in range(num_batches):
@@ -65,5 +66,17 @@ for num_batch in range(num_batches):
     # 更新权重
     optimizer.apply_gradients(grads_and_vars=zip(grads, model.variables))
 
-# 训练完毕后，输出最后的权重组合
-print([x.numpy() for x in model.variables])
+# 输出训练后的模型在测试数据集上的准确率
+sparse_categorical_accuracy = tf.keras.metrics.SparseCategoricalAccuracy()
+batch_indices = int(data_loader.num_test_data // batch_size)
+
+# 分批次预测图片所属的数字
+for batch_index in range(batch_indices):
+    start_index, end_index = batch_index * batch_size, (batch_index + 1) * batch_size
+    y_pred = model.predict(data_loader.test_data[start_index: end_index])
+
+    # 评估器更新结果
+    sparse_categorical_accuracy.update_state(y_true=data_loader.test_label[start_index: end_index], y_pred=y_pred)
+
+# 最后输出测试准确率
+print("test accuracy: %f" % sparse_categorical_accuracy.result())
