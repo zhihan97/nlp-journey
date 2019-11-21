@@ -1,5 +1,5 @@
 import pandas as pd
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 
 # 加载训练好的模型
 model = load_model('./models/trained_model.h5')

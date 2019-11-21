@@ -1,4 +1,4 @@
-import keras
+from tensorflow import keras
 
 print(keras.backend.backend())
 print(keras.backend.epsilon())

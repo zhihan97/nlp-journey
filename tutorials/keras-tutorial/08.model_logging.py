@@ -1,7 +1,7 @@
 import pandas as pd
-import keras
-from keras.models import Sequential
-from keras.layers import *
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import *
+from tensorflow.keras.callbacks import *
 
 training_data_df = pd.read_csv("./dataset/sales_data_training_scaled.csv")
 
@@ -17,7 +17,7 @@ model.add(Dense(1, activation='linear', name='output_layer'))
 model.compile(loss='mean_squared_error', optimizer='adam')
 
 # 构建一个日志打印组件
-logger = keras.callbacks.TensorBoard(
+logger = TensorBoard(
     log_dir='logs',
     write_graph=True,
     histogram_freq=5

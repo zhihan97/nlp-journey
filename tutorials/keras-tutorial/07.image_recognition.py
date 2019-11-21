@@ -1,6 +1,6 @@
 import numpy as np
-from keras.preprocessing import image
-from keras.applications import resnet50
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications import resnet50
 
 # 加载 Keras训练好的ResNet50模型
 model = resnet50.ResNet50()

@@ -1,13 +1,13 @@
 import pandas as pd
-import keras
-from keras.models import Sequential
-from keras.layers import *
+from tensorflow.keras.callbacks import *
+from tensorflow.keras.layers import *
+from tensorflow.keras.models import Sequential
 
 """
 可以多次训练模型，然后在TensorBoard中查看因为参数变动导致的变动
 """
 
-RUN_NAME = "run 3 with 500 nodes" # 可以修改
+RUN_NAME = "run 3 with 500 nodes"  # 可以修改
 
 training_data_df = pd.read_csv("./dataset/sales_data_training_scaled.csv")
 
@@ -23,7 +23,7 @@ model.add(Dense(1, activation='linear', name='output_layer'))
 model.compile(loss='mean_squared_error', optimizer='adam')
 
 # 构建TensorBoard日志组件
-logger = keras.callbacks.TensorBoard(
+logger = TensorBoard(
     log_dir='logs/{}'.format(RUN_NAME),
     histogram_freq=5,
     write_graph=True
