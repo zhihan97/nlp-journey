@@ -3,7 +3,7 @@
 > Your Journey to NLP Starts Here ! 
 > I sincerely welcome you to pull requests! 
 
-*** 全面拥抱tensorflow2 系列，代码全部修改为tensorflow2.0版本。***
+***全面拥抱tensorflow2 系列，代码全部修改为tensorflow2.0版本。***
 
 ## 基础
 
