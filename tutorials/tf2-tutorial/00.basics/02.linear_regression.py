@@ -11,15 +11,16 @@ b = tf.Variable(initial_value=1.)
 vars = [W, b]
 num_epoch = 100
 
+# 优化器
 optimizer = tf.keras.optimizers.SGD(learning_rate=1e-2)
 for i in range(num_epoch):
     with tf.GradientTape() as tape:
         y_pred = X * W + b
         L = 0.5 * tf.reduce_sum(tf.square(y_pred - y))
         print('{}:{}'.format(i, L))
+    # 计算梯度
     w_grad, b_grad = tape.gradient(L, vars)
-    print(w_grad.numpy(), b_grad.numpy())
+    # 随机梯度下降法计算W和b的更新值
     optimizer.apply_gradients(grads_and_vars=zip([w_grad, b_grad], vars))
 
 print(W.numpy(), b.numpy())
-
