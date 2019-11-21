@@ -7,11 +7,11 @@ import time
 import numpy as np
 import pandas as pd
 from gensim.models import KeyedVectors
-from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
-from keras.engine.saving import load_model
-from keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, Dropout
-from keras.models import Model
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
+from tensorflow.keras.models import load_model
+from tensorflow.keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, Dropout
+from tensorflow.keras.models import Model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 
 from nlp.utils.basic_log import Log

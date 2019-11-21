@@ -1,6 +1,5 @@
-from keras import Input, Model
-from keras.layers import Embedding, Bidirectional, CuDNNLSTM, Concatenate, Conv1D, GlobalAveragePooling1D, \
-    GlobalMaxPooling1D, Dense
+from tensorflow.keras import Input, Model
+from tensorflow.keras.layers import *
 
 from .base_classifier import TextClassifier
 
@@ -12,7 +11,7 @@ class TextRCNNClassifier(TextClassifier):
                               300,
                               weights=[self.embeddings],
                               trainable=False)(inputs)
-        x_context = Bidirectional(CuDNNLSTM(128, return_sequences=True))(embedding)
+        x_context = Bidirectional(LSTM(128, return_sequences=True))(embedding)
         x = Concatenate()([embedding, x_context])
         cs = []
         for kernel_size in range(1, 5):

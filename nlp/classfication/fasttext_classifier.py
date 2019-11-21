@@ -69,7 +69,7 @@ class FastTextClassifier:
         :return:
         """
         if os.path.exists(self.model_path + '.bin'):
-            return fasttext.load_model(model_path + '.bin', label_prefix='__label__')
+            return fasttext.load_model(model_path + '.bin')
         else:
             return None
 

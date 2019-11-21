@@ -1,8 +1,8 @@
-from keras import Model
+from tensorflow.keras import Model
 
-from nlp.layers.attention import Attention
+# from nlp.layers.attention import Attention
 from .base_classifier import TextClassifier
-from keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
+from tensorflow.keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
 
 
 class TextRNNAttentionClassifier(TextClassifier):
@@ -14,7 +14,7 @@ class TextRNNAttentionClassifier(TextClassifier):
                            weights=[self.embeddings],
                            trainable=False)(inputs)
         output = Bidirectional(LSTM(150, return_sequences=True, dropout=0.25, recurrent_dropout=0.25))(output)
-        output = Attention()(output)
+        # output = Attention()(output)
         output = Dense(128, activation="relu")(output)
         output = Dropout(0.25)(output)
         output = Dense(1, activation="sigmoid")(output)
