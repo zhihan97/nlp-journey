@@ -40,6 +40,7 @@ test_scores = model.evaluate(x_test, y_test, verbose=0)
 print('test loss:', test_scores[0])
 print('test acc:', test_scores[1])
 
+# 利用模型进行预测
 pred = model.predict([x_test[0].reshape(1, 784)])
 
 print('real: {}, predict: {}'.format(y_test[0], tf.argmax(pred[0])))

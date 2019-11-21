@@ -32,8 +32,8 @@ class CNN(tf.keras.Model):
         super().__init__()
         self.conv1 = Conv2D(
             filters=32,  # 卷积层神经元数目
-            kernel_size=[5, 5],
-            padding='same',
+            kernel_size=[5, 5],  # 每个卷积核的大小
+            padding='same',  # valid: 存在即合理； same: 没有条件创造条件也要上
             activation=tf.nn.relu
         )
         self.pool1 = MaxPool2D(
