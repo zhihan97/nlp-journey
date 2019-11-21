@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 # 加载tf 自带的mnist数据集
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
+# 打印图片
 plt.imshow(x_train[0])
 plt.title(str(y_train[0]))
 plt.show()
