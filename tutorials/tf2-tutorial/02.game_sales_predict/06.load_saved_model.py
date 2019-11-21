@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 # 加载训练好的模型
 model = load_model('./models/trained_model.h5')
 
-X = pd.read_csv("./dataset/proposed_new_product.csv").values
+X = pd.read_csv("dataset/proposed_new_product.csv").values
 prediction = model.predict(X)
 
 # 待预测的数据

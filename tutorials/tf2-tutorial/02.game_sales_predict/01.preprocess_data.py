@@ -2,10 +2,10 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 # 加载训练数据集
-training_data_df = pd.read_csv("./dataset/sales_data_training.csv")
+training_data_df = pd.read_csv("dataset/sales_data_training.csv")
 
 # 加载测试数据集
-test_data_df = pd.read_csv("./dataset/sales_data_testing.csv")
+test_data_df = pd.read_csv("dataset/sales_data_testing.csv")
 
 # 数据归一化
 scaler = MinMaxScaler(feature_range=(0, 1))

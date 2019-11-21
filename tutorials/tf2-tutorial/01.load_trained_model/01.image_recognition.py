@@ -6,7 +6,7 @@ from tensorflow.keras.applications import resnet50
 model = resnet50.ResNet50()
 
 # 加载图片, 调整格式大小为：224x224像素
-img = image.load_img("./dataset/bay.jpg", target_size=(224, 224))
+img = image.load_img("dataset/bay.jpg", target_size=(224, 224))
 
 # 把图片转为numpy数组
 x = image.img_to_array(img)
