@@ -30,6 +30,7 @@ class MnistLoader:
 class CNN(tf.keras.Model):
     def __init__(self):
         super().__init__()
+        # padding='same' 会将周围缺少的部分使用 0 补齐，使得输出的矩阵大小和输入一致。
         self.conv1 = Conv2D(
             filters=32,  # 卷积层神经元数目
             kernel_size=[5, 5],  # 每个卷积核的大小
@@ -87,6 +88,7 @@ for num_batch in range(num_batches):
         y_pred = model(X)
         loss = tf.keras.losses.sparse_categorical_crossentropy(y_true=y, y_pred=y_pred)
         loss = tf.reduce_mean(loss)
+        print('num_batch: {}, loss: {}'.format(num_batch, loss))
 
     # 计算梯度
     grads = tape.gradient(loss, model.variables)
