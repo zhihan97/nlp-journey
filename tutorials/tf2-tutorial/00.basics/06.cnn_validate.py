@@ -47,5 +47,6 @@ model = tf.keras.models.Sequential([
 
 output = model(image)
 
+# 输出查看shape，可知 same保持了与输入相同的shape, valid则不会
 print(tf.squeeze(output))
 print(output.shape)

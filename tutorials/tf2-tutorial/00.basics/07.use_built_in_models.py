@@ -6,6 +6,8 @@ import tensorflow_datasets as tfds
 
 # 一些预训练好的模型
 """
+pip install tensorflow_datasets
+
 model = tf.keras.applications.MobileNetV2()
 model1 = tf.keras.applications.VGG16()
 model2 = tf.keras.applications.ResNet50V2()
@@ -24,14 +26,21 @@ dataset = dataset.map(lambda image, label: (tf.image.resize(image, [224, 224]) /
 
 model = tf.keras.applications.MobileNetV2(weights=None, classes=5)
 
+# 用MobileNetV2模型训练，不使用已经训练好的权重
 optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
 for images, labels in dataset:
+    # 可控性比较好的梯度计算方式
     with tf.GradientTape() as tape:
         output = model(images)
+        # 稀疏类别的交叉熵算法：类别可以是单独的值，如果是categorical_crossentropy，则类别是one_hot形式
         loss = tf.keras.losses.sparse_categorical_crossentropy(y_true=labels, y_pred=output)
+        # 对损失值求平均
         loss = tf.reduce_mean(loss)
         print('loss:{}'.format(loss))
 
+    # 计算损失函数对模型可训练参数的偏导数
     grads = tape.gradient(loss, model.trainable_variables)
+    # 用梯度更新可训练参数
     optimizer.apply_gradients(grads_and_vars=zip(grads, model.trainable_variables))
 
+print(model.trainable_variables)

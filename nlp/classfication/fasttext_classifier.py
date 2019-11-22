@@ -56,9 +56,9 @@ class FastTextClassifier:
         :return: 分类后的结果
         """
         if isinstance(text, list):
-            output = self.model.predict(text)
+            output = self.model.predict(text, )
         else:
-            output = self.model.predict([text])
+            output = self.model.predict([text], )
         print('predict:', output)
         return output
 

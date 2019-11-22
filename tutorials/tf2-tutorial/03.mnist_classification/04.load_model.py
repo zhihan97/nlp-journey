@@ -14,6 +14,6 @@ x_test = x_test.reshape(10000, 784).astype('float32') / 255
 
 model = load_model('model/mnist.h5')
 
-pred = model.predict([x_test[0].reshape(1, 784)])
+pred = model.predict([x_test[0].reshape(1, 784)], )
 
 print('real: {}, predict: {}'.format(y_test[0], tf.argmax(pred[0])))

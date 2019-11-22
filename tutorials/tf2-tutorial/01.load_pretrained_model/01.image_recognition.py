@@ -18,7 +18,7 @@ x = np.expand_dims(x, axis=0)
 x = resnet50.preprocess_input(x)
 
 # 开始预测
-predictions = model.predict(x)
+predictions = model.predict(x, )
 
 # 查看图像的label
 predicted_classes = resnet50.decode_predictions(predictions, top=9)

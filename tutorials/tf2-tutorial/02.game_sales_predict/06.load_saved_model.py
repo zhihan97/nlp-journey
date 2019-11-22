@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 model = load_model('./models/trained_model.h5')
 
 X = pd.read_csv("dataset/proposed_new_product.csv").values
-prediction = model.predict(X)
+prediction = model.predict(X, )
 
 # 待预测的数据
 prediction = prediction[0][0]
