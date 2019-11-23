@@ -3,6 +3,11 @@
 
 import tensorflow as tf
 
+"""
+自定义层需要继承 tf.keras.layers.Layer 类，
+并重写 __init__ 、 build 和 call 三个方法
+"""
+
 
 class LinearLayer(tf.keras.layers.Layer):
 

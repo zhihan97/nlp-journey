@@ -3,6 +3,11 @@
 
 import tensorflow as tf
 
+"""
+自定义评估指标需要继承 tf.keras.metrics.Metric 类，
+并重写 __init__ 、 update_state 和 result 三个方法。
+"""
+
 
 class SparseCategoricalAccuracy(tf.keras.metrics.Metric):
 
