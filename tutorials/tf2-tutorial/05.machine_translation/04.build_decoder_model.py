@@ -184,8 +184,6 @@ if __name__ == '__main__':
     sample_output, sample_hidden_state = encoder(x, sample_hidden_state)
     attention_model = BahdanauAttention(units=10)
     attention_results, attention_weights = attention_model(sample_hidden_state, sample_output)
-    print(attention_results.shape)
-    print(attention_weights.shape)
 
     decoder = Decoder(output_vocab_size, embedding_units, units, batch_size)
     decoder_output, decoder_state, d_attention_weights = decoder(tf.random.uniform((batch_size, 1)),
