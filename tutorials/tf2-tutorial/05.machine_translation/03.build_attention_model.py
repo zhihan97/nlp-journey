@@ -153,10 +153,6 @@ if __name__ == '__main__':
     encoder = Encoder(input_vocab_size, embedding_units, units, batch_size)
     sample_hidden_state = encoder.initial_hidden_state()
     sample_output, sample_hidden_state = encoder(x, sample_hidden_state)
-
-    print(sample_output.shape)
-    print(sample_hidden_state.shape)
-
     attention_model = BahdanauAttention(units=10)
     attention_results, attention_weights = attention_model(sample_hidden_state, sample_output)
     print(attention_results.shape)
