@@ -87,7 +87,11 @@ class Encoder(tf.keras.Model):
                                        recurrent_initializer='glorot_uniform')
 
     def call(self, x, hidden):
+        # before embedding: [batch_size, max_length, embedding_units]
+        # after embedding: [batch_size, max_length, encoding_units]
         x = self.embedding(x)
+        # output: [batch_size, max_length, encoding_units]
+        # state: [batch_size, encoding_units]
         output, state = self.gru(x, initial_state=hidden)
         return output, state
 
@@ -97,14 +101,22 @@ class Encoder(tf.keras.Model):
 
 # attention层
 class BahdanauAttention(tf.keras.Model):
-    def __init__(self, units):
+    def __init__(self, encoding_units):
         super().__init__()
-        self.W1 = tf.keras.layers.Dense(units)
-        self.W2 = tf.keras.layers.Dense(units)
+        # 三个全连接层
+        self.W1 = tf.keras.layers.Dense(encoding_units)
+        self.W2 = tf.keras.layers.Dense(encoding_units)
         self.V = tf.keras.layers.Dense(1)
 
-    def __call__(self, decoder_hidden, encoder_outputs):
+    def call(self, decoder_hidden, encoder_outputs):
+        """
+        decoder_hidden: [batch_size, encoding_units]
+        encoder_outputs: [batch_size, max_length, encoding_units]
+        """
+        # decoder_hidden_with_time_axis: [batch_size, 1, encoding_units]
         decoder_hidden_with_time_axis = tf.expand_dims(decoder_hidden, 1)
+        # before V: [batch_size, max_length, encoding_units]
+        # after V: [batch_size, max_length, 1]
         score = self.V(tf.nn.tanh(self.W1(encoder_outputs) + self.W2(decoder_hidden_with_time_axis)))
         attention_weights = tf.nn.softmax(score, axis=-1)
         context_vector = attention_weights * encoder_outputs
