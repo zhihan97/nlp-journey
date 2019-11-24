@@ -42,7 +42,7 @@ class RNN(tf.keras.Model):
 
         # 一个lstm的单元
         self.cell = tf.keras.layers.LSTMCell(units=256)
-        # 一个全连接层
+        # 一个全连接层: 输出维度是字符数目
         self.dense = tf.keras.layers.Dense(units=self.num_chars)
 
     def call(self, inputs, from_logits=False, **kwargs):
@@ -51,9 +51,11 @@ class RNN(tf.keras.Model):
         # 初始化状态
         state = self.cell.get_initial_state(batch_size=self.batch_size, dtype=tf.float32)
         # 简单的逐个时间步计算输出和状态
+        output = None
         for t in range(self.seq_length):
             output, state = self.cell(inputs[:, t, :], state)
         logits = self.dense(output)
+
         if from_logits:
             return logits
         else:
