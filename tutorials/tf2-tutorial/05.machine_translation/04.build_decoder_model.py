@@ -149,9 +149,12 @@ class Decoder(tf.keras.Model):
         x = self.embedding(x)
         # combined_x: [batch_size, 1, embedding_units + encoding_units]
         combined_x = tf.concat([tf.expand_dims(context_vector, axis=1), x], axis=-1)
-        # output: [batch_size, decoding_units]
+        # output: [batch_size, 1, decoding_units]
+        # state: [batch_size, decoding_units]
         output, state = self.gru(combined_x)
+        # output: [batch_size, decoding_units]
         output = tf.reshape(output, (-1, output.shape[2]))
+        # output: [batch_size, vocab_size]
         output = self.fc(output)
         return output, state, attention_weights
 
