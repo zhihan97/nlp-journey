@@ -4,9 +4,7 @@
 
 **深度学习：参考自lynda.com**
 
-* [keras tutorials](keras-tutorial/)
-* [tensorflow tutorials](tensorflow-tutorial/)
-* [pytorch tutorials](pytorch-tutorial/)
+* [tensorflow2 tutorials](tf2-tutorial/)
 
 ## 博客
 
