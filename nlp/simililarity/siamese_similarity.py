@@ -9,7 +9,8 @@ import pandas as pd
 from gensim.models import KeyedVectors
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
 from tensorflow.keras.models import load_model
-from tensorflow.keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, Dropout
+from tensorflow.keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, \
+    Dropout
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -53,8 +54,8 @@ class SiameseSimilarity:
         # 加载停用词
         self.stops = set_en_stopwords()
         if not train:
-            self.embeddings, self.word_index, self.max_length = self.__load_config()
-            self.model = self.__load_model()
+            self.embeddings, self.word_index, self.max_length = self._load_config()
+            self.model = self._load_model()
         else:
             assert data_path is not None, '训练模式，训练数据必须！'
             assert embedding_file is not None, '训练模式，训练好的词向量数据必须！'
@@ -62,11 +63,11 @@ class SiameseSimilarity:
             self.batch_size = batch_size
             self.epochs = epochs
             self.embedding_file = embedding_file
-            self.x_train, self.y_train, self.x_val, self.y_val, self.word_index, self.max_length = self.__load_data()
-            self.embeddings = self.__load_word2vec(self.word_index)
+            self.x_train, self.y_train, self.x_val, self.y_val, self.word_index, self.max_length = self._load_data()
+            self.embeddings = self._load_word2vec(self.word_index)
             self.model = self.train(call_back=True)
 
-    def __build_model(self):
+    def _build_model(self):
         left_input = Input(shape=(self.max_length,), dtype='int32')
         right_input = Input(shape=(self.max_length,), dtype='int32')
         embedding_layer = Embedding(len(self.embeddings),
@@ -78,20 +79,16 @@ class SiameseSimilarity:
         encoded_left = embedding_layer(left_input)
         encoded_right = embedding_layer(right_input)
         # 相同的lstm网络
-        shared_lstm1 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
-        shared_lstm2 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
-        shared_lstm3 = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
+        shared_lstms = [Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))] * 3
         shared_lstm4 = Bidirectional(LSTM(self.n_hidden // 2))
 
-        left_output = shared_lstm1(encoded_left)
-        left_output = shared_lstm2(left_output)
-        left_output = shared_lstm3(left_output)
-        left_output = shared_lstm4(left_output)
+        for shared_lstm in shared_lstms:
+            encoded_left = shared_lstm(encoded_left)
+        left_output = shared_lstm4(encoded_left)
 
-        right_output = shared_lstm1(encoded_right)
-        right_output = shared_lstm2(right_output)
-        right_output = shared_lstm3(right_output)
-        right_output = shared_lstm4(right_output)
+        for shared_lstm in shared_lstms:
+            encoded_right = shared_lstm(encoded_right)
+        right_output = shared_lstm4(encoded_right)
 
         # 合并后计算
         merged = concatenate([left_output, right_output])
@@ -111,7 +108,7 @@ class SiameseSimilarity:
         return model
 
     def train(self, weights_only=True, call_back=False):
-        model = self.__build_model()
+        model = self._build_model()
 
         if call_back:
             early_stopping = EarlyStopping(monitor='val_loss', patience=30)
@@ -141,15 +138,14 @@ class SiameseSimilarity:
                                   verbose=1,
                                   callbacks=callbacks)
         if weights_only and not call_back:
-            model.save_weights(os.path.join(
-                self.model_path, 'weights_only.h5'))
+            model.save_weights(os.path.join(self.model_path, 'weights_only.h5'))
         elif not weights_only and not call_back:
             model.save(os.path.join(self.model_path, 'model.h5'))
-        self.__save_config()
+        self._save_config()
         plot(model_trained)
         return model
 
-    def __save_config(self):
+    def _save_config(self):
         with open(self.config_path, 'wb') as out:
             pickle.dump((self.embeddings, self.word_index, self.max_length), out)
         if out:
@@ -175,14 +171,14 @@ class SiameseSimilarity:
         return self.model.predict([x1, x2])
 
     # 保存路径与加载路径相同
-    def __load_model(self, weights_only=True):
-        return self.__load_model_by_path(self.model_path, weights_only)
+    def _load_model(self, weights_only=True):
+        return self._load_model_by_path(self.model_path, weights_only)
 
     # 自定义加载的模型路径
-    def __load_model_by_path(self, model_path, weights_only=True):
+    def _load_model_by_path(self, model_path, weights_only=True):
         try:
             if weights_only:
-                model = self.__build_model()
+                model = self._build_model()
                 model.load_weights(model_path)
             else:
                 model = load_model(model_path)
@@ -191,7 +187,7 @@ class SiameseSimilarity:
         return model
 
     # 加载word2vec词向量
-    def __load_word2vec(self, word_index):
+    def _load_word2vec(self, word_index):
         log.info('加载训练好的词向量')
         word2vec = KeyedVectors.load_word2vec_format(
             self.embedding_file, binary=True)
@@ -203,7 +199,7 @@ class SiameseSimilarity:
                 embeddings[index] = word2vec.word_vec(word)
         return embeddings
 
-    def __load_config(self):
+    def _load_config(self):
         log.info('加载配置文件（词向量和最大长度）')
         with open(self.config_path, 'rb') as config:
             embeddings, vocabulary, max_seq_length = pickle.load(config)
@@ -211,7 +207,7 @@ class SiameseSimilarity:
             config.close()
         return embeddings, vocabulary, max_seq_length
 
-    def __load_data(self, test_size=0.2):
+    def _load_data(self, test_size=0.2):
         log.info('数据预处理...')
         # word:index和index:word
         word_index = dict()
