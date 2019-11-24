@@ -1,5 +1,5 @@
 # coding=utf-8
-# created by msg on 2019/11/24 2:30 下午
+# created by msg on 2019/11/24 5:03 下午
 
 import re
 import unicodedata
@@ -75,40 +75,55 @@ def make_dataset(input_tensor, output_tensor, batch_size=64, epochs=20, shuffle=
     return dataset
 
 
+# 编码器
+class Encoder(tf.keras.Model):
+    def __init__(self, vocab_size, embedding_units, encoding_units, batch_size=64):
+        super().__init__()
+        self.batch_size = batch_size
+        self.encoding_units = encoding_units
+        self.embedding = tf.keras.layers.Embedding(vocab_size, embedding_units)
+        self.gru = tf.keras.layers.GRU(self.encoding_units,
+                                       return_sequences=True,
+                                       return_state=True,
+                                       recurrent_initializer='glorot_uniform')
+
+    def call(self, x, hidden):
+        x = self.embedding(x)
+        output, state = self.gru(x, initial_state=hidden)
+        return output, state
+
+    def initial_hidden_state(self):
+        return tf.zeros((self.batch_size, self.encoding_units))
+
+
 if __name__ == '__main__':
     spa_eng_path = './spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
-    print(en_dataset[-1])
-    print(spa_dataset[-1])
-
     # 西班牙语到英语的训练
     input_tensor, input_tokenizer = tokenizer(spa_dataset[:30000])
     output_tensor, output_tokenizer = tokenizer(en_dataset[:30000])
 
-    print(input_tensor)
-    print(output_tensor)
-
-    # 查看输入和输出的最大长度
-    print(max_length(input_tensor))
-    print(max_length(output_tensor))
-
     # 拆分数据集为训练集和验证集
     input_train, input_eval, output_train, output_eval = split(input_tensor, output_tensor)
-    print(len(input_train), len(input_eval), len(output_train), len(output_eval))
-
     # 构建tf.data格式
     train_dataset = make_dataset(input_train, output_train)
     eval_dataset = make_dataset(input_eval, output_eval)
 
-    # 打印一下
     for x, y in train_dataset.take(1):
-        print(x.shape)
-        print(y.shape)
-        print(x)
-        print(y)
+        pass
 
+    embedding_units = 256
+    units = 1024
+    batch_size = 64
+    input_vocab_size = len(input_tokenizer.word_index) + 1
+    output_vocab_size = len(output_tokenizer.word_index) + 1
 
+    # 调用encoder
+    encoder = Encoder(input_vocab_size, embedding_units, units, batch_size)
+    sample_hidden_state = encoder.initial_hidden_state()
+    sample_output, sample_hidden_state = encoder(x, sample_hidden_state)
 
-
+    print(sample_output.shape)
+    print(sample_hidden_state.shape)
 
 
