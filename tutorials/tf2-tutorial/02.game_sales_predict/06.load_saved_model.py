@@ -15,4 +15,3 @@ prediction = prediction + 0.1159
 prediction = prediction / 0.0000036968
 
 print("Earnings Prediction for Proposed Product : ${}".format(prediction))
-

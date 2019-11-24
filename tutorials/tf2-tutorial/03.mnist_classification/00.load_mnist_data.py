@@ -15,5 +15,3 @@ plt.show()
 # 每张图片是一个矩阵，将图片数据按照行列展开，形成一个向量
 x_train = x_train.reshape(60000, 784).astype('float32') / 255
 x_test = x_test.reshape(10000, 784).astype('float32') / 255
-
-
