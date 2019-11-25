@@ -128,6 +128,7 @@ class BahdanauAttention(tf.keras.Model):
         return context_vector, attention_weights
 
 
+# 解码器
 class Decoder(tf.keras.Model):
     def __init__(self, vocab_size, embedding_units, decoding_units, batch_size=64):
         super().__init__()
@@ -192,6 +193,4 @@ if __name__ == '__main__':
     decoder_output, decoder_state, d_attention_weights = decoder(tf.random.uniform((batch_size, 1)),
                                                                  sample_hidden_state,
                                                                  sample_output)
-    print(decoder_output.shape)
-    print(decoder_state.shape)
-    print(d_attention_weights.shape)
+
