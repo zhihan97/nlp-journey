@@ -22,7 +22,14 @@ for x, y in dataset:
 train_data = np.expand_dims(train_data.astype(np.float32) / 255.0, axis=-1)
 
 mnist_dataset = tf.data.Dataset.from_tensor_slices((train_data, train_label))
-count = 0
+
+d = tf.keras.datasets.boston_housing.load_data()
+d = tf.keras.datasets.cifar10.load_data()
+d = tf.keras.datasets.cifar100.load_data()
+d = tf.keras.datasets.imdb.load_data()
+d = tf.keras.datasets.fashion_mnist.load_data()
+d = tf.keras.datasets.reuters.load_data()
+
 for image, label in mnist_dataset:
     plt.title(label.numpy())
     plt.imshow(image.numpy()[:, :, 0])
