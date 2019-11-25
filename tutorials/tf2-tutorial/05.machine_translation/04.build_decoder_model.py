@@ -193,4 +193,6 @@ if __name__ == '__main__':
     decoder_output, decoder_state, d_attention_weights = decoder(tf.random.uniform((batch_size, 1)),
                                                                  sample_hidden_state,
                                                                  sample_output)
-
+    print(decoder_output.shape)
+    print(decoder_state.shape)
+    print(d_attention_weights.shape)
