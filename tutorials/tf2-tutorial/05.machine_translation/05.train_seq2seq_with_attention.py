@@ -163,6 +163,10 @@ class Decoder(tf.keras.Model):
 
 def train(learning_rate):
     optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
+    loss_obj = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
+    with tf.GradientTape() as tape:
+        pass
+
     # todo
 
 
