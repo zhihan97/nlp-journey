@@ -148,13 +148,3 @@
 * [科学空间/信息时代](https://kexue.fm/category/Big-Data)
 * [刘建平Pinard](https://www.cnblogs.com/pinard/)
 * [零基础入门深度学习](https://www.zybuluo.com/hanbingtao/note/433855)
-
-## 相关会议
-
-* Association of Computational Linguistics(计算语言学协会). [ACL](https://www.aclweb.org/portal/)
-* Empirical Methods in Natural Language Processing. [EMNLP]()
-* International Conference on Computational Linguistics. [COLING](https://www.sheffield.ac.uk/dcs/research/groups/nlp/iccl/index#tab00)
-* Neural Information Processing Systems(神经信息处理系统会议). [NIPS](https://nips.cc/)
-* AAAI Conference on Artificial Intelligence. [AAAI](https://www.aaai.org/)
-* International Joint Conferences on AI. [IJCAI](https://www.ijcai.org/)
-* International Conference on Machine Learning(国际机器学习大会). [ICML](https://icml.cc/)
