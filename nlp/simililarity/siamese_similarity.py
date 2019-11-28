@@ -79,14 +79,14 @@ class SiameseSimilarity:
         encoded_left = embedding_layer(left_input)
         encoded_right = embedding_layer(right_input)
         # 相同的lstm网络
-        shared_lstms = [Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))] * 3
+        shared_lstm = Bidirectional(LSTM(self.n_hidden // 2, return_sequences=True))
         shared_lstm4 = Bidirectional(LSTM(self.n_hidden // 2))
 
-        for shared_lstm in shared_lstms:
+        for _ in range(3):
             encoded_left = shared_lstm(encoded_left)
         left_output = shared_lstm4(encoded_left)
 
-        for shared_lstm in shared_lstms:
+        for _ in range(3):
             encoded_right = shared_lstm(encoded_right)
         right_output = shared_lstm4(encoded_right)
 
