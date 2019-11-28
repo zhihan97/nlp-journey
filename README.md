@@ -5,7 +5,7 @@
 
 ***全面拥抱tensorflow2，代码全部修改为tensorflow2.0版本。***
 
-## 基础
+## 基础知识
 
 * [基础知识](docs/basic.md)
 * [工具教程](tutorials/)
@@ -33,7 +33,7 @@
 
 ## 必读论文
 
-### 算法模型与优化
+### 模型与优化
 
 * LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
 * Sequence to Sequence Learning with Neural Networks. [`地址`](https://arxiv.org/pdf/1409.3215.pdf)
@@ -50,14 +50,6 @@
 
 * An overview of gradient descent optimization algorithms. [`地址`](https://arxiv.org/pdf/1609.04747.pdf)
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
-* Neural Text Generation: Past, Present and Beyond. [`地址`](https://arxiv.org/pdf/1803.07133.pdf)
-
-### 语言模型
-
-* word2vec Parameter Learning Explained. [`地址`](https://arxiv.org/pdf/1411.2738.pdf)
-* A Neural Probabilistic Language Model. [`地址`](https://www.researchgate.net/publication/221618573_A_Neural_Probabilistic_Language_Model)
-* Language Models are Unsupervised Multitask Learners. [`地址`](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
-* An Empirical Study of Smoothing Techniques for Language Modeling. [`地址`](https://dash.harvard.edu/bitstream/handle/1/25104739/tr-10-98.pdf?sequence=1)
 
 ### 文本增强
 
@@ -65,6 +57,10 @@
 
 ### 文本预训练
 
+* A Neural Probabilistic Language Model. [`地址`](https://www.researchgate.net/publication/221618573_A_Neural_Probabilistic_Language_Model)
+* word2vec Parameter Learning Explained. [`地址`](https://arxiv.org/pdf/1411.2738.pdf)
+* Language Models are Unsupervised Multitask Learners. [`地址`](https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf)
+* An Empirical Study of Smoothing Techniques for Language Modeling. [`地址`](https://dash.harvard.edu/bitstream/handle/1/25104739/tr-10-98.pdf?sequence=1)
 * Efficient Estimation of Word Representations in Vector Space. [`地址`](https://arxiv.org/pdf/1301.3781.pdf)
 * Distributed Representations of Sentences and Documents. [`地址`](https://arxiv.org/pdf/1405.4053.pdf)
 * Enriching Word Vectors with Subword Information(FastText). [`地址`](https://arxiv.org/pdf/1607.04606.pdf). [`解读`](https://www.sohu.com/a/114464910_465975)
@@ -91,9 +87,6 @@
 
 * Learning to Rank Short Text Pairs with Convolutional Deep Neural Networks. [`地址`](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.723.6492&rep=rep1&type=pdf)
 * Learning Text Similarity with Siamese Recurrent Networks. [`地址`](https://www.aclweb.org/anthology/W16-1617)
-
-### 短文本匹配
-
 * A Deep Architecture for Matching Short Texts. [`地址`](http://papers.nips.cc/paper/5019-a-deep-architecture-for-matching-short-texts.pdf)
 
 ### 自动问答
@@ -119,10 +112,6 @@
 * Get To The Point: Summarization with Pointer-Generator Networks. [`地址`](https://arxiv.org/pdf/1704.04368.pdf)
 * Deep Recurrent Generative Decoder for Abstractive Text Summarization. [`地址`](https://aclweb.org/anthology/D17-1222)
 
-### 事件提取
-
-* Event Extraction via Dynamic Multi-Pooling Convolutional Neural. [`地址`](https://pdfs.semanticscholar.org/ca70/480f908ec60438e91a914c1075b9954e7834.pdf)
-
 ### 关系抽取
 
 * Distant Supervision for Relation Extraction via Piecewise Convolutional Neural Networks. [`地址`](https://www.aclweb.org/anthology/D15-1203)
@@ -136,43 +125,28 @@
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
 * MV-DSSM:A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 
-### 搜索
-
-* DSSM: Learning Deep Structured Semantic Models for Web Search using Clickthrough Data. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cikm2013_DSSM_fullversion.pdf)
-* CLSM: A Latent Semantic Model with Convolutional-Pooling Structure for Information Retrieval. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/cikm2014_cdssm_final.pdf)
-* DSSM-LSTM:Semantic Modelling with Long-Short-Term Memory for Information Retrieval. [`地址`](https://arxiv.org/pdf/1412.6629.pdf)
-
 ## 必读博文
 
-### 理论解释
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
 * The Illustrated Transformer.[`地址`](https://jalammar.github.io/illustrated-transformer/)
 * Attention-based-model. [`地址`](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
 * Modern Deep Learning Techniques Applied to Natural Language Processing. [`地址`](https://nlpoverview.com/)
 * Bert解读. [`地址`](https://zhuanlan.zhihu.com/p/49271699)
-* XLNet:运行机制及和Bert的异同比较. [`地址`](https://zhuanlan.zhihu.com/p/70257427)
-* 难以置信！LSTM和GRU的解析从未如此清晰（动图+视频）。[`地址`](https://mp.weixin.qq.com/s?__biz=MzI4MDYzNzg4Mw==&mid=2247488287&idx=2&sn=aa7b045337940886d5a7767f95ab0128&chksm=ebb42bcbdcc3a2ddcfb73fb77bead9655d6608b1a951a8b429fb2c38d56ca92289e97e6decd1&mpshare=1&scene=24&srcid=0930GzGGm3m7uZfJyblgWV3k&key=5b1b221b044835abb8ce952ed69e6acdfe5f30700caa3c560c8fe663354916c6753858e4dbbf1b4d1c2eded3876c67c0983d3d51324c321458405b0cacec9103640c28a7a5c068729172703bf23c0348&ascene=14&uin=Mjk3NzQ2NDczMQ%3D%3D&devicetype=Windows+10&version=62060833&lang=zh_CN&pass_ticket=uQSzwn38HjOIK%2BZwFf5AXCp%2Fk0QiE7budc%2Bl5t1yBFtOXA%2BPvSaFwqUWEwEmyZEd)
+* 难以置信！LSTM和GRU的解析从未如此清晰（动图+视频）。[`地址`](https://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/82922386)
 * 深度学习中优化方法. [`地址`](https://blog.csdn.net/u012328159/article/details/80311892)
 * 从语言模型到Seq2Seq：Transformer如戏，全靠Mask. [`地址`](https://spaces.ac.cn/archives/6933)
-
-### 扩充知识面
-
-* 加速python运行-numba. [`地址`](https://www.jianshu.com/p/69d9d7e37bc5)
-* 浅谈用Python计算文本BLEU分数. [`地址`](https://cloud.tencent.com/developer/article/1042161)
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
 
-## 相关github项目
+## 相关优秀github项目
 
 * transformers. [`地址`](https://github.com/huggingface/transformers)
-* keras-bert. [`地址`](https://github.com/CyberZHG/keras-bert)
-* ELMo-keras. [`地址`](https://github.com/iliaschalkidis/ELMo-keras)
+* HanLP. [`地址`](https://github.com/hankcs/HanLP)
 
-## 相关博客
+## 相关优秀博客
 
 * [52nlp](http://www.52nlp.cn/)
 * [科学空间/信息时代](https://kexue.fm/category/Big-Data)
 * [刘建平Pinard](https://www.cnblogs.com/pinard/)
-* [机器之心](https://www.jiqizhixin.com/)
 * [零基础入门深度学习](https://www.zybuluo.com/hanbingtao/note/433855)
 
 ## 相关会议
