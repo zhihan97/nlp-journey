@@ -29,6 +29,7 @@ optimizer = tf.keras.optimizers.SGD(learning_rate=learning_rate)
 for i in range(num_epoch):
     with tf.GradientTape() as tape:
         y_pred = model(inputs)
+
         loss = tf.keras.losses.binary_crossentropy(y_pred=y_pred, y_true=y)
         loss = tf.reduce_mean(loss)
         print('batch: {}, loss: {}'.format(i, loss))
