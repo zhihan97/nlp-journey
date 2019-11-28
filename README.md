@@ -5,7 +5,7 @@
 
 ***全面拥抱tensorflow2，代码全部修改为tensorflow2.0版本。***
 
-## 基础知识
+## 01. 基础知识
 
 * [基础知识](docs/basic.md)
 * [工具教程](tutorials/)
@@ -13,25 +13,17 @@
 * [常见问题](docs/fq.md)
 * [实现代码](nlp/)
 
-## 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
-
-### 算法入门
+## 02. 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
 
 * 算法的乐趣. [`原书地址`](http://www.ituring.com.cn/book/1605) 
 * 概率图入门. [`原书地址`](https://stat.ethz.ch/~maathuis/papers/Handbook.pdf)
-
-### 深度学习
-
 * Deep Learning.深度学习必读. [`原书地址`](https://www.deeplearningbook.org/)
 * Neural Networks and Deep Learning. 入门必读. [`原书地址`](http://neuralnetworksanddeeplearning.com/)
 * 复旦大学《神经网络与深度学习》邱锡鹏教授. [`原书地址`](https://nndl.github.io/)
-
-### 自然语言处理
-
 * 斯坦福大学《语音与语言处理》第三版：NLP必读. [`原书地址`](http://web.stanford.edu/~jurafsky/slp3/ed3book.pdf)
 * CS224d: Deep Learning for Natural Language Processing. [`课件地址`](http://cs224d.stanford.edu/)
 
-## 必读论文
+## 03. 必读论文
 
 ### 模型与优化
 
@@ -125,7 +117,7 @@
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
 * MV-DSSM:A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 
-## 必读博文
+## 04. 必读博文
 
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
 * The Illustrated Transformer.[`地址`](https://jalammar.github.io/illustrated-transformer/)
@@ -137,12 +129,12 @@
 * 从语言模型到Seq2Seq：Transformer如戏，全靠Mask. [`地址`](https://spaces.ac.cn/archives/6933)
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
 
-## 相关优秀github项目
+## 05. 相关优秀github项目
 
 * transformers. [`地址`](https://github.com/huggingface/transformers)
 * HanLP. [`地址`](https://github.com/hankcs/HanLP)
 
-## 相关优秀博客
+## 06. 相关优秀博客
 
 * [52nlp](http://www.52nlp.cn/)
 * [科学空间/信息时代](https://kexue.fm/category/Big-Data)
