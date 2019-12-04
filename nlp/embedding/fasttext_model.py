@@ -32,7 +32,7 @@ class FastTextModel:
         return self.model[word]
 
     def get_nearest_neighbors(self, word, k):
-        return self.model.get_nearest_neighbors(word,k)
+        return self.model.get_nearest_neighbors(word, k)
 
     # 加载训练好的模型
     def load(self):

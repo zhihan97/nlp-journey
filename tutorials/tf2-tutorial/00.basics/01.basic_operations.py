@@ -37,7 +37,6 @@ y_grad = tape.gradient(y, x)  # 计算y关于x的导数
 print([y.numpy(), y_grad.numpy()])
 
 # 求导数
-
 X = tf.constant([[1.0, 2.0], [3.0, 4.0]])
 Y = tf.constant([[1.0], [2.0]])
 
