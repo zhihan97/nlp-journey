@@ -1,6 +1,5 @@
 # coding=utf-8
-# created by msg on 2019/11/24 5:03 下午
-
+# created by msg on 2019/11/24 5:27 下午
 import re
 import unicodedata
 import tensorflow as tf
@@ -100,8 +99,36 @@ class Encoder(tf.keras.Model):
         return tf.zeros((self.batch_size, self.encoding_units))
 
 
+# attention层
+class BahdanauAttention(tf.keras.Model):
+    def __init__(self, units):
+        super().__init__()
+        # 三个全连接层
+        self.W1 = tf.keras.layers.Dense(units)
+        self.W2 = tf.keras.layers.Dense(units)
+        self.V = tf.keras.layers.Dense(1)
+
+    def call(self, decoder_hidden, encoder_outputs):
+        """
+        decoder_hidden: [batch_size, encoding_units]
+        encoder_outputs: [batch_size, max_length, encoding_units]
+        """
+        # decoder_hidden_with_time_axis: [batch_size, 1, encoding_units]
+        decoder_hidden_with_time_axis = tf.expand_dims(decoder_hidden, 1)
+        # before V: [batch_size, max_length, units]
+        # after V: [batch_size, max_length, 1]
+        score = self.V(tf.nn.tanh(self.W1(encoder_outputs) + self.W2(decoder_hidden_with_time_axis)))
+        # attention_weights: [batch_size, max_length, 1]
+        attention_weights = tf.nn.softmax(score, axis=-1)
+        # before sum: [batch_size, max_length, encoding_units]
+        context_vector = attention_weights * encoder_outputs
+        # after sum: [batch_size, encoding_units]
+        context_vector = tf.reduce_sum(context_vector, axis=1)
+        return context_vector, attention_weights
+
+
 if __name__ == '__main__':
-    spa_eng_path = './spa-eng/spa.txt'
+    spa_eng_path = 'spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
     # 西班牙语到英语的训练
     input_tensor, input_tokenizer = tokenizer(spa_dataset[:30000])
@@ -126,8 +153,7 @@ if __name__ == '__main__':
     encoder = Encoder(input_vocab_size, embedding_units, units, batch_size)
     sample_hidden_state = encoder.initial_hidden_state()
     sample_output, sample_hidden_state = encoder(x, sample_hidden_state)
-
-    print(sample_output.shape)
-    print(sample_hidden_state.shape)
-
-
+    attention_model = BahdanauAttention(units=10)
+    attention_results, attention_weights = attention_model(sample_hidden_state, sample_output)
+    print(attention_results.shape)
+    print(attention_weights.shape)

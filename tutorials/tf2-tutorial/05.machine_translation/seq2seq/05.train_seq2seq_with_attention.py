@@ -1,7 +1,9 @@
 # coding=utf-8
-# created by msg on 2019/11/24 10:45 下午
+# created by msg on 2019/11/26 4:19 下午
+
 
 import re
+import os
 import unicodedata
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
@@ -160,8 +162,30 @@ class Decoder(tf.keras.Model):
         return output, state, attention_weights
 
 
+def loss_function(real, pred, loss_obj):
+    mask = tf.math.logical_not(tf.math.equal(real, 0))
+    loss_ = loss_obj(real, pred)
+    mask = tf.cast(mask, dtype=loss_.dtype)
+    loss_ *= mask
+    return tf.reduce_mean(loss_)
+
+
+def train(learning_rate):
+    optimizer = tf.keras.optimizers.Adam(learning_rate=learning_rate)
+    loss_obj = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
+    checkpoint_dir = './training_checkpoints'
+    checkpoint_index = os.path.join(checkpoint_dir, 'ckpt')
+    checkpoint = tf.train.Checkpoint(optimizer=optimizer,
+                                     encoder=encoder,
+                                     decoder=decoder)
+    with tf.GradientTape() as tape:
+        pass
+
+    # todo
+
+
 if __name__ == '__main__':
-    spa_eng_path = './spa-eng/spa.txt'
+    spa_eng_path = 'spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
     # 西班牙语到英语的训练
     input_tensor, input_tokenizer = tokenizer(spa_dataset[:30000])
@@ -193,6 +217,3 @@ if __name__ == '__main__':
     decoder_output, decoder_state, d_attention_weights = decoder(tf.random.uniform((batch_size, 1)),
                                                                  sample_hidden_state,
                                                                  sample_output)
-    print(decoder_output.shape)
-    print(decoder_state.shape)
-    print(d_attention_weights.shape)

@@ -76,7 +76,7 @@ def make_dataset(input_tensor, output_tensor, batch_size=64, epochs=20, shuffle=
 
 
 if __name__ == '__main__':
-    spa_eng_path = './spa-eng/spa.txt'
+    spa_eng_path = 'spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
     print(en_dataset[-1])
     print(spa_dataset[-1])
