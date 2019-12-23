@@ -3,8 +3,8 @@
 
 import os
 import time
-from nlp.nmt.seq2seq_model import *
-from nlp.nmt.preprocess import *
+from nlp.nmt.seq2seq.seq2seq import *
+from nlp.nmt.seq2seq.preprocess import *
 
 
 def loss_function(real, pred, loss_object):
@@ -16,7 +16,7 @@ def loss_function(real, pred, loss_object):
 
 
 def train():
-    spa_eng_path = 'spa-eng/spa.txt'
+    spa_eng_path = '../spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
     # 西班牙语到英语的训练
     input_tensor, input_tokenizer = tokenizer(spa_dataset[:30000])
