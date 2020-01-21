@@ -7,93 +7,154 @@ random.seed(2019)
 
 
 def load_stopwords(stop_path):
+    """
+    加载停用词表
+    :param stop_path:
+    :return:
+    """
     with open(stop_path, 'r', encoding='utf-8') as f:
         stop_words = f.readlines()
         stop_words = [stop_word.strip() for stop_word in stop_words]
     return stop_words
 
 
+def get_synonyms(word):
+    """
+    获得词的同义词
+    :param word:
+    :return:
+    """
+    return synonyms.nearby(word)[0]
+
+
+def add_word(new_words):
+    """
+    添加新词
+    :param new_words:
+    :return:
+    """
+    synonyms_ = []
+    counter = 0
+    while len(synonyms_) < 1:
+        random_word = new_words[random.randint(0, len(new_words) - 1)]
+        synonyms_ = get_synonyms(random_word)
+        counter += 1
+        if counter >= 10:
+            return
+    random_synonym = random.choice(synonyms_)
+    random_idx = random.randint(0, len(new_words) - 1)
+    new_words.insert(random_idx, random_synonym)
+
+
+def swap_word(new_words):
+    """
+    调换位置
+    :param new_words:
+    :return:
+    """
+    random_idx_1 = random.randint(0, len(new_words) - 1)
+    random_idx_2 = random_idx_1
+    counter = 0
+    while random_idx_2 == random_idx_1:
+        random_idx_2 = random.randint(0, len(new_words) - 1)
+        counter += 1
+        if counter > 3:
+            return new_words
+    new_words[random_idx_1], new_words[random_idx_2] = new_words[random_idx_2], new_words[random_idx_1]
+    return new_words
+
+
+def random_deletion(words, p):
+    """
+    随机删除
+    :param words:
+    :param p:
+    :return:
+    """
+    if len(words) == 1:
+        return words
+
+    new_words = []
+    for word in words:
+        r = random.uniform(0, 1)
+        if r > p:
+            new_words.append(word)
+
+    if len(new_words) == 0:
+        rand_int = random.randint(0, len(words) - 1)
+        return [words[rand_int]]
+
+    return new_words
+
+
+def random_swap(words, n):
+    """
+    随机替换
+    :param words:
+    :param n:
+    :return:
+    """
+    new_words = words.copy()
+    for _ in range(n):
+        new_words = swap_word(new_words)
+    return new_words
+
+
+def random_insertion(words, n):
+    """
+    随机添加
+    :param words:
+    :param n:
+    :return:
+    """
+    new_words = words.copy()
+    for _ in range(n):
+        add_word(new_words)
+    return new_words
+
+
+def synonym_replacement(words, stopwords, n):
+    """
+    同义词替换
+    :param words: 要替换的词
+    :param stopwords: 停用词
+    :param n:
+    :return:
+    """
+    new_words = words.copy()
+    random_word_list = list(set([word for word in words if word not in stopwords]))
+    random.shuffle(random_word_list)
+    num_replaced = 0
+    for random_word in random_word_list:
+        synonyms_ = get_synonyms(random_word)
+        if len(synonyms_) >= 1:
+            synonym = random.choice(synonyms_)
+            new_words = [synonym if word == random_word else word for word in new_words]
+            num_replaced += 1
+        if num_replaced >= n:
+            break
+
+    sentence = ' '.join(new_words)
+    new_words = sentence.split(' ')
+
+    return new_words
+
+
 class EDA:
     def __init__(self, stop_path):
         self.stopwords = load_stopwords(stop_path)
 
-    def synonym_replacement(self, words, n):
-        new_words = words.copy()
-        random_word_list = list(set([word for word in words if word not in self.stopwords]))
-        random.shuffle(random_word_list)
-        num_replaced = 0
-        for random_word in random_word_list:
-            synonyms_ = self.get_synonyms(random_word)
-            if len(synonyms_) >= 1:
-                synonym = random.choice(synonyms_)
-                new_words = [synonym if word == random_word else word for word in new_words]
-                num_replaced += 1
-            if num_replaced >= n:
-                break
-
-        sentence = ' '.join(new_words)
-        new_words = sentence.split(' ')
-
-        return new_words
-
-    def get_synonyms(self, word):
-        return synonyms.nearby(word)[0]
-
-    def random_insertion(self, words, n):
-        new_words = words.copy()
-        for _ in range(n):
-            self.add_word(new_words)
-        return new_words
-
-    def add_word(self, new_words):
-        synonyms_ = []
-        counter = 0
-        while len(synonyms_) < 1:
-            random_word = new_words[random.randint(0, len(new_words) - 1)]
-            synonyms_ = self.get_synonyms(random_word)
-            counter += 1
-            if counter >= 10:
-                return
-        random_synonym = random.choice(synonyms_)
-        random_idx = random.randint(0, len(new_words) - 1)
-        new_words.insert(random_idx, random_synonym)
-
-    def random_swap(self, words, n):
-        new_words = words.copy()
-        for _ in range(n):
-            new_words = self.swap_word(new_words)
-        return new_words
-
-    def swap_word(self, new_words):
-        random_idx_1 = random.randint(0, len(new_words) - 1)
-        random_idx_2 = random_idx_1
-        counter = 0
-        while random_idx_2 == random_idx_1:
-            random_idx_2 = random.randint(0, len(new_words) - 1)
-            counter += 1
-            if counter > 3:
-                return new_words
-        new_words[random_idx_1], new_words[random_idx_2] = new_words[random_idx_2], new_words[random_idx_1]
-        return new_words
-
-    def random_deletion(self, words, p):
-
-        if len(words) == 1:
-            return words
-
-        new_words = []
-        for word in words:
-            r = random.uniform(0, 1)
-            if r > p:
-                new_words.append(word)
-
-        if len(new_words) == 0:
-            rand_int = random.randint(0, len(words) - 1)
-            return [words[rand_int]]
-
-        return new_words
-
     def fit_transform(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
+        """
+        统一替换
+        :param sentence:
+        :param alpha_sr:
+        :param alpha_ri:
+        :param alpha_rs:
+        :param p_rd:
+        :param num_aug:
+        :return:
+        """
         seg_list = jieba.cut(sentence)
         seg_list = " ".join(seg_list)
         words = list(seg_list.split())
@@ -107,22 +168,22 @@ class EDA:
 
         # 同义词替换sr
         for _ in range(num_new_per_technique):
-            a_words = self.synonym_replacement(words, n_sr)
+            a_words = synonym_replacement(words, self.stopwords, n_sr)
             augmented_sentences.append(' '.join(a_words))
 
         # 随机插入ri
         for _ in range(num_new_per_technique):
-            a_words = self.random_insertion(words, n_ri)
+            a_words = random_insertion(words, n_ri)
             augmented_sentences.append(' '.join(a_words))
 
         # 随机交换rs
         for _ in range(num_new_per_technique):
-            a_words = self.random_swap(words, n_rs)
+            a_words = random_swap(words, n_rs)
             augmented_sentences.append(' '.join(a_words))
 
         # 随机删除rd
         for _ in range(num_new_per_technique):
-            a_words = self.random_deletion(words, p_rd)
+            a_words = random_deletion(words, p_rd)
             augmented_sentences.append(' '.join(a_words))
 
         shuffle(augmented_sentences)
