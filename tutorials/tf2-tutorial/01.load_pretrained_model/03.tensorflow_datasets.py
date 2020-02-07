@@ -6,3 +6,11 @@ import tensorflow_datasets as tfds
 dataset = tfds.load("mnist", split=tfds.Split.TRAIN)
 dataset = tfds.load("cats_vs_dogs", split=tfds.Split.TRAIN, as_supervised=True)
 dataset = tfds.load("tf_flowers", split=tfds.Split.TRAIN, as_supervised=True)
+
+for data in tfds.list_builders():
+    print(data)
+    try:
+        t = tfds.load(data)
+    except Exception:
+        continue
+path_to_file = tf.keras.utils.get_file('shakespeare.txt', 'https://storage.googleapis.com/download.tensorflow.org/data/shakespeare.txt')
