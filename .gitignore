@@ -8,3 +8,5 @@ runs/
 .vscode/
 .DS_Store
 *.gz
+save/
+tensorboard/
