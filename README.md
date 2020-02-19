@@ -1,7 +1,6 @@
 # nlp journey
 
 > Your Journey to NLP Starts Here ! 
-> I sincerely welcome you to pull requests! 
 
 ***全面拥抱tensorflow2，代码全部修改为tensorflow2.0版本。***
 
@@ -15,28 +14,21 @@
 
 ## 二. 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
 
-* 算法的乐趣. [`原书地址`](http://www.ituring.com.cn/book/1605) 
 * 概率图入门. [`原书地址`](https://stat.ethz.ch/~maathuis/papers/Handbook.pdf)
 * Deep Learning.深度学习必读. [`原书地址`](https://www.deeplearningbook.org/)
 * Neural Networks and Deep Learning. 入门必读. [`原书地址`](http://neuralnetworksanddeeplearning.com/)
-* 复旦大学《神经网络与深度学习》邱锡鹏教授. [`原书地址`](https://nndl.github.io/)
 * 斯坦福大学《语音与语言处理》第三版：NLP必读. [`原书地址`](http://web.stanford.edu/~jurafsky/slp3/ed3book.pdf)
-* CS224d: Deep Learning for Natural Language Processing. [`课件地址`](http://cs224d.stanford.edu/)
 
 ## 三. 必读论文
 
-### 01) 模型与优化
+### 01) 模型优化
 
 * LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
 * Sequence to Sequence Learning with Neural Networks. [`地址`](https://arxiv.org/pdf/1409.3215.pdf)
 * Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation. [`地址`](https://arxiv.org/pdf/1406.1078.pdf)
-* Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 * Residual Network(Deep Residual Learning for Image Recognition). [`地址`](https://arxiv.org/pdf/1512.03385.pdf)
+* Dropout(Improving neural networks by preventing co-adaptation of feature detectors). [`地址`](https://arxiv.org/pdf/1207.0580.pdf)
 * Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. [`地址`](https://arxiv.org/pdf/1502.03167.pdf)
-* How transferable are features in deep neural networks. [`地址`](https://arxiv.org/pdf/1411.1792.pdf)
-* A Critical Review of Recurrent Neural Networks for Sequence Learning. [`地址`](https://arxiv.org/pdf/1506.00019.pdf)
-* Ordered Neurons: Integrating Tree Structures into Recurrent Neural Networks. [`地址`](https://arxiv.org/pdf/1810.09536.pdf)
-* Distilling the Knowledge in a Neural Network. [`地址`](https://arxiv.org/pdf/1503.02531.pdf)
 
 ### 02) 综述论文
 
@@ -66,7 +58,6 @@
 ### 05) 文本分类
 
 * Bag of Tricks for Efficient Text Classification (FastText). [`地址`](https://arxiv.org/pdf/1607.01759.pdf)
-* A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1510.03820.pdf)
 * Convolutional Neural Networks for Sentence Classification. [`地址`](https://arxiv.org/pdf/1408.5882.pdf)
 * Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification. [`地址`](http://www.aclweb.org/anthology/P16-2034)
 
@@ -74,7 +65,6 @@
 
 * A Deep Ensemble Model with Slot Alignment for Sequence-to-Sequence Natural Language Generation. [`地址`](https://arxiv.org/pdf/1805.06553.pdf)
 * SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient. [`地址`](https://arxiv.org/pdf/1609.05473.pdf)
-* Generative Adversarial Text to Image Synthesis. [`地址`](https://arxiv.org/pdf/1605.05396.pdf)
 
 ### 07) 文本相似性
 
@@ -116,7 +106,6 @@
 
 * Deep Neural Networks for YouTube Recommendations. [`地址`](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf)
 * Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
-* MV-DSSM:A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems. [`地址`](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/frp1159-songA.pdf)
 
 ## 四. 必读博文
 
