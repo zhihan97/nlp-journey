@@ -35,6 +35,7 @@
 * An overview of gradient descent optimization algorithms. [`地址`](https://arxiv.org/pdf/1609.04747.pdf)
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
 * Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. [`地址`](https://arxiv.org/pdf/1910.10683.pdf)
+* A Review on Generative Adversarial Networks: Algorithms, Theory, and Applications. [`地址`](https://arxiv.org/pdf/2001.06937.pdf)
 
 ### 03) 文本增强
 
