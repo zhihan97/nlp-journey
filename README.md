@@ -110,6 +110,7 @@
 
 ## 四. 必读博文
 
+* 应聘机器学习工程师？这是你需要知道的12个基础面试问题. [`地址`](https://www.jiqizhixin.com/articles/2020-01-06-9)
 * 如何学习自然语言处理（综合版）. [`地址`](https://mp.weixin.qq.com/s/lJYp4hUZVsp-Uj-5NqoaYQ)
 * The Illustrated Transformer.[`地址`](https://jalammar.github.io/illustrated-transformer/)
 * Attention-based-model. [`地址`](http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/)
