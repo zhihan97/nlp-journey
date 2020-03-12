@@ -36,6 +36,7 @@
 * Analysis Methods in Neural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/1812.08951.pdf)
 * Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. [`地址`](https://arxiv.org/pdf/1910.10683.pdf)
 * A Review on Generative Adversarial Networks: Algorithms, Theory, and Applications. [`地址`](https://arxiv.org/pdf/2001.06937.pdf)
+* A Gentle Introduction to Deep Learning for Graphs. [`地址`](https://arxiv.org/pdf/1912.12693.pdf)
 
 ### 03) 文本增强
 
