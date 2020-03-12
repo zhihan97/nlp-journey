@@ -121,6 +121,7 @@
 * 深度学习中优化方法. [`地址`](https://blog.csdn.net/u012328159/article/details/80311892)
 * 从语言模型到Seq2Seq：Transformer如戏，全靠Mask. [`地址`](https://spaces.ac.cn/archives/6933)
 * Applying word2vec to Recommenders and Advertising. [`地址`](http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/)
+* 2019 NLP大全：论文、博客、教程、工程进展全梳理. [`地址`](https://zhuanlan.zhihu.com/p/108442724)
 
 ## 五. 相关优秀github项目
 
