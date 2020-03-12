@@ -125,6 +125,9 @@
 ## 五. 相关优秀github项目
 
 * transformers. [`地址`](https://github.com/huggingface/transformers)
+
+> [`一份教程`](https://rsilveira79.github.io/fermenting_gradients/machine_learning/nlp/pytorch/pytorch-transformer-squad/)
+
 * HanLP. [`地址`](https://github.com/hankcs/HanLP)
 
 ## 六. 相关优秀博客
