@@ -12,7 +12,7 @@
 * [常见问题](docs/fq.md)
 * [实现代码](nlp/)
 
-## 二. 经典书目([`百度云`](https://pan.baidu.com/s/1sE_20nHCfej6f9yRaisz7Q) 提取码：b5qq)
+## 二. 经典书目([`百度云`](https://pan.baidu.com/s/14z5SnM28guarUZfZihdTPw) 提取码：txqx)
 
 1. 概率图入门. [`原书地址`](https://stat.ethz.ch/~maathuis/papers/Handbook.pdf)
 2. Deep Learning.深度学习必读. [`原书地址`](https://www.deeplearningbook.org/)
