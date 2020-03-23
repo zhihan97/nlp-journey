@@ -117,11 +117,6 @@
 3. FewRel: A Large-Scale Supervised Few-Shot Relation Classification Dataset with State-of-the-Art Evaluation. [`地址`](https://aclweb.org/anthology/D18-1514)
 4. End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures. [`地址`](https://www.aclweb.org/anthology/P16-1105)
 
-### 12) 推荐系统
-
-1. Deep Neural Networks for YouTube Recommendations. [`地址`](https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/45530.pdf)
-2. Behavior Sequence Transformer for E-commerce Recommendation in Alibaba. [`地址`](https://arxiv.org/pdf/1905.06874.pdf)
-
 ## 四. 必读博文
 
 1. 应聘机器学习工程师？这是你需要知道的12个基础面试问题. [`地址`](https://www.jiqizhixin.com/articles/2020-01-06-9)
