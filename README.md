@@ -2,7 +2,7 @@
 
 > Your Journey to NLP Starts Here ! 
 
-***全面拥抱tensorflow2，代码全部修改为tensorflow2.0版本。***
+***全面拥抱tensorflow 2.0，代码全部修改为tensorflow 2.0版本。***
 
 ## 一. 基础知识
 
@@ -40,7 +40,7 @@
 15. [FlauBERT: Unsupervised Language Model Pre-training for French](https://arxiv.org/abs/1912.05372) by Hang Le, Loïc Vial, Jibril Frej, Vincent Segonne, Maximin Coavoux, Benjamin Lecouteux, Alexandre Allauzen, Benoît Crabbé, Laurent Besacier, Didier Schwab.
 
 
-### 02) 模型优化
+### 02) 模型及优化
 
 1. LSTM(Long Short-term Memory). [`地址`](http://www.bioinf.jku.at/publications/older/2604.pdf)
 2. Sequence to Sequence Learning with Neural Networks. [`地址`](https://arxiv.org/pdf/1409.3215.pdf)
