@@ -1,4 +1,5 @@
 import setuptools
+import smartnlp
 
 with open("smartnlp/README.md", "r") as fh:
     long_description = fh.read()
@@ -9,11 +10,11 @@ REQUIRED_PACKAGES = [
 
 setuptools.setup(
     name="smartnlp",
-    version="0.0.1",
+    version=smartnlp.version,
     author="msgi(慢时光)",
     author_email="mayuan120226@sina.cn",
-    description="Easy-to-use and Extendable package of deep learning based smartnlp (Natural Language Processing) tools "
-                "with tensorflow 2.x .",
+    description="Easy-to-use and Extendable package of deep learning based nlp (Natural Language Processing) "
+                "tools with tensorflow 2.x .",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/msgi/nlp-journey.git",
