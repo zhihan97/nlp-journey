@@ -2,6 +2,12 @@
 
 > Your Journey to NLP Starts Here ! 
 
+[![Star](https://img.shields.io/github/stars/msgi/nlp-journey)](https://github.com/msgi/nlp-journey)
+[![Fork](https://img.shields.io/github/forks/msgi/nlp-journey)](https://github.com/msgi/nlp-journey/fork)
+[![GitHub Issues](https://img.shields.io/github/issues/msgi/nlp-journey)](https://github.com/msgi/nlp-journey/issues)
+
+[![License](https://img.shields.io/badge/license-Apache%202-blue)](https://github.com/msgi/nlp-journey)
+
 ***全面拥抱tensorflow 2.0，代码全部修改为tensorflow 2.0版本。***
 
 ## 一. 基础知识
