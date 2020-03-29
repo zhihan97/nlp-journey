@@ -1,7 +1,7 @@
 import sys
-from funnlp.classfication.dl.han_classifier import TextHanClassifier
+from smartnlp.classfication.dl.han_classifier import TextHanClassifier
 
-sys.path.append('/home/msg/workspace/pythons/funnlp-journey')
+sys.path.append('/home/msg/workspace/pythons/smartnlp-journey')
 
 if __name__ == '__main__':
     base_classifier = TextHanClassifier(model_path='./model/han/',

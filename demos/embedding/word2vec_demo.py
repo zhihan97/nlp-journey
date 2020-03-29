@@ -1,4 +1,4 @@
-from funnlp.embedding.word2vec import GensimWord2VecModel
+from smartnlp.embedding.word2vec import GensimWord2VecModel
 
 if __name__ == '__main__':
     word_vec_model = GensimWord2VecModel('data/tianlong.txt', 'model/gensim/model.txt')

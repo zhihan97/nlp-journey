@@ -3,8 +3,8 @@
 
 import os
 import time
-from funnlp.nmt.seq2seq.seq2seq import *
-from funnlp.nmt.seq2seq.preprocess import *
+from smartnlp.nmt.seq2seq.seq2seq import *
+from smartnlp.nmt.seq2seq.preprocess import *
 
 
 def loss_function(real, pred, loss_object):

@@ -5,8 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn import svm
 import pickle
 import pandas as pd
-from funnlp.utils.clean_text import clean_en_text
-from funnlp.utils.basic_log import Log
+from smartnlp.utils.clean_text import clean_en_text
+from smartnlp.utils.basic_log import Log
 import logging
 
 log = Log(logging.INFO)

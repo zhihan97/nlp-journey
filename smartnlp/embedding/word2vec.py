@@ -1,7 +1,7 @@
 # coding: utf-8
 from gensim.models import word2vec, KeyedVectors
 
-from funnlp.utils.pre_process import process_data
+from smartnlp.utils.pre_process import process_data
 
 
 class GensimWord2VecModel:

@@ -1,7 +1,7 @@
 import sys
-from funnlp.classfication.dl.base_classifier import TextClassifier
+from smartnlp.classfication.dl.base_classifier import TextClassifier
 
-sys.path.append('/home/msg/workspace/pythons/funnlp-journey')
+sys.path.append('/home/msg/workspace/pythons/smartnlp-journey')
 
 if __name__ == '__main__':
     base_classifier = TextClassifier(model_path='./model/base/',

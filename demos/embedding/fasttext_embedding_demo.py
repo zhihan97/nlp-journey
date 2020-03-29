@@ -1,4 +1,4 @@
-from funnlp.embedding.fasttext_model import FastTextModel
+from smartnlp.embedding.fasttext_model import FastTextModel
 
 if __name__ == '__main__':
     # cbow 模型

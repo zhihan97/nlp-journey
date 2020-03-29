@@ -1,7 +1,7 @@
 import sys
-from funnlp.classfication.dl.rnn_attention_classifier import TextRNNAttentionClassifier
+from smartnlp.classfication.dl.rnn_attention_classifier import TextRNNAttentionClassifier
 
-sys.path.append('/home/msg/workspace/pythons/funnlp-journey')
+sys.path.append('/home/msg/workspace/pythons/smartnlp-journey')
 
 if __name__ == '__main__':
     base_classifier = TextRNNAttentionClassifier(model_path='./model/rnn_att/',

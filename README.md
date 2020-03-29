@@ -10,7 +10,7 @@
 **安装方式：**
 
 ```shell script
-pip install mnlp
+pip install smartnlp
 ```
 
 ## 一. 基础知识
@@ -19,7 +19,7 @@ pip install mnlp
 * [工具教程](tutorials/)
 * [实践笔记](docs/notes.md)
 * [常见问题](docs/fq.md)
-* [实现代码](funnlp/)
+* [实现代码](smartnlp/)
 
 ## 二. 经典书目([`百度云`](https://pan.baidu.com/s/14z5SnM28guarUZfZihdTPw) 提取码：txqx)
 

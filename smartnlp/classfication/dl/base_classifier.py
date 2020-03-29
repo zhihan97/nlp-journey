@@ -14,7 +14,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import to_categorical
 
-from funnlp.utils.plot_model_history import plot
+from smartnlp.utils.plot_model_history import plot
 
 
 class TextClassifier:
