@@ -10,7 +10,7 @@
 **安装方式：**
 
 ```shell script
-pip install funnlp
+pip install mnlp
 ```
 
 ## 一. 基础知识
