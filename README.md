@@ -1,6 +1,6 @@
 # nlp journey
 
-> Your Journey to NLP Starts Here ! 
+> Your NLP Journey Starts Here ! 
 
 [![Star](https://img.shields.io/github/stars/msgi/nlp-journey?color=success)](https://github.com/msgi/nlp-journey/)
 [![Fork](https://img.shields.io/github/forks/msgi/nlp-journey)](https://github.com/msgi/nlp-journey/fork)
