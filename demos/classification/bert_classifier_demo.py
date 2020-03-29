@@ -1,4 +1,4 @@
-from nlp.classfication.dl.bert_classifier import BertTextClassifier
+from funnlp.classfication.dl.bert_classifier import BertTextClassifier
 
 if __name__ == '__main__':
     bert_classifier = BertTextClassifier('./data/bert/chinese/bert_config.json',

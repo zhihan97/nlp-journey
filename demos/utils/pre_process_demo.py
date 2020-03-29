@@ -1,4 +1,4 @@
-from nlp.utils.pre_process import seg_to_file
+from funnlp.utils.pre_process import seg_to_file
 
 
 if __name__ == '__main__':

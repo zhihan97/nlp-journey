@@ -1,6 +1,6 @@
 import setuptools
 
-with open("nlp/README.md", "r") as fh:
+with open("funnlp/README.md", "r") as fh:
     long_description = fh.read()
 
 REQUIRED_PACKAGES = [
@@ -12,7 +12,7 @@ setuptools.setup(
     version="0.0.2",
     author="msgi(慢时光)",
     author_email="mayuan120226@sina.cn",
-    description="Easy-to-use and Extendible package of deep learning based nlp (Natural Language Processing) tools "
+    description="Easy-to-use and Extendible package of deep learning based funnlp (Natural Language Processing) tools "
                 "with tensorflow 2.x .",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -43,6 +43,6 @@ setuptools.setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ),
     license="Apache-2.0",
-    keywords=['nlp', 'natural language processing', "nlu", "natural language understanding"
+    keywords=['funnlp', 'natural language processing', "nlu", "natural language understanding"
                                                            'deep learning', 'tensorflow', 'keras'],
 )

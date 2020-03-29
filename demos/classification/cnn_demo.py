@@ -1,7 +1,7 @@
 import sys
-from nlp.classfication.dl.cnn_classifier import TextCnnClassifier
+from funnlp.classfication.dl.cnn_classifier import TextCnnClassifier
 
-sys.path.append('/home/msg/workspace/pythons/nlp-journey')
+sys.path.append('/home/msg/workspace/pythons/funnlp-journey')
 
 if __name__ == '__main__':
     base_classifier = TextCnnClassifier(model_path='./model/cnn/',

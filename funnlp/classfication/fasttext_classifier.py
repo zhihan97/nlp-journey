@@ -1,9 +1,9 @@
 # coding:utf-8
 
 import fasttext
-from nlp.utils.clean_text import clean_zh_text, clean_en_text
+from funnlp.utils.clean_text import clean_zh_text, clean_en_text
 import os
-from nlp.utils.basic_log import Log
+from funnlp.utils.basic_log import Log
 import logging
 
 log = Log(logging.INFO)

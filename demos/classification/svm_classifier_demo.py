@@ -1,4 +1,4 @@
-from nlp.classfication.svm_classifier import SVMClassifier
+from funnlp.classfication.svm_classifier import SVMClassifier
 
 if __name__ == '__main__':
     svm_model = SVMClassifier('model/svm/model.pkl', 'data/imdb/aclImdb.txt', train=True)

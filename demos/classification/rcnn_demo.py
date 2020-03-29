@@ -1,7 +1,7 @@
 import sys
-from nlp.classfication.dl.rcnn_classifier import TextRCNNClassifier
+from funnlp.classfication.dl.rcnn_classifier import TextRCNNClassifier
 
-sys.path.append('/home/msg/workspace/pythons/nlp-journey')
+sys.path.append('/home/msg/workspace/pythons/funnlp-journey')
 
 if __name__ == '__main__':
     base_classifier = TextRCNNClassifier(model_path='./model/rcnn/',

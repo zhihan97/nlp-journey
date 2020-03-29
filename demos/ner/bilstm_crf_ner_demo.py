@@ -1,4 +1,4 @@
-from nlp.ner.bilstm_crf import BiLSTMCRFNamedEntityRecognition
+from funnlp.ner.bilstm_crf import BiLSTMCRFNamedEntityRecognition
 
 if __name__ == '__main__':
     ner = BiLSTMCRFNamedEntityRecognition('model/crf.h5', 'model/ner/config.pkl', train=True, file_path='data')

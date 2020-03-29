@@ -1,6 +1,6 @@
 from tensorflow.keras import Model
 
-from nlp.layers.attention import Attention
+from funnlp.layers.attention import Attention
 from .base_classifier import TextClassifier
 from tensorflow.keras.layers import Dropout, Dense, Embedding, Input, Bidirectional, LSTM
 

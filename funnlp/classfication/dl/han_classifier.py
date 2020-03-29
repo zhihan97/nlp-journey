@@ -1,7 +1,7 @@
 from tensorflow.keras import Input, Model
 from tensorflow.keras.layers import Embedding, Bidirectional, CuDNNLSTM, TimeDistributed, Dense, Reshape
 
-from nlp.layers.attention import Attention
+from funnlp.layers.attention import Attention
 from .base_classifier import TextClassifier
 
 

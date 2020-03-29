@@ -1,4 +1,4 @@
-from nlp.simililarity.siamese_similarity import SiameseSimilarity
+from funnlp.simililarity.siamese_similarity import SiameseSimilarity
 
 if __name__ == '__main__':
     siamese = SiameseSimilarity('model/', 'model/config.pkl', train=True, data_path='data',

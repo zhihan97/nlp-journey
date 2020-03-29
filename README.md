@@ -9,7 +9,7 @@
 
 ***全面拥抱tensorflow 2.0，代码全部修改为tensorflow 2.0版本。***
 
-**安装nlp**
+**安装方式：**
 
 ```shell script
 pip install funnlp
@@ -21,7 +21,7 @@ pip install funnlp
 * [工具教程](tutorials/)
 * [实践笔记](docs/notes.md)
 * [常见问题](docs/fq.md)
-* [实现代码](nlp/)
+* [实现代码](funnlp/)
 
 ## 二. 经典书目([`百度云`](https://pan.baidu.com/s/14z5SnM28guarUZfZihdTPw) 提取码：txqx)
 

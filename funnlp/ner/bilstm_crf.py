@@ -10,7 +10,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from keras_contrib import losses, metrics
 from keras_contrib.layers import CRF
 import logging
-from nlp.utils.basic_log import Log
+from funnlp.utils.basic_log import Log
 
 log = Log(logging.INFO)
 

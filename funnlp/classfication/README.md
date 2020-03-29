@@ -5,7 +5,7 @@
 ### 1) fasttext简单分类（速度快，可作为基准）
 
 ```python
-from nlp.classfication.fasttext_classifier import FastTextClassifier
+from funnlp.classfication.fasttext_classifier import FastTextClassifier
 train_path = 'data/imdb'
 model = FastTextClassifier('./model/fasttext/classifier', train=True, file_path=train_path)
 ```
@@ -18,7 +18,7 @@ model = FastTextClassifier('./model/fasttext/classifier', train=True, file_path=
 * 运用线性分类模型进行分类, 在文件svm_sklearn.py里.
 
 ```python
-from nlp.classfication.svm_classifier import SVMClassifier
+from funnlp.classfication.svm_classifier import SVMClassifier
 svm_model = SVMClassifier('model/svm/model.pkl', 'data/imdb/aclImdb.txt', train=True)
 ```
 

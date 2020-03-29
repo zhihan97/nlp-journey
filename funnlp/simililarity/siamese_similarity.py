@@ -15,10 +15,10 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 
-from nlp.utils.basic_log import Log
-from nlp.utils.clean_text import clean_to_list
-from nlp.utils.plot_model_history import plot
-from nlp.utils.set_stopwords import set_en_stopwords
+from funnlp.utils.basic_log import Log
+from funnlp.utils.clean_text import clean_to_list
+from funnlp.utils.plot_model_history import plot
+from funnlp.utils.set_stopwords import set_en_stopwords
 
 log = Log(logging.INFO)
 
