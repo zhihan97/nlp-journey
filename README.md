@@ -7,12 +7,6 @@
 
 ***全面拥抱tensorflow 2.0，代码全部修改为tensorflow 2.0版本。***
 
-**安装方式：**
-
-```shell script
-pip install smartnlp
-```
-
 ## 一. 基础知识
 
 * [基础知识](docs/basic.md)
