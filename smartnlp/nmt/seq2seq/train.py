@@ -16,7 +16,7 @@ def loss_function(real, pred, loss_object):
 
 
 def train():
-    spa_eng_path = '../../../demos/nmt/spa-eng/spa.txt'
+    spa_eng_path = '../../../demo/nmt/spa-eng/spa.txt'
     en_dataset, spa_dataset = parse_data(spa_eng_path)
     # 西班牙语到英语的训练
     input_tensor, input_tokenizer = tokenizer(spa_dataset[:30000])
