@@ -6,14 +6,17 @@ from tensorflow.keras.models import load_model
 
 
 class PoemModel:
-    def __init__(self, tokenizer, dataset, save_path):
+    def __init__(self, tokenizer, save_path, dataset=None):
         self.tokenizer = tokenizer
-        self.dataset = dataset
         self.save_path = save_path
+        self.dataset = dataset
 
         self.model = self.load_model()
         if not self.model:
-            self.model = self.build_model()
+            if self.dataset:
+                self.model = self.build_model()
+            else:
+                print('模型不存在，且数据集为空 ，无法重新训练')
 
     def build_model(self):
         model = tf.keras.Sequential([
@@ -36,7 +39,7 @@ class PoemModel:
         model.fit(
             self.dataset.generator(),
             steps_per_epoch=self.dataset.steps,
-            epochs=10
+            epochs=1
         )
         model.save(self.save_path)
         return model
