@@ -1,10 +1,10 @@
 # coding=utf-8
 # created by msgi on 2020/3/31 12:31 上午
 
-from .model import PoemModel
-from .tokenizer import Tokenizer
-from .preprocess import preprocess
-from .dataset import PoetryDataSet
+from model import PoemModel
+from tokenizer import Tokenizer
+from preprocess import preprocess
+from dataset import PoetryDataSet
 
 # 数据路径
 DATA_PATH = './data/poetry.txt'
@@ -31,4 +31,4 @@ tokenizer = Tokenizer(tokens)
 
 dataset = PoetryDataSet(poetry, tokenizer, BATCH_SIZE)
 
-model = PoemModel(tokenizer, dataset, '/model/poem.h5')
+model = PoemModel(tokenizer, dataset, 'model')

@@ -44,6 +44,6 @@ class PoemModel:
     def load_model(self):
         try:
             model = load_model(self.save_path)
-        except FileNotFoundError:
+        except IOError:
             model = None
         return model
