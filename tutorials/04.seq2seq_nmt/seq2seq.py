@@ -6,11 +6,10 @@ import time
 import unicodedata
 import re
 import tensorflow as tf
-
-# 将 unicode 文件转换为 ascii
 from sklearn.model_selection import train_test_split
 
 
+# 将 unicode 文件转换为 ascii
 def unicode_to_ascii(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s))
 
@@ -128,78 +127,12 @@ class Decoder(tf.keras.models.Model):
         return x, state, output_weights
 
 
-# en_sentence = u"May I borrow this book?"
-# sp_sentence = u"¿Puedo tomar prestado este libro?"
-# print(preprocess_sentence(en_sentence))
-# print(preprocess_sentence(sp_sentence))
-
-# en, sp = create_dataset('data/spa.txt', None)
-# print(sp[-1])
-# print(en[-1])
-# print(sp[0])
-# print(en[0])
-
-
-num_examples = 30000
-input_tensor, target_tensor, input_lang_tokenizer, target_lang_tokenizer = load_dataset('data/spa.txt', num_examples)
-max_length_target, max_length_input = max_length(target_tensor), max_length(input_tensor)
-
-input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = train_test_split(input_tensor,
-                                                                                                target_tensor,
-                                                                                                test_size=0.2)
-
-BUFFER_SIZE = len(input_tensor_train)
-BATCH_SIZE = 64
-steps_per_epoch = len(input_tensor_train) // BATCH_SIZE
-embedding_dim = 256
-units = 1024
-
-vocab_input_size = len(input_lang_tokenizer.word_index) + 1
-vocab_target_size = len(target_lang_tokenizer.word_index) + 1
-
-dataset = tf.data.Dataset.from_tensor_slices((input_tensor_train, target_tensor_train)) \
-    .shuffle(BUFFER_SIZE)
-dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
-
-# example_input_batch, example_target_batch = next(iter(dataset))
-
-encoder = Encoder(vocab_input_size, embedding_dim, units, BATCH_SIZE)
-
-# sample_hidden = encoder.initialize_hidden_state()
-# sample_output, sample_hidden = encoder(example_input_batch, sample_hidden)
-#
-# print('Encoder output shape: (batch size, sequence length, units) {}'.format(sample_output.shape))
-# print('Encoder Hidden state shape: (batch size, units) {}'.format(sample_hidden.shape))
-#
-# attention_layer = BahdanauAttention(10)
-# attention_result, attention_weights = attention_layer(sample_hidden, sample_output)
-#
-# print("Attention result shape: (batch size, units) {}".format(attention_result.shape))
-# print("Attention weights shape: (batch_size, sequence_length, 1) {}".format(attention_weights.shape))
-#
-decoder = Decoder(vocab_target_size, embedding_dim, units, batch_size=BATCH_SIZE)
-# sample_decoder_output, _, _ = decoder(tf.random.uniform((64, 1)),
-#                                       sample_hidden, sample_output)
-# print('Decoder output shape: (batch_size, vocab size) {}'.format(sample_decoder_output.shape))
-
-
-optimizer = tf.keras.optimizers.Adam()
-loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
-
-
 def loss_function(real, pred):
     mask = tf.math.logical_not(tf.math.equal(real, 0))
     loss_ = loss_object(real, pred)
     mask = tf.cast(mask, dtype=loss_.dtype)
     loss_ *= mask
     return tf.reduce_mean(loss_)
-
-
-checkpoint_dir = './training_checkpoints'
-checkpoint_prefix = os.path.join(checkpoint_dir, 'ckpt')
-checkpoint = tf.train.Checkpoint(optimizer=optimizer,
-                                 encoder=encoder,
-                                 decoder=decoder)
 
 
 def train_step(input, target, enc_hidden):
@@ -220,6 +153,46 @@ def train_step(input, target, enc_hidden):
     optimizer.apply_gradients(zip(gradients, variables))
     return batch_loss
 
+
+# 下载文件
+path_to_zip = tf.keras.utils.get_file(
+    'spa-eng.zip', origin='http://storage.googleapis.com/download.tensorflow.org/data/spa-eng.zip',
+    extract=True)
+
+path_to_file = os.path.dirname(path_to_zip)+"/spa-eng/spa.txt"
+
+num_examples = 30000
+input_tensor, target_tensor, input_lang_tokenizer, target_lang_tokenizer = load_dataset(path_to_file, num_examples)
+max_length_target, max_length_input = max_length(target_tensor), max_length(input_tensor)
+
+input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = train_test_split(input_tensor,
+                                                                                                target_tensor,
+                                                                                                test_size=0.2)
+
+BUFFER_SIZE = len(input_tensor_train)
+BATCH_SIZE = 64
+steps_per_epoch = len(input_tensor_train) // BATCH_SIZE
+embedding_dim = 256
+units = 1024
+
+vocab_input_size = len(input_lang_tokenizer.word_index) + 1
+vocab_target_size = len(target_lang_tokenizer.word_index) + 1
+
+dataset = tf.data.Dataset.from_tensor_slices((input_tensor_train, target_tensor_train)) \
+    .shuffle(BUFFER_SIZE)
+dataset = dataset.batch(BATCH_SIZE, drop_remainder=True)
+
+encoder = Encoder(vocab_input_size, embedding_dim, units, BATCH_SIZE)
+decoder = Decoder(vocab_target_size, embedding_dim, units, batch_size=BATCH_SIZE)
+
+optimizer = tf.keras.optimizers.Adam()
+loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
+
+checkpoint_dir = './training_checkpoints'
+checkpoint_prefix = os.path.join(checkpoint_dir, 'ckpt')
+checkpoint = tf.train.Checkpoint(optimizer=optimizer,
+                                 encoder=encoder,
+                                 decoder=decoder)
 
 EPOCHS = 10
 
@@ -244,17 +217,3 @@ for epoch in range(EPOCHS):
                                         total_loss / steps_per_epoch))
     print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
 
-# print(example_input_batch.shape)
-# print(example_target_batch.shape)
-
-# print(len(input_tensor_train))
-# print(len(input_tensor_val))
-# print(len(target_tensor_train))
-# print(len(target_tensor_val))
-
-# convert(input_lang_tokenizer, input_tensor_train[0])
-# convert(target_lang_tokenizer, target_tensor_train[0])
-
-
-# print(max_length_input)
-# print(max_length_target)
