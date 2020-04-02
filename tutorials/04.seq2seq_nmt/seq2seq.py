@@ -154,6 +154,9 @@ def train_step(input, target, enc_hidden):
     return batch_loss
 
 
+
+
+
 # 下载文件
 path_to_zip = tf.keras.utils.get_file(
     'spa-eng.zip', origin='http://storage.googleapis.com/download.tensorflow.org/data/spa-eng.zip',
