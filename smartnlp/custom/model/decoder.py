@@ -30,17 +30,3 @@ class Decoder(tf.keras.models.Model):
         output = tf.reshape(output, (-1, output.shape[2]))
         x = self.fc(output)
         return x, state, attention_weights
-
-
-
-
-
-
-
-
-
-
-
-
-
-        pass
