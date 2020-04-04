@@ -3,7 +3,7 @@
 import tensorflow as tf
 
 
-# 直接
+# 简单全连接的注意力层
 class BahdanauAttention(tf.keras.layers.Layer):
     def __init__(self, units):
         super(BahdanauAttention, self).__init__()
@@ -81,6 +81,10 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         self.dense = tf.keras.layers.Dense(d_model)
 
     def split_heads(self, x, batch_size):
+        """
+        分拆最后一个维度到 (num_heads, depth).
+        转置结果使得形状为 (batch_size, num_heads, seq_len, depth)
+        """
         x = tf.reshape(x, (batch_size, -1, self.num_heads, self.depth))
         return tf.transpose(x, perm=[0, 2, 1, 3])
 
@@ -102,13 +106,3 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         output = self.dense(concat_attention)
 
         return output, attention_weights
-
-
-
-
-
-
-
-
-
-
