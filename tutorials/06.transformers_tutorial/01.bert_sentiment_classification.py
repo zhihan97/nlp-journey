@@ -38,6 +38,7 @@ features = last_hidden_states[0][:, 0, :].numpy()
 labels = df[1]
 train_features, test_features, train_labels, test_labels = train_test_split(features, labels)
 
+# 直接简单采用逻辑回归进行分类
 lr_clf = LogisticRegression()
 lr_clf.fit(train_features, train_labels)
 
