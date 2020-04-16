@@ -22,5 +22,5 @@ scaled_training_df = pd.DataFrame(scaled_training, columns=training_data_df.colu
 scaled_testing_df = pd.DataFrame(scaled_testing, columns=test_data_df.columns.values)
 
 # 保存归一化后的数据
-scaled_training_df.to_csv("./dataset/sales_data_training_scaled.csv", index=False)
-scaled_testing_df.to_csv("./dataset/sales_data_testing_scaled.csv", index=False)
+scaled_training_df.to_csv("dataset/sales_data_training_scaled.csv", index=False)
+scaled_testing_df.to_csv("dataset/sales_data_testing_scaled.csv", index=False)
