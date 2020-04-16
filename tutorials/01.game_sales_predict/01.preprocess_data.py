@@ -14,9 +14,8 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_training = scaler.fit_transform(training_data_df)
 scaled_testing = scaler.transform(test_data_df)
 
-# 打印scaler在total_earnings这一列的调整值: multiplying by 0.0000036968 and adding -0.115913
-print("Scaled by multiplying by {:.10f} and adding {:.6f}".format(scaler.scale_[8],
-                                                                                      scaler.min_[8]))
+# multiplying by 0.0000036968 and adding -0.115913
+print("Scaled by multiplying by {:.10f} and adding {:.6f}".format(scaler.scale_[8], scaler.min_[8]))
 
 # 创建新的data frame
 scaled_training_df = pd.DataFrame(scaled_training, columns=training_data_df.columns.values)
