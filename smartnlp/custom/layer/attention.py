@@ -3,7 +3,7 @@
 import tensorflow as tf
 
 
-# 简单全连接的注意力层
+# simple attention mechanism
 class BahdanauAttention(tf.keras.layers.Layer):
     def __init__(self, units):
         super(BahdanauAttention, self).__init__()
@@ -12,23 +12,36 @@ class BahdanauAttention(tf.keras.layers.Layer):
         self.V = tf.keras.layers.Dense(1)
 
     def call(self, query, values):
-        # 隐藏层的形状 == （批大小，隐藏层大小）
-        # hidden_with_time_axis 的形状 == （批大小，1，隐藏层大小）
-        # 这样做是为了执行加法以计算分数
+        # query shape: (batch_size, hidden_size)
+        # values shape: (batch_size, max_len, hidden_size)
+        # hidden_with_time_axis shape: (batch_size，1，hidden_size)
         hidden_with_time_axis = tf.expand_dims(query, 1)
-
-        # 分数的形状 == （批大小，最大长度，1）
-        # 我们在最后一个轴上得到 1， 因为我们把分数应用于 self.V
-        # 在应用 self.V 之前，张量的形状是（批大小，最大长度，单位）
         score = self.V(tf.nn.tanh(self.W1(values) + self.W2(hidden_with_time_axis)))
 
-        # 注意力权重的形状 == （批大小，最大长度，1）
+        # attention_weights shape: (batch_size，max_len，1)
         attention_weights = tf.nn.softmax(score, axis=1)
 
-        # 上下文向量求和之后的形状 == （批大小，隐藏层大小）
+        # context vector shape: (batch_size, hidden_size)
         context_vector = attention_weights * values
         context_vector = tf.reduce_sum(context_vector, axis=1)
 
+        return context_vector, attention_weights
+
+
+class LuongAttention(tf.keras.layers.Layer):
+    def __init__(self, units):
+        super(LuongAttention, self).__init__()
+        self.W1 = tf.keras.layers.Dense(units)
+
+    def call(self, query, values):
+        # query shape: (batch_size, hidden_size)
+        # values shape: (batch_size, max_len, hidden_size)
+        # score shape: (batch_size, 1, max_len)
+        # hidden_with_time_axis shape: (batch_size, 1, hidden_size)
+        hidden_with_time_axis = tf.expand_dims(query, 1)
+        score = tf.matmul(hidden_with_time_axis, self.W1(values), transpose_b=True)
+        attention_weights = tf.nn.softmax(score, axis=2)
+        context_vector = tf.matmul(attention_weights, values)
         return context_vector, attention_weights
 
 
