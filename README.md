@@ -59,6 +59,19 @@
 3. Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. [`地址`](https://arxiv.org/pdf/1910.10683.pdf)
 4. A Review on Generative Adversarial Networks: Algorithms, Theory, and Applications. [`地址`](https://arxiv.org/pdf/2001.06937.pdf)
 5. A Gentle Introduction to Deep Learning for Graphs. [`地址`](https://arxiv.org/pdf/1912.12693.pdf)
+6. A Survey on Deep Learning for Named Entity Recognition. [`地址`](https://arxiv.org/pdf/1812.09449.pdf)
+7. More Data, More Relations, More Context and More Openness: A Review and Outlook for Relation Extraction. [`地址`](https://arxiv.org/pdf/2004.03186.pdf)
+8. Deep Learning Based Text Classification: A Comprehensive Review. [`地址`](https://arxiv.org/pdf/2004.03705.pdf)
+9. Pre-trained Models for Natural Language Processing: A Survey. [`地址`](https://arxiv.org/pdf/2003.08271.pdf)
+10. A Survey on Contextual Embeddings. [`地址`](https://arxiv.org/pdf/2003.07278.pdf)
+11. A Survey on Knowledge Graphs: Representation, Acquisition and Applications. [`地址`](https://arxiv.org/pdf/2002.00388.pdf)
+12. Knowledge Graphs. [`地址`](https://arxiv.org/pdf/2003.02320v2.pdf)
+
+
+
+
+
+
 
 ### 04) 文本预训练
 
