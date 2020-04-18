@@ -8,7 +8,7 @@ def dot_product(x, kernel):
     return tf.squeeze(tf.matmul(x, tf.expand_dims(kernel, axis=-1)), axis=-1)
 
 
-class Attention(tf.keras.layers.Layer):
+class SelfAttention(tf.keras.layers.Layer):
     def __init__(self, bias=True, **kwargs):
         """
         自定义attention层

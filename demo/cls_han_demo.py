@@ -1,4 +1,4 @@
-from smartnlp.classfication.dl.han_classifier import TextHanClassifier
+from smartnlp.classfication.dl.base_classifier import TextHanClassifier
 
 if __name__ == '__main__':
     base_classifier = TextHanClassifier(model_path='./model/han/',

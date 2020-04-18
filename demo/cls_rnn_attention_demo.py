@@ -1,4 +1,4 @@
-from smartnlp.classfication.dl.rnn_attention_classifier import TextRNNAttentionClassifier
+from smartnlp.classfication.dl.base_classifier import TextRNNAttentionClassifier
 
 if __name__ == '__main__':
     base_classifier = TextRNNAttentionClassifier(model_path='./model/rnn_att/',

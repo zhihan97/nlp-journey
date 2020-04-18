@@ -4,12 +4,13 @@ from collections import Counter
 
 import numpy as np
 import tensorflow as tf
+from smartnlp.layers.attention import SelfAttention
 from gensim.models import KeyedVectors
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.datasets import imdb
-from tensorflow.keras.layers import Input, Dense, Embedding, Lambda
+from tensorflow.keras.layers import *
 from tensorflow.keras.models import Model
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import to_categorical
@@ -204,3 +205,146 @@ class TextClassifier:
 
         x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=test_size)
         return x_train, y_train, x_test, y_test, word_index
+
+
+class TextCnnClassifier(TextClassifier):
+
+    def __init__(self, model_path,
+                 config_path,
+                 train=False,
+                 vector_path=None,
+                 filter_sizes=None,
+                 num_filters=256,
+                 drop=0.5):
+        if filter_sizes is None:
+            filter_sizes = [3, 4, 5, 6]
+        self.filter_sizes = filter_sizes
+        self.num_filters = num_filters
+        self.drop = drop
+        super(TextCnnClassifier, self).__init__(model_path, config_path, train, vector_path)
+
+    def build_model(self, input_shape=(500,)):
+        inputs = Input(shape=input_shape, dtype='int32')
+        embedding = Embedding(len(self.embeddings),
+                              300,
+                              weights=[self.embeddings],
+                              trainable=False)(inputs)
+        filter_results = []
+        for i, filter_size in enumerate(self.filter_sizes):
+            c = Conv1D(self.num_filters,
+                       kernel_size=filter_size,
+                       padding='valid',
+                       activation='relu',
+                       kernel_regularizer=l2(0.001),
+                       name='conv-' + str(i + 1))(embedding)
+            max_pool = GlobalMaxPooling1D(name='max-pool-' + str(i + 1))(c)
+            filter_results.append(max_pool)
+        concat = Concatenate()(filter_results)
+        dropout = Dropout(self.drop)(concat)
+        output = Dense(units=1,
+                       activation='sigmoid',
+                       name='dense')(dropout)
+        model = Model(inputs=inputs, outputs=output)
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+        model.summary()
+        return model
+
+
+class TextHanClassifier(TextClassifier):
+
+    # 对长文本比较好, 可以在长文本中截断处理，把一段作为一个sentence
+    def build_model(self):
+        input_word = Input(shape=(int(self.max_len / 5),))
+        x_word = Embedding(len(self.embeddings),
+                           300,
+                           weights=[self.embeddings],
+                           trainable=False)(input_word)
+        x_word = Bidirectional(LSTM(128, return_sequences=True))(x_word)
+        x_word = Attention()(x_word)
+        model_word = Model(input_word, x_word)
+
+        # Sentence part
+        inputs = Input(shape=(self.max_len,))  # (5,self.maxlen) 代表：(篇章最多包含的句子，每句包含的最大词数)
+        reshape = Reshape((5, int(self.max_len / 5)))(inputs)
+        x_sentence = TimeDistributed(model_word)(reshape)
+        x_sentence = Bidirectional(LSTM(128, return_sequences=True))(x_sentence)
+        x_sentence = Attention()(x_sentence)
+
+        output = Dense(1, activation='sigmoid')(x_sentence)
+        model = Model(inputs=inputs, outputs=output)
+        model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
+        return model
+
+    def train(self, batch_size=512, epochs=20):
+        # 比较耗费资源，笔记本GPU跑不动，只好减小batch_size
+        return super(TextHanClassifier, self).train(128, 2)
+
+
+class TextRCNNClassifier(TextClassifier):
+
+    def build_model(self):
+        inputs = Input((self.max_len,))
+        embedding = Embedding(len(self.embeddings),
+                              300,
+                              weights=[self.embeddings],
+                              trainable=False)(inputs)
+        x_context = Bidirectional(LSTM(128, return_sequences=True))(embedding)
+        x = Concatenate()([embedding, x_context])
+        cs = []
+        for kernel_size in range(1, 5):
+            c = Conv1D(128, kernel_size, activation='relu')(x)
+            cs.append(c)
+        pools = [GlobalAveragePooling1D()(conv) for conv in cs] + [GlobalMaxPooling1D()(c) for c in cs]
+        x = Concatenate()(pools)
+        output = Dense(1, activation='sigmoid')(x)
+        model = Model(inputs=inputs, outputs=output)
+        model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
+        return model
+
+    def train(self, batch_size=512, epochs=20):
+        super(TextRCNNClassifier, self).train(128, 2)
+
+
+class TextRnnClassifier(TextClassifier):
+    def __init__(self, model_path, config_path, train, vector_path):
+        super(TextRnnClassifier, self).__init__(model_path, config_path, train, vector_path)
+
+    def build_model(self):
+        inputs = Input(shape=(self.max_len,))
+        x = Embedding(len(self.embeddings),
+                      300,
+                      weights=[self.embeddings],
+                      trainable=False)(inputs)
+        x = Bidirectional(LSTM(150))(x)
+        x = BatchNormalization()(x)
+        x = Dense(128, activation="relu")(x)
+        x = Dropout(0.25)(x)
+        y = Dense(1, activation="sigmoid")(x)
+        model = Model(inputs=inputs, outputs=y)
+        model.compile(loss='binary_crossentropy',
+                      optimizer='adam',
+                      metrics=['accuracy'])
+        return model
+
+
+class TextRNNAttentionClassifier(TextClassifier):
+
+    def build_model(self):
+        inputs = Input(shape=(self.max_len,))
+        output = Embedding(len(self.embeddings),
+                           300,
+                           weights=[self.embeddings],
+                           trainable=False)(inputs)
+        output = Bidirectional(LSTM(150, return_sequences=True, dropout=0.25, recurrent_dropout=0.25))(output)
+        output = SelfAttention()(output)
+        output = Dense(128, activation="relu")(output)
+        output = Dropout(0.25)(output)
+        output = Dense(1, activation="sigmoid")(output)
+        model = Model(inputs=inputs, outputs=output)
+        model.compile(loss='binary_crossentropy',
+                      optimizer='adam',
+                      metrics=['accuracy'])
+        return model
+
+    def train(self, batch_size=512, epochs=20):
+        super(TextRNNAttentionClassifier, self).train(128, 3)

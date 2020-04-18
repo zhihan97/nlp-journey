@@ -1,4 +1,4 @@
-from smartnlp.classfication.dl.rcnn_classifier import TextRCNNClassifier
+from smartnlp.classfication.dl.base_classifier import TextRCNNClassifier
 
 if __name__ == '__main__':
     base_classifier = TextRCNNClassifier(model_path='./model/rcnn/',
