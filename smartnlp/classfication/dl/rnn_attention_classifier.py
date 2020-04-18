@@ -8,7 +8,7 @@ from tensorflow.keras.layers import Dropout, Dense, Embedding, Input, Bidirectio
 class TextRNNAttentionClassifier(TextClassifier):
 
     def build_model(self):
-        inputs = Input(shape=(self.maxlen,))
+        inputs = Input(shape=(self.max_len,))
         output = Embedding(len(self.embeddings),
                            300,
                            weights=[self.embeddings],

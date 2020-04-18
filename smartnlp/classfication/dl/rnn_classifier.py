@@ -9,7 +9,7 @@ class TextRnnClassifier(TextClassifier):
         super(TextRnnClassifier, self).__init__(model_path, config_path, train, vector_path)
 
     def build_model(self):
-        inputs = Input(shape=(self.maxlen,))
+        inputs = Input(shape=(self.max_len,))
         x = Embedding(len(self.embeddings),
                       300,
                       weights=[self.embeddings],

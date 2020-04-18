@@ -19,7 +19,14 @@ from smartnlp.utils.plot_model_history import plot
 
 class TextClassifier:
     """
-    基础文本分类器
+    A basic text classifier.
+    Argument:
+        model_path: The model path: if you dont have a model, after the training,
+        this will be the path to save your model.
+        config_path: The path to save or load some configurations to speed up a little bit.
+        train: Whether you want to train the model or just load model from the disk.
+        train_file_path: If train is True, the file path must not be None.
+        vector_path: If you want to use a trained word2vec model, just set this.
     """
 
     def __init__(self, model_path,
@@ -27,18 +34,21 @@ class TextClassifier:
                  train=False,
                  train_file_path=None,
                  vector_path=None):
+        """
+
+        """
         self.model_path = model_path
         self.config_path = config_path
         if not train:
-            self.word_index, self.maxlen, self.embeddings = self.load_config()
+            self.word_index, self.max_len, self.embeddings = self.load_config()
             self.model = self.load_model()
             if not self.model:
-                print('模型找不到：', self.model_path)
+                print('The model file cannot be found：', self.model_path)
         else:
             self.vector_path = vector_path
             self.train_file_path = train_file_path
             self.x_train, self.y_train, self.x_test, self.y_test, self.word_index = self.load_data()
-            self.maxlen = self.x_train.shape[1]
+            self.max_len = self.x_train.shape[1]
             _, _, self.embeddings = self.load_config()
             if len(self.embeddings) == 0:
                 self.embeddings = self.load_vector()
@@ -48,7 +58,7 @@ class TextClassifier:
 
     # 全连接的一个简单的网络,仅用来作为基类测试,效果特别差
     def build_model(self):
-        inputs = Input(shape=(self.maxlen,))
+        inputs = Input(shape=(self.max_len,))
         x = Embedding(len(self.embeddings),
                       300,
                       weights=[self.embeddings],
@@ -121,7 +131,7 @@ class TextClassifier:
 
     def save_config(self):
         with open(self.config_path, 'wb') as f:
-            pickle.dump((self.word_index, self.maxlen, self.embeddings), f)
+            pickle.dump((self.word_index, self.max_len, self.embeddings), f)
 
     def summary(self):
         self.build_model().summary()
@@ -145,7 +155,8 @@ class TextClassifier:
                 embeddings[index] = word2vec.word_vec(word)
         return embeddings
 
-    def load_stopwords(self):
+    @staticmethod
+    def load_stopwords():
         from nltk.corpus import stopwords
         return stopwords.words('english')
 
@@ -153,19 +164,20 @@ class TextClassifier:
     def load_data(self):
         return self.load_data_from_keras()
 
-    def load_data_from_keras(self, maxlen=500):
+    @staticmethod
+    def load_data_from_keras(max_len=500):
         (x_train, y_train), (x_test, y_test) = imdb.load_data()
 
         word_index = imdb.get_word_index()
 
-        x_train = pad_sequences(x_train, maxlen=maxlen)
+        x_train = pad_sequences(x_train, maxlen=max_len)
         x_test = pad_sequences(x_test, x_train.shape[1])
         y_train = np.asarray(y_train).astype('float32')
         y_test = np.asarray(y_test).astype('float32')
         return x_train, y_train, x_test, y_test, word_index
 
     # 用自己的数据集做训练（格式：分好词的句子##标签，如：我 很 喜欢 这部 电影#pos）
-    def load_data_from_scratch(self, test_size=0.2, maxlen=100):
+    def load_data_from_scratch(self, test_size=0.2, max_len=100):
         stopwords = self.load_stopwords()
         with open(self.train_file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
@@ -182,11 +194,11 @@ class TextClassifier:
         word_index = {k: v for v, k in enumerate(vocab)}
 
         max_sentence_length = max([len(words) for words in x])
-        maxlen = maxlen if max_sentence_length > maxlen else max_sentence_length
+        max_len = max_len if max_sentence_length > max_len else max_sentence_length
 
         x_data = [[word_index[word] for word in words if word in word_index.keys() and word not in stopwords] for words
                   in x]
-        x_data = pad_sequences(x_data, maxlen=maxlen)
+        x_data = pad_sequences(x_data, maxlen=max_len)
 
         y_data = to_categorical(y)
 

@@ -9,7 +9,7 @@ class TextHanClassifier(TextClassifier):
 
     # 对长文本比较好, 可以在长文本中截断处理，把一段作为一个sentence
     def build_model(self):
-        input_word = Input(shape=(int(self.maxlen / 5),))
+        input_word = Input(shape=(int(self.max_len / 5),))
         x_word = Embedding(len(self.embeddings),
                            300,
                            weights=[self.embeddings],
@@ -19,8 +19,8 @@ class TextHanClassifier(TextClassifier):
         model_word = Model(input_word, x_word)
 
         # Sentence part
-        inputs = Input(shape=(self.maxlen,))  # (5,self.maxlen) 代表：(篇章最多包含的句子，每句包含的最大词数)
-        reshape = Reshape((5, int(self.maxlen / 5)))(inputs)
+        inputs = Input(shape=(self.max_len,))  # (5,self.maxlen) 代表：(篇章最多包含的句子，每句包含的最大词数)
+        reshape = Reshape((5, int(self.max_len / 5)))(inputs)
         x_sentence = TimeDistributed(model_word)(reshape)
         x_sentence = Bidirectional(CuDNNLSTM(128, return_sequences=True))(x_sentence)
         x_sentence = Attention()(x_sentence)

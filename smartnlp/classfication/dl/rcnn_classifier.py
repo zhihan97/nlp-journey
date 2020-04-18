@@ -6,7 +6,7 @@ from .base_classifier import TextClassifier
 
 class TextRCNNClassifier(TextClassifier):
     def build_model(self):
-        inputs = Input((self.maxlen,))
+        inputs = Input((self.max_len,))
         embedding = Embedding(len(self.embeddings),
                               300,
                               weights=[self.embeddings],
