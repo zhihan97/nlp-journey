@@ -26,21 +26,21 @@
 
 ### 01) 必读NLP论文
 
-1. [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) by Jacob Devlin, Ming-Wei Chang, Kenton Lee and Kristina Toutanova.
-2. [GPT: Improving Language Understanding by Generative Pre-Training](https://blog.openai.com/language-unsupervised/) by Alec Radford, Karthik Narasimhan, Tim Salimans and Ilya Sutskever.
-3. [GPT-2: Language Models are Unsupervised Multitask Learners](https://blog.openai.com/better-language-models/) by Alec Radford*, Jeffrey Wu*, Rewon Child, David Luan, Dario Amodei** and Ilya Sutskever**.
-4. [Transformer-XL: Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context](https://arxiv.org/abs/1901.02860) by Zihang Dai*, Zhilin Yang*, Yiming Yang, Jaime Carbonell, Quoc V. Le, Ruslan Salakhutdinov.
-5. [​XLNet: Generalized Autoregressive Pretraining for Language Understanding](https://arxiv.org/abs/1906.08237) by Zhilin Yang*, Zihang Dai*, Yiming Yang, Jaime Carbonell, Ruslan Salakhutdinov, Quoc V. Le.
-6. [XLM: Cross-lingual Language Model Pretraining](https://arxiv.org/abs/1901.07291) by Guillaume Lample and Alexis Conneau.
-7. [RoBERTa: Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692) by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov.
-8. [DistilBERT: a distilled version of BERT: smaller, faster, cheaper and lighter](https://arxiv.org/abs/1910.01108) by Victor Sanh, Lysandre Debut and Thomas Wolf. 
-9. [CTRL: A Conditional Transformer Language Model for Controllable Generation](https://arxiv.org/abs/1909.05858) by Nitish Shirish Keskar*, Bryan McCann*, Lav R. Varshney, Caiming Xiong and Richard Socher.
-10. [CamemBERT: a Tasty French Language Model](https://arxiv.org/abs/1911.03894) by Louis Martin*, Benjamin Muller*, Pedro Javier Ortiz Suárez*, Yoann Dupont, Laurent Romary, Éric Villemonte de la Clergerie, Djamé Seddah and Benoît Sagot.
-11. [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942), by Zhenzhong Lan, Mingda Chen, Sebastian Goodman, Kevin Gimpel, Piyush Sharma, Radu Soricut.
-12. [T5: Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer](https://arxiv.org/abs/1910.10683) by Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu.
-13. [XLM-RoBERTa: Unsupervised Cross-lingual Representation Learning at Scale](https://arxiv.org/abs/1911.02116) by Alexis Conneau*, Kartikay Khandelwal*, Naman Goyal, Vishrav Chaudhary, Guillaume Wenzek, Francisco Guzmán, Edouard Grave, Myle Ott, Luke Zettlemoyer and Veselin Stoyanov.
-14. [MMBT: Supervised Multimodal Bitransformers for Classifying Images and Text](https://arxiv.org/pdf/1909.02950.pdf) by Douwe Kiela, Suvrat Bhooshan, Hamed Firooz, Davide Testuggine.
-15. [FlauBERT: Unsupervised Language Model Pre-training for French](https://arxiv.org/abs/1912.05372) by Hang Le, Loïc Vial, Jibril Frej, Vincent Segonne, Maximin Coavoux, Benjamin Lecouteux, Alexandre Allauzen, Benoît Crabbé, Laurent Besacier, Didier Schwab.
+1. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. [`地址`](https://arxiv.org/abs/1810.04805)
+2. GPT: Improving Language Understanding by Generative Pre-Training. [`地址`](https://blog.openai.com/language-unsupervised/)
+3. GPT-2: Language Models are Unsupervised Multitask Learners. [`地址`](https://blog.openai.com/better-language-models/)
+4. Transformer-XL: Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context. [`地址`](https://arxiv.org/abs/1901.02860)
+5. XLNet: Generalized Autoregressive Pretraining for Language Understanding. [`地址`](https://arxiv.org/abs/1906.08237)
+6. XLM: Cross-lingual Language Model Pretraining. [`地址`](https://arxiv.org/abs/1901.07291)
+7. RoBERTa: Robustly Optimized BERT Pretraining Approach. [`地址`](https://arxiv.org/abs/1907.11692)
+8. DistilBERT: a distilled version of BERT: smaller, faster, cheaper and lighter. [`地址`](https://arxiv.org/abs/1910.01108)
+9. CTRL: A Conditional Transformer Language Model for Controllable Generation. [`地址`](https://arxiv.org/abs/1909.05858)
+10. CamemBERT: a Tasty French Language Model. [`地址`](https://arxiv.org/abs/1911.03894)
+11. ALBERT: A Lite BERT for Self-supervised Learning of Language Representations. [`地址`](https://arxiv.org/abs/1909.11942)
+12. T5: Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer. [`地址`](https://arxiv.org/abs/1910.10683)
+13. XLM-RoBERTa: Unsupervised Cross-lingual Representation Learning at Scale. [`地址`](https://arxiv.org/abs/1911.02116)
+14. MMBT: Supervised Multimodal Bitransformers for Classifying Images and Text. [`地址`](https://arxiv.org/pdf/1909.02950.pdf)
+15. FlauBERT: Unsupervised Language Model Pre-training for French. [`地址`](https://arxiv.org/abs/1912.05372)
 
 
 ### 02) 模型及优化
