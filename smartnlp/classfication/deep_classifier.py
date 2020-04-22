@@ -18,7 +18,7 @@ from tensorflow.keras.utils import to_categorical
 from smartnlp.utils.plot_model_history import plot
 
 
-class TextClassifier:
+class BasicTextClassifier:
     """
     A basic text classifier.
     Argument:
@@ -207,7 +207,7 @@ class TextClassifier:
         return x_train, y_train, x_test, y_test, word_index
 
 
-class TextCnnClassifier(TextClassifier):
+class TextCnnClassifier(BasicTextClassifier):
 
     def __init__(self, model_path,
                  config_path,
@@ -250,7 +250,7 @@ class TextCnnClassifier(TextClassifier):
         return model
 
 
-class TextHanClassifier(TextClassifier):
+class TextHanClassifier(BasicTextClassifier):
 
     # 对长文本比较好, 可以在长文本中截断处理，把一段作为一个sentence
     def build_model(self):
@@ -280,7 +280,7 @@ class TextHanClassifier(TextClassifier):
         return super(TextHanClassifier, self).train(128, 2)
 
 
-class TextRCNNClassifier(TextClassifier):
+class TextRCNNClassifier(BasicTextClassifier):
 
     def build_model(self):
         inputs = Input((self.max_len,))
@@ -305,7 +305,7 @@ class TextRCNNClassifier(TextClassifier):
         super(TextRCNNClassifier, self).train(128, 2)
 
 
-class TextRnnClassifier(TextClassifier):
+class TextRnnClassifier(BasicTextClassifier):
     def __init__(self, model_path, config_path, train, vector_path):
         super(TextRnnClassifier, self).__init__(model_path, config_path, train, vector_path)
 
@@ -327,7 +327,7 @@ class TextRnnClassifier(TextClassifier):
         return model
 
 
-class TextRNNAttentionClassifier(TextClassifier):
+class TextRNNAttentionClassifier(BasicTextClassifier):
 
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
