@@ -14,6 +14,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import to_categorical
 
+from smartnlp.custom.layer.attention import VanillaRNNAttention
 from smartnlp.utils.plot_model_history import plot
 
 
@@ -59,10 +60,12 @@ class BasicTextClassifier:
     # 全连接的一个简单的网络,仅用来作为基类测试,效果特别差
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
+
         x = Embedding(len(self.embeddings),
                       300,
                       weights=[self.embeddings],
                       trainable=False)(inputs)
+
         x = Lambda(lambda t: tf.reduce_mean(t, axis=1))(x)
         x = Dense(128, activation='relu')(x)
         x = Dense(64, activation='relu')(x)
@@ -124,10 +127,10 @@ class BasicTextClassifier:
     def load_config(self):
         try:
             with open(self.config_path, 'rb') as f:
-                (word_index, maxlen, embeddings) = pickle.load(f)
+                (word_index, max_len, embeddings) = pickle.load(f)
         except FileNotFoundError:
-            word_index, maxlen, embeddings = None, None, np.array([])
-        return word_index, maxlen, embeddings
+            word_index, max_len, embeddings = None, None, np.array([])
+        return word_index, max_len, embeddings
 
     def save_config(self):
         with open(self.config_path, 'wb') as f:
@@ -259,15 +262,15 @@ class TextHanClassifier(BasicTextClassifier):
                            weights=[self.embeddings],
                            trainable=False)(input_word)
         x_word = Bidirectional(LSTM(128, return_sequences=True))(x_word)
-        x_word = Attention()(x_word)
+        x_word = VanillaRNNAttention(256)(x_word)
         model_word = Model(input_word, x_word)
 
         # Sentence part
-        inputs = Input(shape=(self.max_len,))  # (5,self.maxlen) 代表：(篇章最多包含的句子，每句包含的最大词数)
+        inputs = Input(shape=(self.max_len,))  # (5, self.max_len) ：(篇章最多包含的句子，每句包含的最大词数)
         reshape = Reshape((5, int(self.max_len / 5)))(inputs)
         x_sentence = TimeDistributed(model_word)(reshape)
         x_sentence = Bidirectional(LSTM(128, return_sequences=True))(x_sentence)
-        x_sentence = Attention()(x_sentence)
+        x_sentence = VanillaRNNAttention(256)(x_sentence)
 
         output = Dense(1, activation='sigmoid')(x_sentence)
         model = Model(inputs=inputs, outputs=output)
@@ -335,7 +338,7 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
                            weights=[self.embeddings],
                            trainable=False)(inputs)
         output = Bidirectional(LSTM(150, return_sequences=True, dropout=0.25, recurrent_dropout=0.25))(output)
-        # output = VanillaSelfAttention(d_model=300)(output)
+        output = VanillaRNNAttention(300)(output)
         output = Dense(128, activation="relu")(output)
         output = Dropout(0.25)(output)
         output = Dense(1, activation="sigmoid")(output)
@@ -343,6 +346,7 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
         model.compile(loss='binary_crossentropy',
                       optimizer='adam',
                       metrics=['accuracy'])
+        model.summary()
         return model
 
     def train(self, batch_size=512, epochs=20):

@@ -45,6 +45,28 @@ class LuongAttention(tf.keras.layers.Layer):
         return context_vector, attention_weights
 
 
+class VanillaRNNAttention(tf.keras.layers.Layer):
+    def __init__(self, attention_size):
+        self.attention_size = attention_size
+        self.W = tf.keras.layers.Dense(attention_size, activation='tanh')
+        self.U = tf.keras.layers.Dense(1)
+        super(VanillaRNNAttention, self).__init__()
+
+    def call(self, x, mask=None):
+        # et shape: (batch_size, max_len, attention_size)
+        et = self.W(x)
+        # at shape: (batch_size, max_len)
+        at = tf.nn.softmax(tf.squeeze(self.U(et), axis=-1))
+        if mask is not None:
+            at *= tf.cast(mask, tf.float32)
+        # atx shape: (batch_size, max_len, 1)
+        atx = tf.expand_dims(at, -1)
+
+        # sum result shape: (batch_size, attention_size)
+        sum_result = tf.reduce_sum(atx * x, axis=1)
+        return sum_result
+
+
 def scaled_dot_product_attention(q, k, v, mask):
     """计算注意力权重。
       q, k, v 必须具有匹配的前置维度。

@@ -2,7 +2,7 @@ from smartnlp.classfication.deep_classifier import TextRnnClassifier
 
 if __name__ == '__main__':
     base_classifier = TextRnnClassifier(model_path='./model/rnn/',
-                                        config_path='./model/base/config.pkl',
+                                        config_path='./model/rnn/config.pkl',
                                         train=True,
                                         vector_path='/data/GoogleNews-vectors-negative300.bin.gz')
     out = base_classifier.predict(
