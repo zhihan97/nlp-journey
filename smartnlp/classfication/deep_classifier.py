@@ -4,7 +4,6 @@ from collections import Counter
 
 import numpy as np
 import tensorflow as tf
-from smartnlp.layers.attention import SelfAttention
 from gensim.models import KeyedVectors
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -235,7 +234,7 @@ class TextCnnClassifier(BasicTextClassifier):
                        kernel_size=filter_size,
                        padding='valid',
                        activation='relu',
-                       kernel_regularizer=l2(0.001),
+                       kernel_regularizer=tf.keras.regularizers.l2(0.001),
                        name='conv-' + str(i + 1))(embedding)
             max_pool = GlobalMaxPooling1D(name='max-pool-' + str(i + 1))(c)
             filter_results.append(max_pool)
@@ -336,7 +335,7 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
                            weights=[self.embeddings],
                            trainable=False)(inputs)
         output = Bidirectional(LSTM(150, return_sequences=True, dropout=0.25, recurrent_dropout=0.25))(output)
-        output = SelfAttention()(output)
+        # output = VanillaSelfAttention(d_model=300)(output)
         output = Dense(128, activation="relu")(output)
         output = Dropout(0.25)(output)
         output = Dense(1, activation="sigmoid")(output)
