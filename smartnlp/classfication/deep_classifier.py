@@ -232,7 +232,7 @@ class TextCnnClassifier(BasicTextClassifier):
                                                 vector_path=vector_path)
 
     def build_model(self, input_shape=(500,)):
-        inputs = Input(shape=(input_shape,), dtype='int32')
+        inputs = Input(shape=input_shape, dtype='int32')
         embedding = Embedding(len(self.max_index) + 1,
                               300,
                               weights=[self.embeddings],
