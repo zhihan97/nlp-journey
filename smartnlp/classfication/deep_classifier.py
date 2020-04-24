@@ -226,11 +226,14 @@ class TextCnnClassifier(BasicTextClassifier):
         self.filter_sizes = filter_sizes
         self.num_filters = num_filters
         self.drop = drop
-        super(TextCnnClassifier, self).__init__(model_path, config_path, train, vector_path)
+        super(TextCnnClassifier, self).__init__(model_path=model_path,
+                                                config_path=config_path,
+                                                train=train,
+                                                vector_path=vector_path)
 
     def build_model(self, input_shape=(500,)):
-        inputs = Input(shape=input_shape, dtype='int32')
-        embedding = Embedding(len(self.embeddings),
+        inputs = Input(shape=(input_shape,), dtype='int32')
+        embedding = Embedding(len(self.max_index) + 1,
                               300,
                               weights=[self.embeddings],
                               trainable=False)(inputs)
@@ -312,7 +315,10 @@ class TextRCNNClassifier(BasicTextClassifier):
 
 class TextRnnClassifier(BasicTextClassifier):
     def __init__(self, model_path, config_path, train, vector_path):
-        super(TextRnnClassifier, self).__init__(model_path, config_path, train, vector_path)
+        super(TextRnnClassifier, self).__init__(model_path=model_path,
+                                                config_path=config_path,
+                                                train=train,
+                                                vector_path=vector_path)
 
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
