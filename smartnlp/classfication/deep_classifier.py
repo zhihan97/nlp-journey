@@ -35,12 +35,10 @@ class BasicTextClassifier:
                  train=False,
                  train_file_path=None,
                  vector_path=None):
-        """
-
-        """
         self.model_path = model_path
         self.config_path = config_path
         if not train:
+            assert train_file_path is not None, 'file must not be none '
             self.word_index, self.max_len, self.embeddings = self.load_config()
             self.model = self.load_model()
             if not self.model:
@@ -48,7 +46,7 @@ class BasicTextClassifier:
         else:
             self.vector_path = vector_path
             self.train_file_path = train_file_path
-            self.x_train, self.y_train, self.x_test, self.y_test, self.word_index = self.load_data()
+            self.x_train, self.y_train, self.x_test, self.y_test, self.word_index, self.max_index = self.load_data()
             self.max_len = self.x_train.shape[1]
             _, _, self.embeddings = self.load_config()
             if len(self.embeddings) == 0:
@@ -57,11 +55,11 @@ class BasicTextClassifier:
             self.model = self.train()
             self.save_model()
 
-    # 全连接的一个简单的网络,仅用来作为基类测试,效果特别差
+    # 全连接的一个简单的网络, 仅用来作为基类测试代码通过，速度快, 但是分类效果特别差
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
 
-        x = Embedding(len(self.embeddings),
+        x = Embedding(self.max_index + 1,
                       300,
                       weights=[self.embeddings],
                       trainable=False)(inputs)
@@ -75,6 +73,7 @@ class BasicTextClassifier:
         model.compile(optimizer='adam',
                       loss='binary_crossentropy',
                       metrics=['accuracy'])
+        model.summary()
         return model
 
     def save_model(self, weights_only=True):
@@ -101,6 +100,7 @@ class BasicTextClassifier:
         early_stop = EarlyStopping(patience=3, verbose=1)
         checkpoint = ModelCheckpoint(os.path.join(self.model_path, 'weights.{epoch:03d}-{val_loss:.3f}.h5'),
                                      verbose=1,
+                                     monitor='val_loss',
                                      save_best_only=True)
         history = model.fit(self.x_train,
                             self.y_train,
@@ -151,7 +151,7 @@ class BasicTextClassifier:
         return self.load_vectors(word2vec)
 
     def load_vectors(self, word2vec):
-        embeddings = 1 * np.random.randn(len(self.word_index) + 1, 300)
+        embeddings = 1 * np.random.randn(self.max_index + 1, 300)
         embeddings[0] = 0
         for word, index in self.word_index.items():
             if word in word2vec.vocab:
@@ -174,10 +174,13 @@ class BasicTextClassifier:
         word_index = imdb.get_word_index()
 
         x_train = pad_sequences(x_train, maxlen=max_len)
-        x_test = pad_sequences(x_test, x_train.shape[1])
+        x_test = pad_sequences(x_test, maxlen=x_train.shape[1])
         y_train = np.asarray(y_train).astype('float32')
         y_test = np.asarray(y_test).astype('float32')
-        return x_train, y_train, x_test, y_test, word_index
+
+        max_index = max([max(x) for x in x_train])
+
+        return x_train, y_train, x_test, y_test, word_index, max_index
 
     # 用自己的数据集做训练（格式：分好词的句子##标签，如：我 很 喜欢 这部 电影#pos）
     def load_data_from_scratch(self, test_size=0.2, max_len=100):
