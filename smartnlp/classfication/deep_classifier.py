@@ -233,7 +233,7 @@ class TextCnnClassifier(BasicTextClassifier):
 
     def build_model(self, input_shape=(500,)):
         inputs = Input(shape=input_shape, dtype='int32')
-        embedding = Embedding(len(self.max_index) + 1,
+        embedding = Embedding(self.max_index + 1,
                               300,
                               weights=[self.embeddings],
                               trainable=False)(inputs)
@@ -253,7 +253,9 @@ class TextCnnClassifier(BasicTextClassifier):
                        activation='sigmoid',
                        name='dense')(dropout)
         model = Model(inputs=inputs, outputs=output)
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer='adam',
+                      loss='binary_crossentropy',
+                      metrics=['accuracy'])
         model.summary()
         return model
 
