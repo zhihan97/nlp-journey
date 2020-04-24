@@ -1,8 +1,8 @@
 from smartnlp.simililarity.siamese_similarity import SiameseSimilarity
 
 if __name__ == '__main__':
-    siamese = SiameseSimilarity('model/',
-                                'model/config.pkl',
+    siamese = SiameseSimilarity('model/sim/',
+                                'model/sim/config.pkl',
                                 train=True,
                                 data_path='./data/similarity',
                                 embedding_file='/data/GoogleNews-vectors-negative300.bin.gz')

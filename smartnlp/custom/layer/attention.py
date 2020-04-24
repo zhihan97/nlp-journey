@@ -66,6 +66,9 @@ class VanillaRNNAttention(tf.keras.layers.Layer):
         sum_result = tf.reduce_sum(atx * x, axis=1)
         return sum_result
 
+    def compute_output_shape(self, input_shape):
+        return input_shape[0], input_shape[-1]
+
 
 def scaled_dot_product_attention(q, k, v, mask):
     """计算注意力权重。

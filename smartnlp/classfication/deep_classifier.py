@@ -213,7 +213,9 @@ class BasicTextClassifier:
 
 
 class TextCnnClassifier(BasicTextClassifier):
-
+    """
+    cnn
+    """
     def __init__(self, model_path,
                  config_path,
                  train=False,
@@ -261,9 +263,12 @@ class TextCnnClassifier(BasicTextClassifier):
 
 
 class TextHanClassifier(BasicTextClassifier):
-
+    """
+    han: Hierarchical Attention Networks
+    """
     # 对长文本比较好, 可以在长文本中截断处理，把一段作为一个sentence
     def build_model(self):
+        # word part
         input_word = Input(shape=(int(self.max_len / 5),))
         x_word = Embedding(len(self.embeddings),
                            300,
@@ -291,7 +296,9 @@ class TextHanClassifier(BasicTextClassifier):
 
 
 class TextRCNNClassifier(BasicTextClassifier):
-
+    """
+    rnn + cnn
+    """
     def build_model(self):
         inputs = Input((self.max_len,))
         embedding = Embedding(len(self.embeddings),
@@ -304,7 +311,7 @@ class TextRCNNClassifier(BasicTextClassifier):
         for kernel_size in range(1, 5):
             c = Conv1D(128, kernel_size, activation='relu')(x)
             cs.append(c)
-        pools = [GlobalAveragePooling1D()(conv) for conv in cs] + [GlobalMaxPooling1D()(c) for c in cs]
+        pools = [GlobalAveragePooling1D()(c) for c in cs] + [GlobalMaxPooling1D()(c) for c in cs]
         x = Concatenate()(pools)
         output = Dense(1, activation='sigmoid')(x)
         model = Model(inputs=inputs, outputs=output)
@@ -316,6 +323,9 @@ class TextRCNNClassifier(BasicTextClassifier):
 
 
 class TextRnnClassifier(BasicTextClassifier):
+    """
+    rnn
+    """
     def __init__(self, model_path, config_path, train, vector_path):
         super(TextRnnClassifier, self).__init__(model_path=model_path,
                                                 config_path=config_path,
@@ -341,7 +351,9 @@ class TextRnnClassifier(BasicTextClassifier):
 
 
 class TextRNNAttentionClassifier(BasicTextClassifier):
-
+    """
+    rnn + attention
+    """
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
         output = Embedding(len(self.embeddings),

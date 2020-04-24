@@ -238,7 +238,7 @@ class SiameseSimilarity:
                             index_word.append(word)
                         else:
                             question_indexes.append(word_index[word])
-                    dataset.set_value(index, question_col, question_indexes)
+                    dataset._set_value(index, question_col, question_indexes)
 
         x = train_df[questions_cols]
         y = train_df['is_duplicate']

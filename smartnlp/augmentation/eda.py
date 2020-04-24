@@ -9,8 +9,6 @@ random.seed(2019)
 def load_stopwords(stop_path):
     """
     加载停用词表
-    :param stop_path:
-    :return:
     """
     with open(stop_path, 'r', encoding='utf-8') as f:
         stop_words = f.readlines()
@@ -21,8 +19,6 @@ def load_stopwords(stop_path):
 def get_synonyms(word):
     """
     获得词的同义词
-    :param word:
-    :return:
     """
     return synonyms.nearby(word)[0]
 
@@ -30,8 +26,6 @@ def get_synonyms(word):
 def add_word(new_words):
     """
     添加新词
-    :param new_words:
-    :return:
     """
     synonyms_ = []
     counter = 0
@@ -49,8 +43,6 @@ def add_word(new_words):
 def swap_word(new_words):
     """
     调换位置
-    :param new_words:
-    :return:
     """
     random_idx_1 = random.randint(0, len(new_words) - 1)
     random_idx_2 = random_idx_1
@@ -67,9 +59,6 @@ def swap_word(new_words):
 def random_deletion(words, p):
     """
     随机删除
-    :param words:
-    :param p:
-    :return:
     """
     if len(words) == 1:
         return words
@@ -90,9 +79,6 @@ def random_deletion(words, p):
 def random_swap(words, n):
     """
     随机替换
-    :param words:
-    :param n:
-    :return:
     """
     new_words = words.copy()
     for _ in range(n):
@@ -103,9 +89,6 @@ def random_swap(words, n):
 def random_insertion(words, n):
     """
     随机添加
-    :param words:
-    :param n:
-    :return:
     """
     new_words = words.copy()
     for _ in range(n):
@@ -118,8 +101,6 @@ def synonym_replacement(words, stopwords, n):
     同义词替换
     :param words: 要替换的词
     :param stopwords: 停用词
-    :param n:
-    :return:
     """
     new_words = words.copy()
     random_word_list = list(set([word for word in words if word not in stopwords]))
@@ -147,13 +128,6 @@ class EDA:
     def fit_transform(self, sentence, alpha_sr=0.1, alpha_ri=0.1, alpha_rs=0.1, p_rd=0.1, num_aug=9):
         """
         统一替换
-        :param sentence:
-        :param alpha_sr:
-        :param alpha_ri:
-        :param alpha_rs:
-        :param p_rd:
-        :param num_aug:
-        :return:
         """
         seg_list = jieba.cut(sentence)
         seg_list = " ".join(seg_list)

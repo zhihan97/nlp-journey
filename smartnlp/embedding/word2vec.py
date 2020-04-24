@@ -1,6 +1,5 @@
 # coding: utf-8
 from gensim.models import word2vec, KeyedVectors
-
 from smartnlp.utils.pre_process import process_data
 
 
@@ -19,7 +18,6 @@ class GensimWord2VecModel:
         self.model_path = model_path
         self.vocab_path = vocab_path
         self.embed_size = embed_size
-        # self.model = self.load()
         self.model = self.load_text()
         if not self.model:
             self.model = self.train()
