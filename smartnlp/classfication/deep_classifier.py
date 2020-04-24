@@ -340,7 +340,10 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
                            300,
                            weights=[self.embeddings],
                            trainable=False)(inputs)
-        output = Bidirectional(LSTM(150, return_sequences=True, dropout=0.25, recurrent_dropout=0.25))(output)
+        output = Bidirectional(LSTM(150,
+                                    return_sequences=True,
+                                    dropout=0.25,
+                                    recurrent_dropout=0.25))(output)
         output = VanillaRNNAttention(300)(output)
         output = Dense(128, activation="relu")(output)
         output = Dropout(0.25)(output)
