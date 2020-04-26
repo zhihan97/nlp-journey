@@ -110,7 +110,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
 
         assert d_model % self.num_heads == 0
 
-        self.depth = d_model
+        self.depth = d_model // self.num_heads
 
         self.wq = tf.keras.layers.Dense(d_model)
         self.wk = tf.keras.layers.Dense(d_model)
@@ -144,3 +144,10 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         output = self.dense(concat_attention)
 
         return output, attention_weights
+
+
+if __name__ == '__main__':
+    temp_mha = MultiHeadAttention(d_model=512, num_heads=8)
+    y = tf.random.uniform((1, 60, 512))  # (batch_size, encoder_sequence, d_model)
+    out, attn = temp_mha(y, k=y, q=y, mask=None)
+    print(out.shape, attn.shape)
