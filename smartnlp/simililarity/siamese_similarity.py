@@ -4,19 +4,18 @@ import os
 import pickle
 import time
 
-import numpy as np
 import pandas as pd
-from gensim.models import KeyedVectors
+from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
-from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Input, Embedding, LSTM, Bidirectional, Dense, concatenate, BatchNormalization, \
     Dropout
 from tensorflow.keras.models import Model
+from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from sklearn.model_selection import train_test_split
 
 from smartnlp.utils.basic_log import Log
 from smartnlp.utils.clean_text import clean_to_list
+from smartnlp.utils.loader import load_bin_word2vec
 from smartnlp.utils.plot_model_history import plot
 from smartnlp.utils.set_stopwords import set_en_stopwords
 
@@ -64,7 +63,7 @@ class SiameseSimilarity:
             self.epochs = epochs
             self.embedding_file = embedding_file
             self.x_train, self.y_train, self.x_val, self.y_val, self.word_index, self.max_length = self._load_data()
-            self.embeddings = self._load_word2vec(self.word_index)
+            self.embeddings = load_bin_word2vec(self.word_index, self.embedding_file)
             self.model = self.train(call_back=True)
 
     def _build_model(self):
@@ -153,22 +152,17 @@ class SiameseSimilarity:
 
     # 推理两个文本的相似度，大于0.5则相似，否则不相似
     def predict(self, text1, text2):
-        if isinstance(text1, list) or isinstance(text2, list):
-            x1 = [[self.word_index.get(word, 0) for word in clean_to_list(
-                text)] for text in text1]
-            x2 = [[self.word_index.get(word, 0) for word in clean_to_list(
-                text)] for text in text2]
-            x1 = pad_sequences(x1, maxlen=self.max_length)
-            x2 = pad_sequences(x2, maxlen=self.max_length)
-        else:
-            x1 = [self.word_index.get(word, 0)
-                  for word in clean_to_list(text1)]
-            x2 = [self.word_index.get(word, 0)
-                  for word in clean_to_list(text2)]
-            x1 = pad_sequences([x1], maxlen=self.max_length)
-            x2 = pad_sequences([x2], maxlen=self.max_length)
+        x1 = self._process_data(text1)
+        x2 = self._process_data(text2)
+
         # 转为词向量
         return self.model.predict([x1, x2])
+
+    def _process_data(self, text):
+        t = [[self.word_index.get(word, 0) for word in clean_to_list(
+            tex)] for tex in text]
+        t = pad_sequences(t, maxlen=self.max_length)
+        return t
 
     # 保存路径与加载路径相同
     def _load_model(self, weights_only=True):
@@ -185,19 +179,6 @@ class SiameseSimilarity:
         except FileNotFoundError:
             model = None
         return model
-
-    # 加载word2vec词向量
-    def _load_word2vec(self, word_index):
-        log.info('加载训练好的词向量')
-        word2vec = KeyedVectors.load_word2vec_format(
-            self.embedding_file, binary=True)
-        embeddings = 1 * np.random.randn(len(word_index) + 1, self.embedding_dim)
-        embeddings[0] = 0
-
-        for word, index in word_index.items():
-            if word in word2vec.vocab:
-                embeddings[index] = word2vec.word_vec(word)
-        return embeddings
 
     def _load_config(self):
         log.info('加载配置文件（词向量和最大长度）')

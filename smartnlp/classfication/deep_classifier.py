@@ -4,7 +4,7 @@ from collections import Counter
 
 import numpy as np
 import tensorflow as tf
-from gensim.models import KeyedVectors
+from smartnlp.utils.loader import load_bin_word2vec
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
@@ -50,7 +50,7 @@ class BasicTextClassifier:
             self.max_len = self.x_train.shape[1]
             _, _, self.embeddings = self.load_config()
             if len(self.embeddings) == 0:
-                self.embeddings = self.load_vector()
+                self.embeddings = load_bin_word2vec(self.word_index, self.vector_path)
                 self.save_config()
             self.model = self.train()
             self.save_model()
@@ -139,25 +139,6 @@ class BasicTextClassifier:
     def summary(self):
         self.build_model().summary()
 
-    def load_vector(self):
-        return self.load_vector_en()
-
-    def load_vector_zh(self):
-        word2vec = KeyedVectors.load_word2vec_format(self.vector_path, binary=False)
-        return self.load_vectors(word2vec)
-
-    def load_vector_en(self):
-        word2vec = KeyedVectors.load_word2vec_format(self.vector_path, binary=True)
-        return self.load_vectors(word2vec)
-
-    def load_vectors(self, word2vec):
-        embeddings = 1 * np.random.randn(self.max_index + 1, 300)
-        embeddings[0] = 0
-        for word, index in self.word_index.items():
-            if word in word2vec.vocab:
-                embeddings[index] = word2vec.word_vec(word)
-        return embeddings
-
     @staticmethod
     def load_stopwords():
         from nltk.corpus import stopwords
@@ -216,6 +197,7 @@ class TextCnnClassifier(BasicTextClassifier):
     """
     cnn
     """
+
     def __init__(self, model_path,
                  config_path,
                  train=False,
@@ -266,6 +248,7 @@ class TextHanClassifier(BasicTextClassifier):
     """
     han: Hierarchical Attention Networks
     """
+
     # 对长文本比较好, 可以在长文本中截断处理，把一段作为一个sentence
     def build_model(self):
         # word part
@@ -290,15 +273,16 @@ class TextHanClassifier(BasicTextClassifier):
         model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
         return model
 
-    def train(self, batch_size=512, epochs=20):
+    def train(self, batch_size=128, epochs=2):
         # 比较耗费资源，笔记本GPU跑不动，只好减小batch_size
-        return super(TextHanClassifier, self).train(128, 2)
+        return super(TextHanClassifier, self).train(batch_size=batch_size, epochs=epochs)
 
 
 class TextRCNNClassifier(BasicTextClassifier):
     """
     rnn + cnn
     """
+
     def build_model(self):
         inputs = Input((self.max_len,))
         embedding = Embedding(len(self.embeddings),
@@ -318,14 +302,15 @@ class TextRCNNClassifier(BasicTextClassifier):
         model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
         return model
 
-    def train(self, batch_size=512, epochs=20):
-        super(TextRCNNClassifier, self).train(128, 2)
+    def train(self, batch_size=128, epochs=2):
+        super(TextRCNNClassifier, self).train(batch_size=batch_size, epochs=epochs)
 
 
 class TextRnnClassifier(BasicTextClassifier):
     """
     rnn
     """
+
     def __init__(self, model_path, config_path, train, vector_path):
         super(TextRnnClassifier, self).__init__(model_path=model_path,
                                                 config_path=config_path,
@@ -354,6 +339,7 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
     """
     rnn + attention
     """
+
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
         output = Embedding(len(self.embeddings),
@@ -375,5 +361,5 @@ class TextRNNAttentionClassifier(BasicTextClassifier):
         model.summary()
         return model
 
-    def train(self, batch_size=512, epochs=20):
-        super(TextRNNAttentionClassifier, self).train(128, 3)
+    def train(self, batch_size=128, epochs=5):
+        super(TextRNNAttentionClassifier, self).train(batch_size=batch_size, epochs=epochs)

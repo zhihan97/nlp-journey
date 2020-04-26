@@ -1,3 +1,5 @@
+*.pkl
+*.vec
 *.h5
 *.ipynb
 .pytest_cache/
@@ -146,3 +148,4 @@ $RECYCLE.BIN/
 *.gz
 save/
 tensorboard/
+data/
