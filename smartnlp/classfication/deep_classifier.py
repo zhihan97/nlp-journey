@@ -1,10 +1,9 @@
 import os
-import pickle
 from collections import Counter
 
+import time
 import numpy as np
 import tensorflow as tf
-from smartnlp.utils.loader import load_bin_word2vec
 from keras_preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
@@ -15,6 +14,8 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import to_categorical
 
 from smartnlp.custom.layer.attention import VanillaRNNAttention
+from smartnlp.utils.loader import load_bin_word2vec
+from smartnlp.utils.loader import load_en_stopwords, save_config, load_config, load_model, save_model
 from smartnlp.utils.plot_model_history import plot
 
 
@@ -38,28 +39,32 @@ class BasicTextClassifier:
         self.model_path = model_path
         self.config_path = config_path
         if not train:
-            assert train_file_path is not None, 'file must not be none '
-            self.word_index, self.max_len, self.embeddings = self.load_config()
-            self.model = self.load_model()
+            assert config_path is not None, 'The config path cannot be None.'
+            config = load_config(self.config_path)
+            if not config:
+                (self.word_index, self.max_len, self.embeddings) = config
+                self.model = load_model(self.model_path, self.build_model())
             if not self.model:
-                print('The model file cannot be found：', self.model_path)
+                print('The model cannot be loaded：', self.model_path)
         else:
             self.vector_path = vector_path
             self.train_file_path = train_file_path
             self.x_train, self.y_train, self.x_test, self.y_test, self.word_index, self.max_index = self.load_data()
             self.max_len = self.x_train.shape[1]
-            _, _, self.embeddings = self.load_config()
-            if len(self.embeddings) == 0:
-                self.embeddings = load_bin_word2vec(self.word_index, self.vector_path)
-                self.save_config()
+            config = load_config(self.config_path)
+            if not config:
+                self.embeddings = load_bin_word2vec(self.word_index, self.vector_path, self.max_index)
+                save_config((self.word_index, self.max_len, self.embeddings), self.config_path)
+            else:
+                (_, _, self.embeddings) = config
             self.model = self.train()
-            self.save_model()
+            save_model(self.model, self.model_path)
 
     # 全连接的一个简单的网络, 仅用来作为基类测试代码通过，速度快, 但是分类效果特别差
     def build_model(self):
         inputs = Input(shape=(self.max_len,))
 
-        x = Embedding(self.max_index + 1,
+        x = Embedding(len(self.embeddings),
                       300,
                       weights=[self.embeddings],
                       trainable=False)(inputs)
@@ -74,24 +79,6 @@ class BasicTextClassifier:
                       loss='binary_crossentropy',
                       metrics=['accuracy'])
         model.summary()
-        return model
-
-    def save_model(self, weights_only=True):
-        if self.model:
-            if weights_only:
-                self.model.save_weights(os.path.join(self.model_path, 'weights.h5'))
-            else:
-                self.model.save(os.path.join(self.model_path, 'model.h5'))
-
-    def load_model(self, weights_only=True):
-        try:
-            if weights_only:
-                model = self.build_model()
-                model.load_weights(os.path.join(self.model_path, 'weights.h5'))
-            else:
-                model = load_model(os.path.join(self.model_path, 'model.h5'))
-        except FileNotFoundError:
-            model = None
         return model
 
     def train(self, batch_size=512, epochs=20):
@@ -124,26 +111,6 @@ class BasicTextClassifier:
         else:
             return []
 
-    def load_config(self):
-        try:
-            with open(self.config_path, 'rb') as f:
-                (word_index, max_len, embeddings) = pickle.load(f)
-        except FileNotFoundError:
-            word_index, max_len, embeddings = None, None, np.array([])
-        return word_index, max_len, embeddings
-
-    def save_config(self):
-        with open(self.config_path, 'wb') as f:
-            pickle.dump((self.word_index, self.max_len, self.embeddings), f)
-
-    def summary(self):
-        self.build_model().summary()
-
-    @staticmethod
-    def load_stopwords():
-        from nltk.corpus import stopwords
-        return stopwords.words('english')
-
     # 默认选用keras自带的处理好的数据来做模拟分类
     def load_data(self):
         return self.load_data_from_keras()
@@ -165,7 +132,8 @@ class BasicTextClassifier:
 
     # 用自己的数据集做训练（格式：分好词的句子##标签，如：我 很 喜欢 这部 电影#pos）
     def load_data_from_scratch(self, test_size=0.2, max_len=100):
-        stopwords = self.load_stopwords()
+        assert self.train_file_path is not None, 'file must not be none '
+        stopwords = load_en_stopwords()
         with open(self.train_file_path, 'r', encoding='utf-8') as file:
             lines = file.readlines()
         lines = [line.strip() for line in lines]

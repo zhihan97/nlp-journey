@@ -22,7 +22,7 @@ class VanillaEmbeddingModel:
         if training:
             self.model = self.train_model()
             self.save_model()
-            self.write_embeddings_to_file()
+            self.save_embeddings_to_file()
         else:
             self.model = self.load_model()
 
@@ -55,7 +55,7 @@ class VanillaEmbeddingModel:
     def save_model(self):
         self.model.save(os.path.join(self.model_path, 'model.h5'))
 
-    def write_embeddings_to_file(self):
+    def save_embeddings_to_file(self):
         e = self.model.layers[0]
         weights = e.get_weights()[0]
         out_v = io.open('vecs.tsv', 'w', encoding='utf-8')
@@ -82,4 +82,4 @@ class VanillaEmbeddingModel:
 
 if __name__ == '__main__':
     model = VanillaEmbeddingModel('model', 16, training=True)
-    model.write_embeddings_to_file()
+    model.save_embeddings_to_file()
