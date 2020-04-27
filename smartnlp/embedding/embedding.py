@@ -4,12 +4,12 @@
 import io
 import os
 
-from smartnlp.utils.plot_model_history import plot
 import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow import keras
 from tensorflow.keras import layers
-from tensorflow.keras.models import load_model
+from smartnlp.utils.plot_model_history import plot
+from smartnlp.utils.loader import *
 
 
 class VanillaEmbeddingModel:
@@ -21,10 +21,10 @@ class VanillaEmbeddingModel:
 
         if training:
             self.model = self.train_model()
-            self.save_model()
+            save_model(self.model, self.model_path)
             self.save_embeddings_to_file()
         else:
-            self.model = self.load_model()
+            self.model = load_model(self.model_path, self._build_model())
 
     def _build_model(self):
         model = keras.Sequential([
@@ -47,13 +47,6 @@ class VanillaEmbeddingModel:
             validation_data=self.test_batches, validation_steps=20)
         plot(history)
         return model
-
-    def load_model(self):
-        model = load_model(os.path.join(self.model_path, 'model.h5'))
-        return model
-
-    def save_model(self):
-        self.model.save(os.path.join(self.model_path, 'model.h5'))
 
     def save_embeddings_to_file(self):
         e = self.model.layers[0]

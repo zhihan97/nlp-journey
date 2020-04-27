@@ -1,7 +1,6 @@
 import os
 from collections import Counter
 
-import time
 import numpy as np
 import tensorflow as tf
 from keras_preprocessing.sequence import pad_sequences
