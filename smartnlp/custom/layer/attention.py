@@ -70,37 +70,6 @@ class VanillaRNNAttention(tf.keras.layers.Layer):
         return input_shape[0], input_shape[-1]
 
 
-def scaled_dot_product_attention(q, k, v, mask):
-    """计算注意力权重。
-      q, k, v 必须具有匹配的前置维度。
-      k, v 必须有匹配的倒数第二个维度，例如：seq_len_k = seq_len_v。
-      虽然 mask 根据其类型（填充或前瞻）有不同的形状，
-      但是 mask 必须能进行广播转换以便求和。
-      参数:
-        q: 请求的形状 == (..., seq_len_q, depth)
-        k: 主键的形状 == (..., seq_len_k, depth)
-        v: 数值的形状 == (..., seq_len_v, depth_v)
-        mask: Float 张量，其形状能转换成
-              (..., seq_len_q, seq_len_k)。默认为None。
-      返回值:
-        输出，注意力权重
-    """
-    matmul_qk = tf.matmul(q, k, transpose_b=True)
-
-    # 缩放 matmul_qk
-    dk = tf.cast(tf.shape(k)[-1], tf.float32)
-    scaled_attention_logits = matmul_qk / tf.math.sqrt(dk)
-
-    # 将 mask 加入到缩放的张量上。
-    if mask is not None:
-        scaled_attention_logits += (mask * -1e9)
-
-    # softmax 在最后一个轴（seq_len_k）上归一化，因此分数相加等于1。
-    attention_weights = tf.nn.softmax(scaled_attention_logits, axis=-1)
-    output = tf.matmul(attention_weights, v)
-    return output, attention_weights
-
-
 # 多头自注意力机制
 class MultiHeadAttention(tf.keras.layers.Layer):
     def __init__(self, d_model, num_heads):
@@ -117,6 +86,37 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         self.wv = tf.keras.layers.Dense(d_model)
 
         self.dense = tf.keras.layers.Dense(d_model)
+
+    @staticmethod
+    def scaled_dot_product_attention(q, k, v, mask):
+        """计算注意力权重。
+          q, k, v 必须具有匹配的前置维度。
+          k, v 必须有匹配的倒数第二个维度，例如：seq_len_k = seq_len_v。
+          虽然 mask 根据其类型（填充或前瞻）有不同的形状，
+          但是 mask 必须能进行广播转换以便求和。
+          参数:
+            q: 请求的形状 == (..., seq_len_q, depth)
+            k: 主键的形状 == (..., seq_len_k, depth)
+            v: 数值的形状 == (..., seq_len_v, depth_v)
+            mask: Float 张量，其形状能转换成
+                  (..., seq_len_q, seq_len_k)。默认为None。
+          返回值:
+            输出，注意力权重
+        """
+        matmul_qk = tf.matmul(q, k, transpose_b=True)
+
+        # 缩放 matmul_qk
+        dk = tf.cast(tf.shape(k)[-1], tf.float32)
+        scaled_attention_logits = matmul_qk / tf.math.sqrt(dk)
+
+        # 将 mask 加入到缩放的张量上。
+        if mask is not None:
+            scaled_attention_logits += (mask * -1e9)
+
+        # softmax 在最后一个轴（seq_len_k）上归一化，因此分数相加等于1。
+        attention_weights = tf.nn.softmax(scaled_attention_logits, axis=-1)
+        output = tf.matmul(attention_weights, v)
+        return output, attention_weights
 
     def split_heads(self, x, batch_size):
         """
@@ -136,7 +136,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         k = self.split_heads(k, batch_size)
         v = self.split_heads(v, batch_size)
 
-        scaled_attention, attention_weights = scaled_dot_product_attention(q, k, v, mask)
+        scaled_attention, attention_weights = self.scaled_dot_product_attention(q, k, v, mask)
 
         scaled_attention = tf.transpose(scaled_attention, perm=[0, 2, 1, 3])
 
@@ -144,6 +144,18 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         output = self.dense(concat_attention)
 
         return output, attention_weights
+
+    @staticmethod
+    def point_wise_feed_forward_network(d_model, dff):
+        """
+        :param d_model:
+        :param dff:
+        :return: A feed forward nn to be stacked after each attention layer.
+        """
+        return tf.keras.Sequential([
+            tf.keras.layers.Dense(dff, activation='relu'),  # (batch_size, seq_len, dff)
+            tf.keras.layers.Dense(d_model)  # (batch_size, seq_len, d_model)
+        ])
 
 
 if __name__ == '__main__':

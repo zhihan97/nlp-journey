@@ -1,6 +1,8 @@
 # coding=utf-8
 # created by msgi on 2020/4/26 3:02 下午
-from smartnlp.custom.layer.encoder_decoder import *
+import tensorflow as tf
+from smartnlp.custom.layer.encoder import Encoder
+from smartnlp.custom.layer.decoder import Decoder
 
 
 class Transformer(tf.keras.Model):
