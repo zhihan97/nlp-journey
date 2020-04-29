@@ -7,14 +7,14 @@ from smartnlp.custom.layer.decoder import Decoder
 
 class Transformer(tf.keras.Model):
     def __init__(self, num_layers, d_model, num_heads, dff, input_vocab_size,
-                 target_vocab_size, pe_input, pe_target, rate=0.1):
+                 target_vocab_size, rate=0.1):
         super(Transformer, self).__init__()
 
         self.encoder = Encoder(num_layers, d_model, num_heads, dff,
-                               input_vocab_size, pe_input, rate)
+                               input_vocab_size, rate)
 
         self.decoder = Decoder(num_layers, d_model, num_heads, dff,
-                               target_vocab_size, pe_target, rate)
+                               target_vocab_size, rate)
 
         self.final_layer = tf.keras.layers.Dense(target_vocab_size)
 
@@ -34,8 +34,7 @@ class Transformer(tf.keras.Model):
 if __name__ == '__main__':
     sample_transformer = Transformer(
         num_layers=2, d_model=512, num_heads=8, dff=2048,
-        input_vocab_size=8500, target_vocab_size=8000,
-        pe_input=10000, pe_target=6000)
+        input_vocab_size=8500, target_vocab_size=8000)
 
     temp_input = tf.random.uniform((64, 62))
     temp_target = tf.random.uniform((64, 26))

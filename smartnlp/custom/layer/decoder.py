@@ -2,13 +2,12 @@
 # created by msgi on 2020/4/26 3:15 下午
 import tensorflow as tf
 from smartnlp.custom.layer.decoder_layer import DecoderLayer
+from smartnlp.custom.layer.encoder_layer import EncoderLayer
 from smartnlp.custom.encoding.position_encoder import PositionalEncoder
 
 
-
 class Decoder(tf.keras.layers.Layer):
-    def __init__(self, num_layers, d_model, num_heads, dff, target_vocab_size,
-                 maximum_position_encoding, rate=0.1):
+    def __init__(self, num_layers, d_model, num_heads, dff, target_vocab_size, rate=0.1):
         super(Decoder, self).__init__()
 
         self.d_model = d_model
@@ -45,9 +44,6 @@ class Decoder(tf.keras.layers.Layer):
 
 
 if __name__ == '__main__':
-
-
-
     sample_encoder_layer = EncoderLayer(512, 8, 2048)
     sample_encoder_layer_output = sample_encoder_layer(
         tf.random.uniform((64, 43, 512)),

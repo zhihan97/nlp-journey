@@ -2,12 +2,11 @@
 # created by msgi on 2020/4/28 7:28 下午
 import tensorflow as tf
 from smartnlp.custom.layer.encoder_layer import EncoderLayer
-from smartnlp.custom.encoding.position_encoding import PositionalEncoder
+from smartnlp.custom.encoding.position_encoder import PositionalEncoder
 
 
 class Encoder(tf.keras.layers.Layer):
-    def __init__(self, num_layers, d_model, num_heads, dff, input_vocab_size,
-                 maximum_position_encoding, rate=0.1):
+    def __init__(self, num_layers, d_model, num_heads, dff, input_vocab_size, rate=0.1):
         super(Encoder, self).__init__()
 
         self.d_model = d_model
