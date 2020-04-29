@@ -1,5 +1,7 @@
 # 自定义模型和层
 
+> 参考自[Transformer model for language understanding](https://tensorflow.google.cn/tutorials/text/transformer?hl=en)
+
 ### 1、seq2seq 里的注意力机制
 
 ![attention](../../images/seq2seq/attention_mechanism.jpg)

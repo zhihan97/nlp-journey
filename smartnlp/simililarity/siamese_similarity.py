@@ -17,7 +17,7 @@ from smartnlp.utils.basic_log import Log
 from smartnlp.utils.clean_text import clean_to_list
 from smartnlp.utils.loader import load_bin_word2vec
 from smartnlp.utils.plot_model_history import plot
-from smartnlp.utils.set_stopwords import set_en_stopwords
+from smartnlp.utils.stopwords import get_en_stopwords
 
 log = Log(logging.INFO)
 
@@ -51,7 +51,7 @@ class SiameseSimilarity:
         self.max_length = 500
 
         # 加载停用词
-        self.stops = set_en_stopwords()
+        self.stops = get_en_stopwords()
         if not train:
             self.embeddings, self.word_index, self.max_length = self._load_config()
             self.model = self._load_model()

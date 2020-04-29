@@ -51,3 +51,14 @@ class Decoder(tf.keras.models.Model):
         output = tf.reshape(output, (-1, output.shape[2]))
         x = self.fc(output)
         return x, state, attention_weights
+
+
+class Seq2seq:
+    def __init__(self):
+        pass
+
+    def train_model(self):
+        pass
+
+    def _build_model(self):
+        pass
