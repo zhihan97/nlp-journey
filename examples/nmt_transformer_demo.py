@@ -4,7 +4,8 @@ import tensorflow_datasets as tfds
 
 import tensorflow as tf
 from datetime import datetime
-from smartnlp.nmt.training import Trainer, CustomSchedule
+from smartnlp.nmt.training import Trainer
+from smartnlp.custom.learning_rate.learning_rate import CustomSchedule
 from smartnlp.custom.model.transformer import Transformer
 from smartnlp.nmt.data_process import DataProcessor
 

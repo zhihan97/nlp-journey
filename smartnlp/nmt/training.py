@@ -9,26 +9,6 @@ import tensorflow as tf
 from smartnlp.custom.encoding.mask_encoder import MaskEncoder
 
 
-class CustomSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
-    def __init__(self, d_model, warmup_steps=4000):
-        """
-        :param d_model: Dimensionality of the Transformer model
-        :param warmup_steps: Number of train steps to alter the learning rate over
-        """
-        super(CustomSchedule, self).__init__()
-
-        self.d_model = d_model
-        self.d_model = tf.cast(self.d_model, tf.float32)
-
-        self.warmup_steps = warmup_steps
-
-    def __call__(self, step):
-        arg1 = tf.math.rsqrt(step)
-        arg2 = step * (self.warmup_steps ** -1.5)
-
-        return tf.math.rsqrt(self.d_model) * tf.math.minimum(arg1, arg2)
-
-
 class Trainer(object):
     def __init__(self, transformer, learning_rate, optimizer, epochs, train_dataset, test_dataset,
                  load_ckpt=True,
@@ -41,22 +21,6 @@ class Trainer(object):
                  use_tensorboard=True,
                  tb_log_dir='./logs/gradient_tape/'
                  ):
-        """
-        :param transformer: Instance of Transformer Class
-        :param learning_rate: Learning Rate schedule
-        :param optimizer: TF optimizer object
-        :param epochs: Number of Epochs to train on
-        :param train_dataset: training dataset
-        :param test_dataset: testing dataset
-        :param load_ckpt: bool to load recent checkpoint if True
-        :param loss_object: loss calculation object
-        :param train_loss: training loss object
-        :param train_accuracy: training accuracy object
-        :param checkpoint_path: the location of where the checkpoints are stored
-        :param max_to_keep: maximum number of checkpoints to keep at a time
-        :param use_tensorboard: Bool to decide whether you want to utilize TensorBoard logging or not
-        :param tb_log_dir: Directory to store TensorBoard Logs in
-        """
         self.train_dataset = train_dataset
         self.test_dataset = test_dataset
 
@@ -101,12 +65,6 @@ class Trainer(object):
             pass
 
     def loss_function(self, real, pred):
-        """
-        :param real: the actual output
-        :param pred: the model output
-        :return: the training loss
-        """
-
         mask = tf.math.logical_not(tf.math.equal(real, 0))
         loss_ = self.loss_object(real, pred)
 
